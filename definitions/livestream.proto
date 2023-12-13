@@ -1,0 +1,58 @@
+syntax = "proto3";
+package tutorial;
+
+option go_package = "ase/messages";
+
+// the car control information that the car should be set to, sent when a human takes over control
+// (speed, steering, braking, etc.)
+message HumanControlOrder {
+    int32 speed = 2; // 0 = standstil, 1000 = max forward speed, -1000 = max backward speed/brakes 
+    int32 steer = 3; // 0 = straight ahead, 1000 = max right, -1000 = max left
+}
+
+// messages exchanged by client(s), the server and the car
+message ConfigMessage {
+    message HumanControlTakeoverRequest {}
+    message HumanControlTakeoverResponse {
+        // let everyone know who is the active controller now
+        string activeControllerId = 1;
+    }
+    message HumanControlReleaseRequest {}
+    message HumanControlReleaseResponse {}
+
+    // This can be either a response or a reply, depending on who sends it
+    message TuningState {
+        message Parameter {
+            message FloatParameter {
+                string key = 1;
+                float value = 2;
+            }
+            message IntParameter {
+                string key = 1;
+                int64 value = 2;
+            }
+            message StringParameter {
+                string key = 1;
+                string value = 2;
+            }
+
+            oneof parameter {
+                FloatParameter float = 1;
+                IntParameter int = 2;
+                StringParameter string = 3;
+            }
+        }
+
+        repeated Parameter parameters = 1;
+    }
+    message TuningStateRequest {} 
+
+    oneof action {
+        HumanControlTakeoverRequest humanControlTakeoverRequest = 1;
+        HumanControlTakeoverResponse humanControlTakeoverResponse = 2;
+        HumanControlReleaseRequest humanControlReleaseRequest = 3;
+        HumanControlReleaseResponse humanControlReleaseResponse = 4;
+        TuningState tuningState = 5;
+        TuningStateRequest tuningStateRequest = 6;
+    }
+}
