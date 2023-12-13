@@ -22,3 +22,6 @@ go.work
 
 # Installed node binaries
 node_modules
+
+# All generated/compiled code that was created from proto files
+gen/*
