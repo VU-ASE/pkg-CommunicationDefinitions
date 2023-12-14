@@ -4,6 +4,4 @@
 
 # make sure you have installed the proto compiler (protoc) and dependencies. See: https://protobuf.dev/getting-started/gotutorial/
 # make sure you have installed the typescript compilation plugin using npm (just run npm install)
-protoc --ts_out=paths=source_relative:./gen -I./definitions definitions/*.proto
-
-#  --plugin="node_modules/.bin/protoc-gen-ts_proto" --ts_proto_opt=esModuleInterop=true
+protoc --plugin=./node_modules/.bin/protoc-gen-ts_proto --ts_proto_out=paths=source_relative:./gen --ts_proto_opt=esModuleInterop=true -I./definitions definitions/*.proto
