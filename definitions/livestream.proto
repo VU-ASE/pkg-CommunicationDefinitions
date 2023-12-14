@@ -79,4 +79,12 @@ message LivestreamFrameSegment {
     uint32 segmentNumber = 2; // always increasing, but resets to 0 when frameNumber increases
     uint32 totalSegments = 3; // total number of segments in this frame
     bytes data = 4;
+    
+    message SensorInformation {
+        int32 p = 1;
+        int32 i = 2;
+        int32 d = 3;
+    }
+
+    SensorInformation sensor = 5;
 }
