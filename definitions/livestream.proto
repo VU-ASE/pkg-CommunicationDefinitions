@@ -75,8 +75,8 @@ message LivestreamFrame {
 
 // To allow livestream frame segmentation
 message LivestreamFrameSegment {
-    int32 frameNumber = 1; // always increasing
-    int32 segmentNumber = 2; // always increasing, but resets to 0 when frameNumber increases
-    int32 totalSegments = 3; // total number of segments in this frame
+    uint32 frameNumber = 1; // always increasing
+    uint32 segmentNumber = 2; // always increasing, but resets to 0 when frameNumber increases
+    uint32 totalSegments = 3; // total number of segments in this frame
     bytes data = 4;
 }
