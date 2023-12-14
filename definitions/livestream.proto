@@ -47,8 +47,9 @@ message ConfigMessage {
     message TuningStateRequest {} 
 
     // Broadcast car connects and disconnects
-    message CarConnected {}
-    message CarDisconnected {}
+    message CarState {
+        bool connected = 1;
+    }
 
     // To report unknown or general errors
     message Error {
@@ -59,10 +60,9 @@ message ConfigMessage {
         HumanControlTakeoverRequest humanControlTakeoverRequest = 1;
         HumanControlReleaseRequest humanControlReleaseRequest = 2;
         HumanControlState humanControlState = 3;
+        TuningStateRequest tuningStateRequest = 4;
         TuningState tuningState = 5;
-        TuningStateRequest tuningStateRequest = 6;
-        CarConnected carConnected = 7;
-        CarDisconnected carDisconnected = 8;
-        Error error = 9;
+        CarState carState = 6;
+        Error error = 7;
     }
 }
