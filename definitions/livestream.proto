@@ -13,12 +13,11 @@ message HumanControlOrder {
 // messages exchanged by client(s), the server and the car
 message ConfigMessage {
     message HumanControlTakeoverRequest {}
-    message HumanControlTakeoverResponse {
+    message HumanControlReleaseRequest {}
+    message HumanControlState {
         // let everyone know who is the active controller now
         string activeControllerId = 1;
     }
-    message HumanControlReleaseRequest {}
-    message HumanControlReleaseResponse {}
 
     // This can be either a response or a reply, depending on who sends it
     message TuningState {
@@ -47,12 +46,23 @@ message ConfigMessage {
     }
     message TuningStateRequest {} 
 
+    // Broadcast car connects and disconnects
+    message CarConnected {}
+    message CarDisconnected {}
+
+    // To report unknown or general errors
+    message Error {
+        string message = 1;
+    }
+
     oneof action {
         HumanControlTakeoverRequest humanControlTakeoverRequest = 1;
-        HumanControlTakeoverResponse humanControlTakeoverResponse = 2;
-        HumanControlReleaseRequest humanControlReleaseRequest = 3;
-        HumanControlReleaseResponse humanControlReleaseResponse = 4;
+        HumanControlReleaseRequest humanControlReleaseRequest = 2;
+        HumanControlState humanControlState = 3;
         TuningState tuningState = 5;
         TuningStateRequest tuningStateRequest = 6;
+        CarConnected carConnected = 7;
+        CarDisconnected carDisconnected = 8;
+        Error error = 9;
     }
 }
