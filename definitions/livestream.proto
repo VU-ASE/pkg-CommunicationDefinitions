@@ -69,7 +69,7 @@ message ConfigMessage {
 
 // Frame data sent by the car
 message LivestreamFrame {
-    byte image = 1;
+    bytes image = 1;
     // ... sensor data can go here
 }
 
@@ -78,5 +78,5 @@ message LivestreamFrameSegment {
     int32 frameNumber = 1; // always increasing
     int32 segmentNumber = 2; // always increasing, but resets to 0 when frameNumber increases
     int32 totalSegments = 3; // total number of segments in this frame
-    bytes data = 2;
+    bytes data = 4;
 }
