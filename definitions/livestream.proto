@@ -1,7 +1,7 @@
 syntax = "proto3";
 package tutorial;
 
-option go_package = "ase/messages";
+option go_package = "ase/protobuf_msgs";
 
 // the car control information that the car should be set to, sent when a human takes over control
 // (speed, steering, braking, etc.)

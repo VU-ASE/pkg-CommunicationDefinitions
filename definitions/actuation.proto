@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option go_package = "ase/protobuf_msgs";
+
+
+message ActuationData {
+  double steer = 1;
+  double throttle = 2;
+  bool emergency = 3;
+}
