@@ -35,7 +35,9 @@ message ConfigMessage {
             }
         }
 
-        repeated Parameter parameters = 1;
+        repeated Parameter dynamicParameters = 1;
+        // Parameters that should always exist
+        uint32 jpegQuality = 2; // if 0, no jpeg is sent
     }
     message TuningStateRequest {} 
 

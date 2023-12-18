@@ -70,6 +70,9 @@ message LivestreamFrame {
     ActuationInformation actuator = 6;
     // to be drawn by the browser
     Canvas canvas = 7;
+
+    // to indicate compression for this frame (0 is no JPEG was sent)
+    uint32 jpegCompression = 8;
 }
 
 // To allow livestream frame segmentation
