@@ -1,0 +1,11 @@
+syntax = "proto3";
+package tutorial;
+
+option go_package = "ase/protobuf_msgs";
+
+// the car control information that the car should be set to, sent when a human takes over control
+// (speed, steering, braking, etc.)
+message HumanControlOrder {
+    int32 speed = 2; // 0 = standstil, 1000 = max forward speed, -1000 = max backward speed/brakes 
+    int32 steer = 3; // 0 = straight ahead, 1000 = max right, -1000 = max left
+}

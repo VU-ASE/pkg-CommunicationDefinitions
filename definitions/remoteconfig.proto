@@ -1,0 +1,61 @@
+syntax = "proto3";
+package tutorial;
+
+option go_package = "ase/protobuf_msgs";
+
+// messages exchanged by client(s), the server and the car
+message ConfigMessage {
+    message HumanControlTakeoverRequest {}
+    message HumanControlReleaseRequest {}
+    message HumanControlState {
+        // let everyone know who is the active controller now
+        string activeControllerId = 1;
+    }
+
+    // This can be either a response or a reply, depending on who sends it
+    message TuningState {
+        message Parameter {
+            message FloatParameter {
+                string key = 1;
+                float value = 2;
+            }
+            message IntParameter {
+                string key = 1;
+                int64 value = 2;
+            }
+            message StringParameter {
+                string key = 1;
+                string value = 2;
+            }
+
+            oneof parameter {
+                FloatParameter float = 1;
+                IntParameter int = 2;
+                StringParameter string = 3;
+            }
+        }
+
+        repeated Parameter parameters = 1;
+    }
+    message TuningStateRequest {} 
+
+    // Broadcast car connects and disconnects
+    message CarState {
+        bool connected = 1;
+    }
+
+    // To report unknown or general errors
+    message Error {
+        string message = 1;
+    }
+
+    oneof action {
+        HumanControlTakeoverRequest humanControlTakeoverRequest = 1;
+        HumanControlReleaseRequest humanControlReleaseRequest = 2;
+        HumanControlState humanControlState = 3;
+        TuningStateRequest tuningStateRequest = 4;
+        TuningState tuningState = 5;
+        CarState carState = 6;
+        Error error = 7;
+    }
+}
