@@ -3,7 +3,11 @@ package tutorial;
 
 option go_package = "ase/protobuf_msgs";
 
-// Objects that can be drawn on the browser canvas to show car information when camera streaming is disabled
+//
+// The debug message definitions add little information to sensor outputs, that are live streamed to the server.
+// A canvas filled with canvas objects can be used to debug the sensor outputs very lightweight.
+//
+
 message CanvasObject {
     message Point {
         uint32 x = 1;
@@ -48,35 +52,11 @@ message CanvasObject {
 message Canvas {
     uint32 width = 1;
     uint32 height = 2;
-    repeated CanvasObject canvasObjects = 3;
-}
-
-// Frame data sent by the car
-message LivestreamFrame {
-    bytes image = 1;
-    // ... sensor data can go here
-    message SensorInformation {
-        int32 p = 1;
-        int32 i = 2;
-        int32 d = 3;
-    }
-    // ... actuator data can go here
-    message ActuationInformation {
-        int32 throttle = 1;
-        int32 steering = 2;
-    }
-
-    SensorInformation sensor = 5;
-    ActuationInformation actuator = 6;
-    // to be drawn by the browser
-    Canvas canvas = 7;
-
-    // to indicate compression for this frame (0 is no JPEG was sent)
-    uint32 jpegCompression = 8;
+    repeated CanvasObject objects = 3;
 }
 
 // To allow livestream frame segmentation
-message LivestreamFrameSegment {
+message SegmentedFrame {
     uint32 frameNumber = 1; // always increasing
     uint32 segmentNumber = 2; // always increasing, but resets to 0 when frameNumber increases
     uint32 totalSegments = 3; // total number of segments in this frame

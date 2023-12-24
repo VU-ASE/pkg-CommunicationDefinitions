@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option go_package = "ase/protobuf_msgs";
+
+//
+// This file defines the output published by the main car controller.
+// In practice, this output serves as the input for the actuator module.
+//
+
+message ControllerOutput {
+    // timestamp of the message
+    uint64 timestamp = 1;
+
+    // Steering angle (-1.0 to 1.0 <-> left - right)
+    float steeringAngle = 2;
+    // Throttle (-1.0 to 1.0 <-> full reverse - full forward)
+    float leftThrottle = 3;
+    float rightThrottle = 4;
+    // Onboard lights (0.0 to 1.0 <-> off - on)
+    float frontLights = 5;
+}

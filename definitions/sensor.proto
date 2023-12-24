@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+option go_package = "ase/protobuf_msgs";
+
+//
+// This file defines the output published by any sensor that can be used on the car. 
+// Updating this output format will most likely require a change to the cars main controller module
+// to understand why, see the architectural design documentation.
+//
+
+message SensorOutput {
+    // Every sensor has a unique ID to support multiple sensors of the same type
+    uint32 sensorId = 1;
+    // Add a timestamp to the output to make debugging, logging and synchronisation easier
+    uint64 timestamp = 2;
+    // Report an error if the sensor is not working correctly (controller can decide to ignore or stop the car)
+    // 0 = no error, any other value = error
+    uint32 status = 3;
+
+    //
+    // The following sensor outputs are specific to the sensor type, bring your own sensor and add your own output here!
+    //
+    message CameraPixelOutput {
+        // dimensions of the image
+        uint32 width = 1;
+        uint32 height = 2;
+        // the image data, an array of byte arrays
+        // e.g. if you have an RGB image, you will receive [ [redByte1, redByte2, ...], [greenByte1, greenByte2, ...], [blueByte1, blueByte2, ...] ]
+        repeated bytes channels = 3;
+    }
+    message DistanceSensorOutput {
+        // distance in meters
+        float distance = 1;
+    }
+    message SpeedSensorOutput {
+        int32 rpm = 1;
+    }
+    message HumanControlOutput {
+        // Steering angle (-1.0 to 1.0 <-> left - right)
+        float steeringAngle = 1;
+        // Throttle (-1.0 to 1.0 <-> full reverse - full forward)
+        float throttle = 2;
+    }
+
+
+    //
+    // Add your sensor output here for it to be enabled
+    //
+    oneof sensorOutput {
+        CameraPixelOutput cameraPixelOutput = 100;
+        DistanceSensorOutput distanceSensorOutput = 101;
+        SpeedSensorOutput speedSensorOutput = 102;
+    }
+}
