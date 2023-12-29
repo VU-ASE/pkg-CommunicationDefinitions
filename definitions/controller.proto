@@ -12,10 +12,7 @@ message ControllerOutput {
     uint64 timestamp = 1;
 
     // Steering angle (-1.0 to 1.0 <-> left - right)
-    float steeringAngle = 2;
+    float steer = 2;
     // Throttle (-1.0 to 1.0 <-> full reverse - full forward)
-    float leftThrottle = 3;
-    float rightThrottle = 4;
-    // Onboard lights (0.0 to 1.0 <-> off - on)
-    float frontLights = 5;
+    float throttle = 3;
 }
