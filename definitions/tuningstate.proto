@@ -1,0 +1,41 @@
+syntax = "proto3";
+package tutorial;
+
+option go_package = "ase/protobuf_msgs";
+
+//
+// This defines runtime tuning that can be applied to the system.
+// Tuning states are distributed through the system in these ways:
+// - The web ui can send a tuning state to the system manager (this should be the new state)
+// - The system manager can send a tuning state to the web ui (this should be the current state, to be displayed)
+// - The system manager can send a tuning state to a process in the system (this should be the current state, to be applied)
+//
+
+message TuningState {
+    uint64 timestamp = 1;
+
+    message Parameter {
+        message FloatParameter {
+            string key = 1;
+            float value = 2;
+        }
+        message IntParameter {
+            string key = 1;
+            int64 value = 2;
+        }
+        message StringParameter {
+            string key = 1;
+            string value = 2;
+        }
+
+        oneof parameter {
+            FloatParameter float = 1;
+            IntParameter int = 2;
+            StringParameter string = 3;
+        }
+    }
+
+    repeated Parameter dynamicParameters = 2;
+    // Parameters that should always exist
+    uint32 jpegQuality = 3; // if 0, no jpeg is sent
+}

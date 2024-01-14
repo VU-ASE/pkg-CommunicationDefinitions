@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+option go_package = "ase/protobuf_msgs";
+
+//
+// This file defines the messages used by the ase system to communicate
+// service endpoints, statusses, endpoints, tuning parameters, etc.
+//
+
+// An endpoint that is made available by a service
+message ServiceEndpoint {
+    string name = 1; // the identifier to select this endpoint
+    string address = 2; // the zmq address to connect to
+}
+
+// A service can register itself within the system by sending a service registration
+// if the service is already registered, its current registration will be overwritten (if override is set)
+message ServiceRegistration {
+    string name = 1;
+    repeated ServiceEndpoint endpoints = 2;
+    int32 pid = 3;
+    bool override = 4;
+}
+
+// The system manager cann report the status of a service by sending a service status
+message ServiceStatus {
+    enum Status {
+        UNKNOWN = 0;
+        RUNNING = 1;
+        STOPPED = 2;
+    }
+
+    string name = 1;
+    Status status = 2;
+    ServiceEndpoint endpoints = 3;
+}
+
+// The system manager can order services to stop/restart by sending a service order
+message ServiceOrder {
+    enum Order {
+        STOP = 0; // will attempt a graceful shutdown
+        RESTART = 1; // will attempt a graceful shutdown and restart
+        KILL = 2; // will kill the service immediately
+        FORCE_RESTART = 3; // will kill the service immediately and restart
+    }
+
+    string name = 1;
+    Order order = 2;
+}
