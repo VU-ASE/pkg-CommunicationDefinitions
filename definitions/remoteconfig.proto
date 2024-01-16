@@ -1,9 +1,10 @@
 syntax = "proto3";
-package tutorial;
+
+package protobuf_msgs;
 
 option go_package = "ase/protobuf_msgs";
 
-// messages exchanged by client(s), the server and the car
+// control messages exchanged by client(s), the server and the car
 message ConfigMessage {
     message HumanControlTakeoverRequest {}
     message HumanControlReleaseRequest {}

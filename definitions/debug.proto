@@ -1,5 +1,6 @@
 syntax = "proto3";
-package tutorial;
+
+package protobuf_msgs;
 
 option go_package = "ase/protobuf_msgs";
 

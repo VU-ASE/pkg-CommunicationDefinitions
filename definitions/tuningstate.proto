@@ -1,7 +1,9 @@
 syntax = "proto3";
-package tutorial;
+
+package protobuf_msgs;
 
 option go_package = "ase/protobuf_msgs";
+
 
 //
 // This defines runtime tuning that can be applied to the system.
@@ -38,4 +40,6 @@ message TuningState {
     repeated Parameter dynamicParameters = 2;
     // Parameters that should always exist
     uint32 jpegQuality = 3; // if 0, no jpeg is sent
+
 }
+
