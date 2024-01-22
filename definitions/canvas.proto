@@ -56,10 +56,3 @@ message Canvas {
     repeated CanvasObject objects = 3;
 }
 
-// To allow livestream frame segmentation
-message SegmentedFrame {
-    uint32 frameNumber = 1; // always increasing
-    uint32 segmentNumber = 2; // always increasing, but resets to 0 when frameNumber increases
-    uint32 totalSegments = 3; // total number of segments in this frame
-    bytes data = 4;
-}
