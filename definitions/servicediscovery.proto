@@ -21,19 +21,16 @@ message ServiceEndpoint {
     string address = 2; // the zmq address to connect to
 }
 
-// A description of a service
-message Service {
-    ServiceIdentifier identifier = 1;
-    repeated ServiceEndpoint endpoints = 2;
-}
+
 
 //
 // Service discovery messages send back and forth between the system manager and services
 //
 
-// When a service registers itself, it sends a ServiceRegistration
-message ServiceRegistration {
-    Service service = 1;
+// A description of a service, sent by a service to register itself or broadcasted by the system manager
+message Service {
+    ServiceIdentifier identifier = 1;
+    repeated ServiceEndpoint endpoints = 2;
 }
 
 // When a service requests information about other services, it sends an InformationRequest message
@@ -43,11 +40,12 @@ message ServiceInformationRequest {
 
 // When the system manager sends information about a service, it sends an Information message
 // Also used to broadcast registrations to all services
-message ServiceInformation {
+message ServiceStatus {
     enum Status {
         UNKNOWN = 0;
         RUNNING = 1;
         STOPPED = 2;
+        NOT_REGISTERED = 3;
     }
 
     Service service = 1;
@@ -58,9 +56,8 @@ message ServiceInformation {
 message ServiceOrder {
     enum OrderType {
         STOP = 0; // will attempt a graceful shutdown
-        RESTART = 1; // will attempt a graceful shutdown and restart
-        KILL = 2; // will kill the service immediately
-        FORCE_RESTART = 3; // will kill the service immediately and restart
+        KILL = 1; // will kill the service immediately
+        FORCE_RESTART = 2; // will kill the service immediately and restart
     }
 
     // The service this order is for

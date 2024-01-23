@@ -40,3 +40,7 @@ message TuningState {
     repeated Parameter dynamicParameters = 2;
 }
 
+message TuningStateRequest {
+    uint64 timestamp = 1; // the timestamp of the last received state, used to prevent unnecessary updates
+}
+

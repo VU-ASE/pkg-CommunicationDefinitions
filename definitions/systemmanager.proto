@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package protobuf_msgs;
+
+option go_package = "ase/protobuf_msgs";
+
+import "servicediscovery.proto";
+import "tuningstate.proto";
+
+//
+// Messages sent back and forth between the system manager and services
+//
+
+message SystemManagerMessage {
+    oneof msg {
+        Service service = 1;
+        ServiceInformationRequest serviceInformationRequest = 2;
+        ServiceStatus serviceStatus = 3;
+        ServiceOrder serviceOrder = 4;
+        TuningState tuningState = 5;
+        TuningStateRequest tuningStateRequest = 6;
+    }
+}
+
