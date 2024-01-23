@@ -11,11 +11,10 @@ option go_package = "ase/protobuf_msgs";
 // - The web ui can send a tuning state to the system manager (this should be the new state)
 // - The system manager can send a tuning state to the web ui (this should be the current state, to be displayed)
 // - The system manager can send a tuning state to a process in the system (this should be the current state, to be applied)
-// NOTE: this is used by the system manager, see system_manager.proto
 //
 
 message TuningState {
-    uint64 timestamp = 1;
+    uint64 timestamp = 1; // increased when the state changes, used to prevent unnecessary updates
 
     message Parameter {
         message FloatParameter {

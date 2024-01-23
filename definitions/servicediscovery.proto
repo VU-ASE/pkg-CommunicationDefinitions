@@ -7,7 +7,6 @@ option go_package = "ase/protobuf_msgs";
 //
 // This file defines the messages used by the ase system to communicate
 // service endpoints, statusses, endpoints, tuning parameters, etc.
-// NOTE: this is used by the system manager, see system_manager.proto
 //
 
 // Used to identify a service within the system
@@ -28,54 +27,43 @@ message Service {
     repeated ServiceEndpoint endpoints = 2;
 }
 
+//
+// Service discovery messages send back and forth between the system manager and services
+//
 
-// A message sent back and forth for the service discovery 
-message ServiceDiscovery {
-    // When a service registers itself, it sends a ServiceRegistration
-    message Registration {
-        Service service = 1;
+// When a service registers itself, it sends a ServiceRegistration
+message ServiceRegistration {
+    Service service = 1;
+}
+
+// When a service requests information about other services, it sends an InformationRequest message
+message ServiceInformationRequest {
+    ServiceIdentifier requested = 1;
+}
+
+// When the system manager sends information about a service, it sends an Information message
+// Also used to broadcast registrations to all services
+message ServiceInformation {
+    enum Status {
+        UNKNOWN = 0;
+        RUNNING = 1;
+        STOPPED = 2;
     }
 
-    // When a service requests information about other services, it sends an InformationRequest message
-    message InformationRequest {
-        ServiceIdentifier requested = 1;
+    Service service = 1;
+    Status status = 2;
+}
+
+// The system manager can order services to stop/restart by sending a service order
+message ServiceOrder {
+    enum OrderType {
+        STOP = 0; // will attempt a graceful shutdown
+        RESTART = 1; // will attempt a graceful shutdown and restart
+        KILL = 2; // will kill the service immediately
+        FORCE_RESTART = 3; // will kill the service immediately and restart
     }
 
-    // When the system manager sends information about a service, it sends an Information message
-    // Also used to broadcast registrations to all services
-    message Information {
-        enum Status {
-            UNKNOWN = 0;
-            RUNNING = 1;
-            STOPPED = 2;
-        }
-
-        Service service = 1;
-        Status status = 2;
-    }
-
-    // The system manager can order services to stop/restart by sending a service order
-    message Order {
-        enum OrderType {
-            STOP = 0; // will attempt a graceful shutdown
-            RESTART = 1; // will attempt a graceful shutdown and restart
-            KILL = 2; // will kill the service immediately
-            FORCE_RESTART = 3; // will kill the service immediately and restart
-        }
-
-        // The service this order is for
-        ServiceIdentifier service = 1;
-        OrderType order = 2;
-    }
-
-    // A reply to indicate that the order or request did not succeed
-    message Error {}
-
-    oneof content {
-        Registration registration = 1;
-        InformationRequest information_request = 2;
-        Information information = 3;
-        Order order = 4;
-        Error error = 5;
-    }
+    // The service this order is for
+    ServiceIdentifier service = 1;
+    OrderType order = 2;
 }
