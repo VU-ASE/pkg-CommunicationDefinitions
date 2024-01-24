@@ -4,4 +4,4 @@
 
 # Make sure you have installed the proto compiler (protoc)
 # You can install it with : `sudo apt install protobuf-c-compiler`
-protoc --c_out=gen/ -I./definitions definitions/*.proto
+protoc --c_out=gen/ -I./definitions definitions/**/*.proto -I./definitions definitions/*.proto

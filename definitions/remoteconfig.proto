@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package protobuf_msgs;
 
-option go_package = "ase/protobuf_msgs";
+option go_package = "ase/pb_remote_config_messages";
 
 // control messages exchanged by client(s), the server and the car
 message ConfigMessage {

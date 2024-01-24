@@ -4,11 +4,11 @@ package protobuf_msgs;
 
 option go_package = "ase/sytemmanager_messages";
 
-import "servicediscovery.proto";
-import "tuningstate.proto";
+import "systemmanager/servicediscovery.proto";
+import "systemmanager/tuningstate.proto";
 
 //
-// Messages sent back and forth between the system manager and services
+// This wrapper allows us to use generic types and let the receiver switch on the oneof type
 //
 
 message SystemManagerMessage {
