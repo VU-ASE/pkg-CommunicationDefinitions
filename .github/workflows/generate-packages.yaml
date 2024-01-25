@@ -29,4 +29,4 @@ jobs:
       - name: "Go package: remove old files"
         run: rm -rf ./packages/go/gen
       - name: "Go package: generate new files"
-        run: ./generate-go.sh; ls -al
+        run: ./generate-go.sh; cd ./packages/go/gen && ls -al
