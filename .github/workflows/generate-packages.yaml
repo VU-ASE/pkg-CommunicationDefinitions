@@ -31,8 +31,20 @@ jobs:
       - name: "Go package: remove old files"
         run: rm -rf ./packages/go/gen
       - name: "Go package: generate new files"
-        run: ./generate-go.sh; cd ./packages/go/gen && ls -al
-      - name: Commit changes
+        run: ./generate-go.sh
+      - name: "Typescript: install dependencies"
+        run: ./install-ts.sh
+      - name: "Typescript: remove old files"
+        run: rm -rf ./packages/ts/src/gen
+      - name: "Typescript: generate new files"
+        run: ./generate-ts.sh
+      - name: "C: install dependencies"
+        run: ./install-c.sh
+      - name: "C: remove old files"
+        run: rm -rf ./packages/c/src/gen
+      - name: "C: generate new files"
+        run: ./generate-c.sh
+      - name: Commit generated code
         uses: EndBug/add-and-commit@v9 # You can change this to use a specific version.
         with:
           # Add all changes to packages
