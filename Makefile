@@ -5,11 +5,11 @@ package-go-install-deps:
 	@go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
 
 package-go-clean:
-	rm -rf ./packages/go/gen
+	rm -rf ./packages/go
 
 package-go-build: package-go-install-deps package-go-clean
-	@mkdir -p ./packages/go/gen
-	@protoc --go_out=paths=source_relative:./packages/go/gen -I./definitions definitions/**/*.proto -I./definitions definitions/*.proto
+	@mkdir -p ./packages/go
+	@protoc --go_out=paths=source_relative:./packages/go -I./definitions definitions/**/*.proto -I./definitions definitions/*.proto
 
 package-ts-install-deps:
 	@cd ./packages/typescript && npm install ts-proto
