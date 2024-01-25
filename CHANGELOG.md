@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.1.1](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v1.1.0...v1.1.1) (2024-01-25)
+
+
+### Bug Fixes
+
+* added correct go package in README ([168afea](https://github.com/VU-ASE/pkg-CommunicationDefinitions/commit/168afeaa1880fad7d7f5942d842fd71c183892ca))
+* correct go package name ([46618f9](https://github.com/VU-ASE/pkg-CommunicationDefinitions/commit/46618f9f8077203b892b58b3c82f12336e438bee))
+* correct go package name ([dc80511](https://github.com/VU-ASE/pkg-CommunicationDefinitions/commit/dc8051106ebc895271fbd091aac3c8adac39ef07))
+
 ## [1.1.0](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v1.0.0...v1.1.0) (2024-01-25)
 
 
