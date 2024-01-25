@@ -1,0 +1,32 @@
+name: generate-packages
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  generate-packages:
+    runs-on: ubuntu-20.04
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: "1.21"
+          cache: false
+      - name: Install Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18.x"
+      - name: Install Protobuf compiler
+        run: sudo apt update && sudo apt install pkg-config protobuf-compiler
+      - name: "Go package: install dependencies"
+        run: ./install-go.sh
+      - name: "Go package: remove old files"
+        run: rm -rf ./packages/go/gen
+      - name: "Go package: generate new files"
+        run: ./generate-go.sh; ls -al
