@@ -5,7 +5,7 @@ The communication definitions package contains all definitions for communication
 To get started quickly, this repository automatically builds packages for the languages used in the ASE project, which can be easily imported using the standard package manager. Current auto-generated packages are:
 
 - **Go**
-    - Installation: `go get github.com/VU-ASE/pkg-CommunicationDefinitions/packages/go`
+    - Installation: `GOPROXY=direct go get github.com/VU-ASE/pkg-CommunicationDefinitions/packages/go`
     - Usage: import the namespace you need. The namespaces are defined at the top of every _/definitions/*.proto_ file in this repository
 - **Typescript**: 
     - Installation:
