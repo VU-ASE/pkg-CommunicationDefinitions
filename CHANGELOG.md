@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.2.0](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v1.1.1...v1.2.0) (2024-01-25)
+
+
+### Features
+
+* moved go.mod to root ([a1713a7](https://github.com/VU-ASE/pkg-CommunicationDefinitions/commit/a1713a78b48e69f1c6e7802858748d73bbe0efa5))
+
+
+### Bug Fixes
+
+* added correct go package in README ([168afea](https://github.com/VU-ASE/pkg-CommunicationDefinitions/commit/168afeaa1880fad7d7f5942d842fd71c183892ca))
+* correct go package name ([46618f9](https://github.com/VU-ASE/pkg-CommunicationDefinitions/commit/46618f9f8077203b892b58b3c82f12336e438bee))
+
 ## [1.1.1](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v1.1.0...v1.1.1) (2024-01-25)
 
 
