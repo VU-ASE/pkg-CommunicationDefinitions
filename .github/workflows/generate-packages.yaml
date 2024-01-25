@@ -9,6 +9,8 @@ on:
 jobs:
   generate-packages:
     runs-on: ubuntu-20.04
+    permissions:
+      contents: write
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
     steps:
@@ -30,3 +32,14 @@ jobs:
         run: rm -rf ./packages/go/gen
       - name: "Go package: generate new files"
         run: ./generate-go.sh; cd ./packages/go/gen && ls -al
+      - name: Commit changes
+        uses: EndBug/add-and-commit@v9 # You can change this to use a specific version.
+        with:
+          # Add all changes to packages
+          add: "packages/*"
+          author_name: Packagebuilder Bot
+          default_author: github_actions
+
+          # The message for the commit.
+          # Default: 'Commit from GitHub Actions (name of the workflow)'
+          message: "build: update packages (automated)"
