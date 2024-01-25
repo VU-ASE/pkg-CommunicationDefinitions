@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package protobuf_msgs;
 
-option go_package = "ase/pb_sytemmanager_messages";
+option go_package = "ase/pb_systemmanager_messages";
 
 
 //

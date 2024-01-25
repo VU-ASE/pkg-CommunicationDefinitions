@@ -9,6 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "ts-proto": "^1.166.2"
+    "ts-proto": "^1.167.0"
   }
 }
