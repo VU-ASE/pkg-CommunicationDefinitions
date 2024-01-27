@@ -20,52 +20,6 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type CameraSensorOutput_DebugFrame_ImageFormat int32
-
-const (
-	CameraSensorOutput_DebugFrame_RGB       CameraSensorOutput_DebugFrame_ImageFormat = 0
-	CameraSensorOutput_DebugFrame_GRAYSCALE CameraSensorOutput_DebugFrame_ImageFormat = 1
-)
-
-// Enum value maps for CameraSensorOutput_DebugFrame_ImageFormat.
-var (
-	CameraSensorOutput_DebugFrame_ImageFormat_name = map[int32]string{
-		0: "RGB",
-		1: "GRAYSCALE",
-	}
-	CameraSensorOutput_DebugFrame_ImageFormat_value = map[string]int32{
-		"RGB":       0,
-		"GRAYSCALE": 1,
-	}
-)
-
-func (x CameraSensorOutput_DebugFrame_ImageFormat) Enum() *CameraSensorOutput_DebugFrame_ImageFormat {
-	p := new(CameraSensorOutput_DebugFrame_ImageFormat)
-	*p = x
-	return p
-}
-
-func (x CameraSensorOutput_DebugFrame_ImageFormat) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (CameraSensorOutput_DebugFrame_ImageFormat) Descriptor() protoreflect.EnumDescriptor {
-	return file_outputs_camera_proto_enumTypes[0].Descriptor()
-}
-
-func (CameraSensorOutput_DebugFrame_ImageFormat) Type() protoreflect.EnumType {
-	return &file_outputs_camera_proto_enumTypes[0]
-}
-
-func (x CameraSensorOutput_DebugFrame_ImageFormat) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use CameraSensorOutput_DebugFrame_ImageFormat.Descriptor instead.
-func (CameraSensorOutput_DebugFrame_ImageFormat) EnumDescriptor() ([]byte, []int) {
-	return file_outputs_camera_proto_rawDescGZIP(), []int{2, 1, 0}
-}
-
 type CanvasObject struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -680,13 +634,7 @@ type CameraSensorOutput_DebugFrame struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// dimensions of the image
-	Width  uint32                                    `protobuf:"varint,1,opt,name=width,proto3" json:"width,omitempty"`
-	Height uint32                                    `protobuf:"varint,2,opt,name=height,proto3" json:"height,omitempty"`
-	Format CameraSensorOutput_DebugFrame_ImageFormat `protobuf:"varint,3,opt,name=format,proto3,enum=protobuf_msgs.CameraSensorOutput_DebugFrame_ImageFormat" json:"format,omitempty"`
-	// the image data, an array of byte arrays
-	// e.g. if you have an RGB image, you will receive [ [redByte1, redByte2, ...], [greenByte1, greenByte2, ...], [blueByte1, blueByte2, ...] ]
-	Channels [][]byte `protobuf:"bytes,4,rep,name=channels,proto3" json:"channels,omitempty"`
+	Jpeg []byte `protobuf:"bytes,1,opt,name=jpeg,proto3" json:"jpeg,omitempty"`
 	// if image livestreaming is disabled, or imaging module wants to draw additional information on the image, it can be done here
 	Canvas *Canvas `protobuf:"bytes,5,opt,name=canvas,proto3" json:"canvas,omitempty"`
 }
@@ -723,30 +671,9 @@ func (*CameraSensorOutput_DebugFrame) Descriptor() ([]byte, []int) {
 	return file_outputs_camera_proto_rawDescGZIP(), []int{2, 1}
 }
 
-func (x *CameraSensorOutput_DebugFrame) GetWidth() uint32 {
+func (x *CameraSensorOutput_DebugFrame) GetJpeg() []byte {
 	if x != nil {
-		return x.Width
-	}
-	return 0
-}
-
-func (x *CameraSensorOutput_DebugFrame) GetHeight() uint32 {
-	if x != nil {
-		return x.Height
-	}
-	return 0
-}
-
-func (x *CameraSensorOutput_DebugFrame) GetFormat() CameraSensorOutput_DebugFrame_ImageFormat {
-	if x != nil {
-		return x.Format
-	}
-	return CameraSensorOutput_DebugFrame_RGB
-}
-
-func (x *CameraSensorOutput_DebugFrame) GetChannels() [][]byte {
-	if x != nil {
-		return x.Channels
+		return x.Jpeg
 	}
 	return nil
 }
@@ -827,7 +754,7 @@ var file_outputs_camera_proto_rawDesc = []byte{
 	0x07, 0x6f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x73, 0x18, 0x03, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x1b,
 	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x5f, 0x6d, 0x73, 0x67, 0x73, 0x2e, 0x43,
 	0x61, 0x6e, 0x76, 0x61, 0x73, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x52, 0x07, 0x6f, 0x62, 0x6a,
-	0x65, 0x63, 0x74, 0x73, 0x22, 0xd2, 0x03, 0x0a, 0x12, 0x43, 0x61, 0x6d, 0x65, 0x72, 0x61, 0x53,
+	0x65, 0x63, 0x74, 0x73, 0x22, 0xa2, 0x02, 0x0a, 0x12, 0x43, 0x61, 0x6d, 0x65, 0x72, 0x61, 0x53,
 	0x65, 0x6e, 0x73, 0x6f, 0x72, 0x4f, 0x75, 0x74, 0x70, 0x75, 0x74, 0x12, 0x47, 0x0a, 0x0a, 0x74,
 	0x72, 0x61, 0x6a, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x79, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32,
 	0x27, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x5f, 0x6d, 0x73, 0x67, 0x73, 0x2e,
@@ -840,23 +767,12 @@ var file_outputs_camera_proto_rawDesc = []byte{
 	0x75, 0x67, 0x46, 0x72, 0x61, 0x6d, 0x65, 0x52, 0x0a, 0x64, 0x65, 0x62, 0x75, 0x67, 0x46, 0x72,
 	0x61, 0x6d, 0x65, 0x1a, 0x23, 0x0a, 0x05, 0x50, 0x6f, 0x69, 0x6e, 0x74, 0x12, 0x0c, 0x0a, 0x01,
 	0x78, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0d, 0x52, 0x01, 0x78, 0x12, 0x0c, 0x0a, 0x01, 0x79, 0x18,
-	0x02, 0x20, 0x01, 0x28, 0x0d, 0x52, 0x01, 0x79, 0x1a, 0xfe, 0x01, 0x0a, 0x0a, 0x44, 0x65, 0x62,
-	0x75, 0x67, 0x46, 0x72, 0x61, 0x6d, 0x65, 0x12, 0x14, 0x0a, 0x05, 0x77, 0x69, 0x64, 0x74, 0x68,
-	0x18, 0x01, 0x20, 0x01, 0x28, 0x0d, 0x52, 0x05, 0x77, 0x69, 0x64, 0x74, 0x68, 0x12, 0x16, 0x0a,
-	0x06, 0x68, 0x65, 0x69, 0x67, 0x68, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0d, 0x52, 0x06, 0x68,
-	0x65, 0x69, 0x67, 0x68, 0x74, 0x12, 0x50, 0x0a, 0x06, 0x66, 0x6f, 0x72, 0x6d, 0x61, 0x74, 0x18,
-	0x03, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x38, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66,
-	0x5f, 0x6d, 0x73, 0x67, 0x73, 0x2e, 0x43, 0x61, 0x6d, 0x65, 0x72, 0x61, 0x53, 0x65, 0x6e, 0x73,
-	0x6f, 0x72, 0x4f, 0x75, 0x74, 0x70, 0x75, 0x74, 0x2e, 0x44, 0x65, 0x62, 0x75, 0x67, 0x46, 0x72,
-	0x61, 0x6d, 0x65, 0x2e, 0x49, 0x6d, 0x61, 0x67, 0x65, 0x46, 0x6f, 0x72, 0x6d, 0x61, 0x74, 0x52,
-	0x06, 0x66, 0x6f, 0x72, 0x6d, 0x61, 0x74, 0x12, 0x1a, 0x0a, 0x08, 0x63, 0x68, 0x61, 0x6e, 0x6e,
-	0x65, 0x6c, 0x73, 0x18, 0x04, 0x20, 0x03, 0x28, 0x0c, 0x52, 0x08, 0x63, 0x68, 0x61, 0x6e, 0x6e,
-	0x65, 0x6c, 0x73, 0x12, 0x2d, 0x0a, 0x06, 0x63, 0x61, 0x6e, 0x76, 0x61, 0x73, 0x18, 0x05, 0x20,
-	0x01, 0x28, 0x0b, 0x32, 0x15, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x5f, 0x6d,
-	0x73, 0x67, 0x73, 0x2e, 0x43, 0x61, 0x6e, 0x76, 0x61, 0x73, 0x52, 0x06, 0x63, 0x61, 0x6e, 0x76,
-	0x61, 0x73, 0x22, 0x25, 0x0a, 0x0b, 0x49, 0x6d, 0x61, 0x67, 0x65, 0x46, 0x6f, 0x72, 0x6d, 0x61,
-	0x74, 0x12, 0x07, 0x0a, 0x03, 0x52, 0x47, 0x42, 0x10, 0x00, 0x12, 0x0d, 0x0a, 0x09, 0x47, 0x52,
-	0x41, 0x59, 0x53, 0x43, 0x41, 0x4c, 0x45, 0x10, 0x01, 0x42, 0x17, 0x5a, 0x15, 0x61, 0x73, 0x65,
+	0x02, 0x20, 0x01, 0x28, 0x0d, 0x52, 0x01, 0x79, 0x1a, 0x4f, 0x0a, 0x0a, 0x44, 0x65, 0x62, 0x75,
+	0x67, 0x46, 0x72, 0x61, 0x6d, 0x65, 0x12, 0x12, 0x0a, 0x04, 0x6a, 0x70, 0x65, 0x67, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x0c, 0x52, 0x04, 0x6a, 0x70, 0x65, 0x67, 0x12, 0x2d, 0x0a, 0x06, 0x63, 0x61,
+	0x6e, 0x76, 0x61, 0x73, 0x18, 0x05, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x15, 0x2e, 0x70, 0x72, 0x6f,
+	0x74, 0x6f, 0x62, 0x75, 0x66, 0x5f, 0x6d, 0x73, 0x67, 0x73, 0x2e, 0x43, 0x61, 0x6e, 0x76, 0x61,
+	0x73, 0x52, 0x06, 0x63, 0x61, 0x6e, 0x76, 0x61, 0x73, 0x42, 0x17, 0x5a, 0x15, 0x61, 0x73, 0x65,
 	0x2f, 0x70, 0x62, 0x5f, 0x6d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x5f, 0x6f, 0x75, 0x74, 0x70, 0x75,
 	0x74, 0x73, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
@@ -873,43 +789,40 @@ func file_outputs_camera_proto_rawDescGZIP() []byte {
 	return file_outputs_camera_proto_rawDescData
 }
 
-var file_outputs_camera_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_outputs_camera_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
 var file_outputs_camera_proto_goTypes = []interface{}{
-	(CameraSensorOutput_DebugFrame_ImageFormat)(0), // 0: protobuf_msgs.CameraSensorOutput.DebugFrame.ImageFormat
-	(*CanvasObject)(nil),                           // 1: protobuf_msgs.CanvasObject
-	(*Canvas)(nil),                                 // 2: protobuf_msgs.Canvas
-	(*CameraSensorOutput)(nil),                     // 3: protobuf_msgs.CameraSensorOutput
-	(*CanvasObject_Point)(nil),                     // 4: protobuf_msgs.CanvasObject.Point
-	(*CanvasObject_Color)(nil),                     // 5: protobuf_msgs.CanvasObject.Color
-	(*CanvasObject_Line)(nil),                      // 6: protobuf_msgs.CanvasObject.Line
-	(*CanvasObject_Rectangle)(nil),                 // 7: protobuf_msgs.CanvasObject.Rectangle
-	(*CanvasObject_Circle)(nil),                    // 8: protobuf_msgs.CanvasObject.Circle
-	(*CameraSensorOutput_Point)(nil),               // 9: protobuf_msgs.CameraSensorOutput.Point
-	(*CameraSensorOutput_DebugFrame)(nil),          // 10: protobuf_msgs.CameraSensorOutput.DebugFrame
+	(*CanvasObject)(nil),                  // 0: protobuf_msgs.CanvasObject
+	(*Canvas)(nil),                        // 1: protobuf_msgs.Canvas
+	(*CameraSensorOutput)(nil),            // 2: protobuf_msgs.CameraSensorOutput
+	(*CanvasObject_Point)(nil),            // 3: protobuf_msgs.CanvasObject.Point
+	(*CanvasObject_Color)(nil),            // 4: protobuf_msgs.CanvasObject.Color
+	(*CanvasObject_Line)(nil),             // 5: protobuf_msgs.CanvasObject.Line
+	(*CanvasObject_Rectangle)(nil),        // 6: protobuf_msgs.CanvasObject.Rectangle
+	(*CanvasObject_Circle)(nil),           // 7: protobuf_msgs.CanvasObject.Circle
+	(*CameraSensorOutput_Point)(nil),      // 8: protobuf_msgs.CameraSensorOutput.Point
+	(*CameraSensorOutput_DebugFrame)(nil), // 9: protobuf_msgs.CameraSensorOutput.DebugFrame
 }
 var file_outputs_camera_proto_depIdxs = []int32{
-	6,  // 0: protobuf_msgs.CanvasObject.line:type_name -> protobuf_msgs.CanvasObject.Line
-	7,  // 1: protobuf_msgs.CanvasObject.rectangle:type_name -> protobuf_msgs.CanvasObject.Rectangle
-	8,  // 2: protobuf_msgs.CanvasObject.circle:type_name -> protobuf_msgs.CanvasObject.Circle
-	1,  // 3: protobuf_msgs.Canvas.objects:type_name -> protobuf_msgs.CanvasObject
-	9,  // 4: protobuf_msgs.CameraSensorOutput.trajectory:type_name -> protobuf_msgs.CameraSensorOutput.Point
-	10, // 5: protobuf_msgs.CameraSensorOutput.debug_frame:type_name -> protobuf_msgs.CameraSensorOutput.DebugFrame
-	4,  // 6: protobuf_msgs.CanvasObject.Line.start:type_name -> protobuf_msgs.CanvasObject.Point
-	4,  // 7: protobuf_msgs.CanvasObject.Line.end:type_name -> protobuf_msgs.CanvasObject.Point
-	5,  // 8: protobuf_msgs.CanvasObject.Line.color:type_name -> protobuf_msgs.CanvasObject.Color
-	4,  // 9: protobuf_msgs.CanvasObject.Rectangle.topLeft:type_name -> protobuf_msgs.CanvasObject.Point
-	4,  // 10: protobuf_msgs.CanvasObject.Rectangle.bottomRight:type_name -> protobuf_msgs.CanvasObject.Point
-	5,  // 11: protobuf_msgs.CanvasObject.Rectangle.color:type_name -> protobuf_msgs.CanvasObject.Color
-	4,  // 12: protobuf_msgs.CanvasObject.Circle.center:type_name -> protobuf_msgs.CanvasObject.Point
-	5,  // 13: protobuf_msgs.CanvasObject.Circle.color:type_name -> protobuf_msgs.CanvasObject.Color
-	0,  // 14: protobuf_msgs.CameraSensorOutput.DebugFrame.format:type_name -> protobuf_msgs.CameraSensorOutput.DebugFrame.ImageFormat
-	2,  // 15: protobuf_msgs.CameraSensorOutput.DebugFrame.canvas:type_name -> protobuf_msgs.Canvas
-	16, // [16:16] is the sub-list for method output_type
-	16, // [16:16] is the sub-list for method input_type
-	16, // [16:16] is the sub-list for extension type_name
-	16, // [16:16] is the sub-list for extension extendee
-	0,  // [0:16] is the sub-list for field type_name
+	5,  // 0: protobuf_msgs.CanvasObject.line:type_name -> protobuf_msgs.CanvasObject.Line
+	6,  // 1: protobuf_msgs.CanvasObject.rectangle:type_name -> protobuf_msgs.CanvasObject.Rectangle
+	7,  // 2: protobuf_msgs.CanvasObject.circle:type_name -> protobuf_msgs.CanvasObject.Circle
+	0,  // 3: protobuf_msgs.Canvas.objects:type_name -> protobuf_msgs.CanvasObject
+	8,  // 4: protobuf_msgs.CameraSensorOutput.trajectory:type_name -> protobuf_msgs.CameraSensorOutput.Point
+	9,  // 5: protobuf_msgs.CameraSensorOutput.debug_frame:type_name -> protobuf_msgs.CameraSensorOutput.DebugFrame
+	3,  // 6: protobuf_msgs.CanvasObject.Line.start:type_name -> protobuf_msgs.CanvasObject.Point
+	3,  // 7: protobuf_msgs.CanvasObject.Line.end:type_name -> protobuf_msgs.CanvasObject.Point
+	4,  // 8: protobuf_msgs.CanvasObject.Line.color:type_name -> protobuf_msgs.CanvasObject.Color
+	3,  // 9: protobuf_msgs.CanvasObject.Rectangle.topLeft:type_name -> protobuf_msgs.CanvasObject.Point
+	3,  // 10: protobuf_msgs.CanvasObject.Rectangle.bottomRight:type_name -> protobuf_msgs.CanvasObject.Point
+	4,  // 11: protobuf_msgs.CanvasObject.Rectangle.color:type_name -> protobuf_msgs.CanvasObject.Color
+	3,  // 12: protobuf_msgs.CanvasObject.Circle.center:type_name -> protobuf_msgs.CanvasObject.Point
+	4,  // 13: protobuf_msgs.CanvasObject.Circle.color:type_name -> protobuf_msgs.CanvasObject.Color
+	1,  // 14: protobuf_msgs.CameraSensorOutput.DebugFrame.canvas:type_name -> protobuf_msgs.Canvas
+	15, // [15:15] is the sub-list for method output_type
+	15, // [15:15] is the sub-list for method input_type
+	15, // [15:15] is the sub-list for extension type_name
+	15, // [15:15] is the sub-list for extension extendee
+	0,  // [0:15] is the sub-list for field type_name
 }
 
 func init() { file_outputs_camera_proto_init() }
@@ -1049,14 +962,13 @@ func file_outputs_camera_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_outputs_camera_proto_rawDesc,
-			NumEnums:      1,
+			NumEnums:      0,
 			NumMessages:   10,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
 		GoTypes:           file_outputs_camera_proto_goTypes,
 		DependencyIndexes: file_outputs_camera_proto_depIdxs,
-		EnumInfos:         file_outputs_camera_proto_enumTypes,
 		MessageInfos:      file_outputs_camera_proto_msgTypes,
 	}.Build()
 	File_outputs_camera_proto = out.File

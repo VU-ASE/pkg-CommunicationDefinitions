@@ -722,79 +722,15 @@ const ProtobufCMessageDescriptor protobuf_msgs__camera_sensor_output__point__des
   (ProtobufCMessageInit) protobuf_msgs__camera_sensor_output__point__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCEnumValue protobuf_msgs__camera_sensor_output__debug_frame__image_format__enum_values_by_number[2] =
-{
-  { "RGB", "PROTOBUF_MSGS__CAMERA_SENSOR_OUTPUT__DEBUG_FRAME__IMAGE_FORMAT__RGB", 0 },
-  { "GRAYSCALE", "PROTOBUF_MSGS__CAMERA_SENSOR_OUTPUT__DEBUG_FRAME__IMAGE_FORMAT__GRAYSCALE", 1 },
-};
-static const ProtobufCIntRange protobuf_msgs__camera_sensor_output__debug_frame__image_format__value_ranges[] = {
-{0, 0},{0, 2}
-};
-static const ProtobufCEnumValueIndex protobuf_msgs__camera_sensor_output__debug_frame__image_format__enum_values_by_name[2] =
-{
-  { "GRAYSCALE", 1 },
-  { "RGB", 0 },
-};
-const ProtobufCEnumDescriptor protobuf_msgs__camera_sensor_output__debug_frame__image_format__descriptor =
-{
-  PROTOBUF_C__ENUM_DESCRIPTOR_MAGIC,
-  "protobuf_msgs.CameraSensorOutput.DebugFrame.ImageFormat",
-  "ImageFormat",
-  "ProtobufMsgs__CameraSensorOutput__DebugFrame__ImageFormat",
-  "protobuf_msgs",
-  2,
-  protobuf_msgs__camera_sensor_output__debug_frame__image_format__enum_values_by_number,
-  2,
-  protobuf_msgs__camera_sensor_output__debug_frame__image_format__enum_values_by_name,
-  1,
-  protobuf_msgs__camera_sensor_output__debug_frame__image_format__value_ranges,
-  NULL,NULL,NULL,NULL   /* reserved[1234] */
-};
-static const ProtobufCFieldDescriptor protobuf_msgs__camera_sensor_output__debug_frame__field_descriptors[5] =
+static const ProtobufCFieldDescriptor protobuf_msgs__camera_sensor_output__debug_frame__field_descriptors[2] =
 {
   {
-    "width",
+    "jpeg",
     1,
     PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_UINT32,
-    0,   /* quantifier_offset */
-    offsetof(ProtobufMsgs__CameraSensorOutput__DebugFrame, width),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "height",
-    2,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_UINT32,
-    0,   /* quantifier_offset */
-    offsetof(ProtobufMsgs__CameraSensorOutput__DebugFrame, height),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "format",
-    3,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_ENUM,
-    0,   /* quantifier_offset */
-    offsetof(ProtobufMsgs__CameraSensorOutput__DebugFrame, format),
-    &protobuf_msgs__camera_sensor_output__debug_frame__image_format__descriptor,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "channels",
-    4,
-    PROTOBUF_C_LABEL_REPEATED,
     PROTOBUF_C_TYPE_BYTES,
-    offsetof(ProtobufMsgs__CameraSensorOutput__DebugFrame, n_channels),
-    offsetof(ProtobufMsgs__CameraSensorOutput__DebugFrame, channels),
+    0,   /* quantifier_offset */
+    offsetof(ProtobufMsgs__CameraSensorOutput__DebugFrame, jpeg),
     NULL,
     NULL,
     0,             /* flags */
@@ -814,16 +750,14 @@ static const ProtobufCFieldDescriptor protobuf_msgs__camera_sensor_output__debug
   },
 };
 static const unsigned protobuf_msgs__camera_sensor_output__debug_frame__field_indices_by_name[] = {
-  4,   /* field[4] = canvas */
-  3,   /* field[3] = channels */
-  2,   /* field[2] = format */
-  1,   /* field[1] = height */
-  0,   /* field[0] = width */
+  1,   /* field[1] = canvas */
+  0,   /* field[0] = jpeg */
 };
-static const ProtobufCIntRange protobuf_msgs__camera_sensor_output__debug_frame__number_ranges[1 + 1] =
+static const ProtobufCIntRange protobuf_msgs__camera_sensor_output__debug_frame__number_ranges[2 + 1] =
 {
   { 1, 0 },
-  { 0, 5 }
+  { 5, 1 },
+  { 0, 2 }
 };
 const ProtobufCMessageDescriptor protobuf_msgs__camera_sensor_output__debug_frame__descriptor =
 {
@@ -833,10 +767,10 @@ const ProtobufCMessageDescriptor protobuf_msgs__camera_sensor_output__debug_fram
   "ProtobufMsgs__CameraSensorOutput__DebugFrame",
   "protobuf_msgs",
   sizeof(ProtobufMsgs__CameraSensorOutput__DebugFrame),
-  5,
+  2,
   protobuf_msgs__camera_sensor_output__debug_frame__field_descriptors,
   protobuf_msgs__camera_sensor_output__debug_frame__field_indices_by_name,
-  1,  protobuf_msgs__camera_sensor_output__debug_frame__number_ranges,
+  2,  protobuf_msgs__camera_sensor_output__debug_frame__number_ranges,
   (ProtobufCMessageInit) protobuf_msgs__camera_sensor_output__debug_frame__init,
   NULL,NULL,NULL    /* reserved[123] */
 };

@@ -29,11 +29,6 @@ typedef struct _ProtobufMsgs__CameraSensorOutput__DebugFrame ProtobufMsgs__Camer
 
 /* --- enums --- */
 
-typedef enum _ProtobufMsgs__CameraSensorOutput__DebugFrame__ImageFormat {
-  PROTOBUF_MSGS__CAMERA_SENSOR_OUTPUT__DEBUG_FRAME__IMAGE_FORMAT__RGB = 0,
-  PROTOBUF_MSGS__CAMERA_SENSOR_OUTPUT__DEBUG_FRAME__IMAGE_FORMAT__GRAYSCALE = 1
-    PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(PROTOBUF_MSGS__CAMERA_SENSOR_OUTPUT__DEBUG_FRAME__IMAGE_FORMAT)
-} ProtobufMsgs__CameraSensorOutput__DebugFrame__ImageFormat;
 
 /* --- messages --- */
 
@@ -150,18 +145,7 @@ struct  _ProtobufMsgs__CameraSensorOutput__Point
 struct  _ProtobufMsgs__CameraSensorOutput__DebugFrame
 {
   ProtobufCMessage base;
-  /*
-   * dimensions of the image
-   */
-  uint32_t width;
-  uint32_t height;
-  ProtobufMsgs__CameraSensorOutput__DebugFrame__ImageFormat format;
-  /*
-   * the image data, an array of byte arrays
-   * e.g. if you have an RGB image, you will receive [ [redByte1, redByte2, ...], [greenByte1, greenByte2, ...], [blueByte1, blueByte2, ...] ]
-   */
-  size_t n_channels;
-  ProtobufCBinaryData *channels;
+  ProtobufCBinaryData jpeg;
   /*
    * if image livestreaming is disabled, or imaging module wants to draw additional information on the image, it can be done here
    */
@@ -169,7 +153,7 @@ struct  _ProtobufMsgs__CameraSensorOutput__DebugFrame
 };
 #define PROTOBUF_MSGS__CAMERA_SENSOR_OUTPUT__DEBUG_FRAME__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&protobuf_msgs__camera_sensor_output__debug_frame__descriptor) \
-    , 0, 0, PROTOBUF_MSGS__CAMERA_SENSOR_OUTPUT__DEBUG_FRAME__IMAGE_FORMAT__RGB, 0,NULL, NULL }
+    , {0,NULL}, NULL }
 
 
 /*
@@ -316,7 +300,6 @@ extern const ProtobufCMessageDescriptor protobuf_msgs__canvas__descriptor;
 extern const ProtobufCMessageDescriptor protobuf_msgs__camera_sensor_output__descriptor;
 extern const ProtobufCMessageDescriptor protobuf_msgs__camera_sensor_output__point__descriptor;
 extern const ProtobufCMessageDescriptor protobuf_msgs__camera_sensor_output__debug_frame__descriptor;
-extern const ProtobufCEnumDescriptor    protobuf_msgs__camera_sensor_output__debug_frame__image_format__descriptor;
 
 PROTOBUF_C__END_DECLS
 

@@ -61,54 +61,9 @@ export interface CameraSensorOutput_Point {
 }
 
 export interface CameraSensorOutput_DebugFrame {
-  /** dimensions of the image */
-  width: number;
-  height: number;
-  format: CameraSensorOutput_DebugFrame_ImageFormat;
-  /**
-   * the image data, an array of byte arrays
-   * e.g. if you have an RGB image, you will receive [ [redByte1, redByte2, ...], [greenByte1, greenByte2, ...], [blueByte1, blueByte2, ...] ]
-   */
-  channels: Uint8Array[];
+  jpeg: Uint8Array;
   /** if image livestreaming is disabled, or imaging module wants to draw additional information on the image, it can be done here */
   canvas: Canvas | undefined;
-}
-
-export enum CameraSensorOutput_DebugFrame_ImageFormat {
-  RGB = 0,
-  GRAYSCALE = 1,
-  UNRECOGNIZED = -1,
-}
-
-export function cameraSensorOutput_DebugFrame_ImageFormatFromJSON(
-  object: any,
-): CameraSensorOutput_DebugFrame_ImageFormat {
-  switch (object) {
-    case 0:
-    case "RGB":
-      return CameraSensorOutput_DebugFrame_ImageFormat.RGB;
-    case 1:
-    case "GRAYSCALE":
-      return CameraSensorOutput_DebugFrame_ImageFormat.GRAYSCALE;
-    case -1:
-    case "UNRECOGNIZED":
-    default:
-      return CameraSensorOutput_DebugFrame_ImageFormat.UNRECOGNIZED;
-  }
-}
-
-export function cameraSensorOutput_DebugFrame_ImageFormatToJSON(
-  object: CameraSensorOutput_DebugFrame_ImageFormat,
-): string {
-  switch (object) {
-    case CameraSensorOutput_DebugFrame_ImageFormat.RGB:
-      return "RGB";
-    case CameraSensorOutput_DebugFrame_ImageFormat.GRAYSCALE:
-      return "GRAYSCALE";
-    case CameraSensorOutput_DebugFrame_ImageFormat.UNRECOGNIZED:
-    default:
-      return "UNRECOGNIZED";
-  }
 }
 
 function createBaseCanvasObject(): CanvasObject {
@@ -956,22 +911,13 @@ export const CameraSensorOutput_Point = {
 };
 
 function createBaseCameraSensorOutput_DebugFrame(): CameraSensorOutput_DebugFrame {
-  return { width: 0, height: 0, format: 0, channels: [], canvas: undefined };
+  return { jpeg: new Uint8Array(0), canvas: undefined };
 }
 
 export const CameraSensorOutput_DebugFrame = {
   encode(message: CameraSensorOutput_DebugFrame, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.width !== 0) {
-      writer.uint32(8).uint32(message.width);
-    }
-    if (message.height !== 0) {
-      writer.uint32(16).uint32(message.height);
-    }
-    if (message.format !== 0) {
-      writer.uint32(24).int32(message.format);
-    }
-    for (const v of message.channels) {
-      writer.uint32(34).bytes(v!);
+    if (message.jpeg.length !== 0) {
+      writer.uint32(10).bytes(message.jpeg);
     }
     if (message.canvas !== undefined) {
       Canvas.encode(message.canvas, writer.uint32(42).fork()).ldelim();
@@ -987,32 +933,11 @@ export const CameraSensorOutput_DebugFrame = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          if (tag !== 8) {
+          if (tag !== 10) {
             break;
           }
 
-          message.width = reader.uint32();
-          continue;
-        case 2:
-          if (tag !== 16) {
-            break;
-          }
-
-          message.height = reader.uint32();
-          continue;
-        case 3:
-          if (tag !== 24) {
-            break;
-          }
-
-          message.format = reader.int32() as any;
-          continue;
-        case 4:
-          if (tag !== 34) {
-            break;
-          }
-
-          message.channels.push(reader.bytes());
+          message.jpeg = reader.bytes();
           continue;
         case 5:
           if (tag !== 42) {
@@ -1032,27 +957,15 @@ export const CameraSensorOutput_DebugFrame = {
 
   fromJSON(object: any): CameraSensorOutput_DebugFrame {
     return {
-      width: isSet(object.width) ? globalThis.Number(object.width) : 0,
-      height: isSet(object.height) ? globalThis.Number(object.height) : 0,
-      format: isSet(object.format) ? cameraSensorOutput_DebugFrame_ImageFormatFromJSON(object.format) : 0,
-      channels: globalThis.Array.isArray(object?.channels) ? object.channels.map((e: any) => bytesFromBase64(e)) : [],
+      jpeg: isSet(object.jpeg) ? bytesFromBase64(object.jpeg) : new Uint8Array(0),
       canvas: isSet(object.canvas) ? Canvas.fromJSON(object.canvas) : undefined,
     };
   },
 
   toJSON(message: CameraSensorOutput_DebugFrame): unknown {
     const obj: any = {};
-    if (message.width !== 0) {
-      obj.width = Math.round(message.width);
-    }
-    if (message.height !== 0) {
-      obj.height = Math.round(message.height);
-    }
-    if (message.format !== 0) {
-      obj.format = cameraSensorOutput_DebugFrame_ImageFormatToJSON(message.format);
-    }
-    if (message.channels?.length) {
-      obj.channels = message.channels.map((e) => base64FromBytes(e));
+    if (message.jpeg.length !== 0) {
+      obj.jpeg = base64FromBytes(message.jpeg);
     }
     if (message.canvas !== undefined) {
       obj.canvas = Canvas.toJSON(message.canvas);
@@ -1067,10 +980,7 @@ export const CameraSensorOutput_DebugFrame = {
     object: I,
   ): CameraSensorOutput_DebugFrame {
     const message = createBaseCameraSensorOutput_DebugFrame();
-    message.width = object.width ?? 0;
-    message.height = object.height ?? 0;
-    message.format = object.format ?? 0;
-    message.channels = object.channels?.map((e) => e) || [];
+    message.jpeg = object.jpeg ?? new Uint8Array(0);
     message.canvas = (object.canvas !== undefined && object.canvas !== null)
       ? Canvas.fromPartial(object.canvas)
       : undefined;
