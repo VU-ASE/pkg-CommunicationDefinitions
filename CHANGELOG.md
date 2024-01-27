@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.0](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v1.3.0...v1.4.0) (2024-01-27)
+
+
+### Features
+
+* added segmentation definitions ([07c2a82](https://github.com/VU-ASE/pkg-CommunicationDefinitions/commit/07c2a827d5c5d082dcc92fa87d43d04aa7652dbc))
+
 ## [1.3.0](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v1.2.0...v1.3.0) (2024-01-27)
 
 
