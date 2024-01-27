@@ -59,12 +59,31 @@ message Canvas {
 // The following sensor outputs are specific to the sensor type, bring your own sensor and add your own output here!
 //
 message CameraSensorOutput {
-    // dimensions of the image
-    uint32 width = 1;
-    uint32 height = 2;
-    // the image data, an array of byte arrays
-    // e.g. if you have an RGB image, you will receive [ [redByte1, redByte2, ...], [greenByte1, greenByte2, ...], [blueByte1, blueByte2, ...] ]
-    repeated bytes channels = 3;
-    Canvas canvas = 4; // used for debugging
+    message Point {
+        uint32 x = 1;
+        uint32 y = 2;
+    }
+
+    // Defined by the Path Planner
+    repeated Point trajectory = 1;
+
+    message DebugFrame {
+        enum ImageFormat {
+            RGB = 0;
+            GRAYSCALE = 1;
+        }
+
+        // dimensions of the image
+        uint32 width = 1;
+        uint32 height = 2;
+        ImageFormat format = 3;
+        // the image data, an array of byte arrays
+        // e.g. if you have an RGB image, you will receive [ [redByte1, redByte2, ...], [greenByte1, greenByte2, ...], [blueByte1, blueByte2, ...] ]
+        repeated bytes channels = 4;
+        // if image livestreaming is disabled, or imaging module wants to draw additional information on the image, it can be done here
+        Canvas canvas = 5; 
+    }
+
+    DebugFrame debug_frame = 2;
 }
 
