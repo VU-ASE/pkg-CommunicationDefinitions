@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.0](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v1.4.0...v1.5.0) (2024-01-27)
+
+
+### Features
+
+* moved to jpeg instead of raw pixel values ([d8701c3](https://github.com/VU-ASE/pkg-CommunicationDefinitions/commit/d8701c3694bfb35e86daac94bc5910763ee5ce3d))
+
 ## [1.4.0](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v1.3.0...v1.4.0) (2024-01-27)
 
 
