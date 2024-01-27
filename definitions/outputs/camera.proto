@@ -68,18 +68,7 @@ message CameraSensorOutput {
     repeated Point trajectory = 1;
 
     message DebugFrame {
-        enum ImageFormat {
-            RGB = 0;
-            GRAYSCALE = 1;
-        }
-
-        // dimensions of the image
-        uint32 width = 1;
-        uint32 height = 2;
-        ImageFormat format = 3;
-        // the image data, an array of byte arrays
-        // e.g. if you have an RGB image, you will receive [ [redByte1, redByte2, ...], [greenByte1, greenByte2, ...], [blueByte1, blueByte2, ...] ]
-        repeated bytes channels = 4;
+        bytes jpeg = 1;
         // if image livestreaming is disabled, or imaging module wants to draw additional information on the image, it can be done here
         Canvas canvas = 5; 
     }
