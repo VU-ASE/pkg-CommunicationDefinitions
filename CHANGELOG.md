@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v1.2.0...v1.3.0) (2024-01-27)
+
+
+### Features
+
+* debug and path planner information added to CameraOutput ([1b9da9f](https://github.com/VU-ASE/pkg-CommunicationDefinitions/commit/1b9da9f53891319e81aa306e417df31edd383740))
+
 ## [1.2.0](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v1.1.1...v1.2.0) (2024-01-25)
 
 
