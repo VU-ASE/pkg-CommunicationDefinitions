@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package protobuf_msgs;
+
+option go_package = "ase/pb_module_outputs";
+
+//
+// Simulator sensor outputs
+//
+message SimulatorImageOutput {
+    uint32 frameid = 1;
+    uint32 width = 2;
+    uint32 height = 3;
+    bytes  pixels = 4;
+}
+
