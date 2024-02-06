@@ -8,7 +8,7 @@ import "systemmanager/servicediscovery.proto";
 import "systemmanager/tuningstate.proto";
 
 //
-// This wrapper allows us to use generic types and let the receiver switch on the oneof type.
+// This wrapper allows us to use generic types and let the receiver switch on the oneof type
 //
 
 message SystemManagerMessage {
