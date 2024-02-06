@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.0](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v1.5.0...v1.6.0) (2024-02-06)
+
+
+### Features
+
+* support for debug streams and service lists ([f7c4a5c](https://github.com/VU-ASE/pkg-CommunicationDefinitions/commit/f7c4a5cd31f03261123cf80b86826ccdc6b9524b))
+
 ## [1.5.0](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v1.4.0...v1.5.0) (2024-01-27)
 
 
