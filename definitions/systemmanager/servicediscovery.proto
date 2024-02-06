@@ -64,3 +64,13 @@ message ServiceOrder {
     ServiceIdentifier service = 1;
     OrderType order = 2;
 }
+
+// When a service wants to fetch all services, it sends a ServiceListRequest
+message ServiceListRequest {
+    ServiceIdentifier requested = 1;
+}
+
+// When the system manager sends a list of services, it sends a ServiceList
+message ServiceList {
+    repeated ServiceStatus services = 1;
+}

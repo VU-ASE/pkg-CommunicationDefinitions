@@ -19,6 +19,8 @@ message SystemManagerMessage {
         ServiceOrder serviceOrder = 4;
         TuningState tuningState = 5;
         TuningStateRequest tuningStateRequest = 6;
+        ServiceListRequest serviceListRequest = 7;
+        ServiceList serviceList = 8;
     }
 }
 
