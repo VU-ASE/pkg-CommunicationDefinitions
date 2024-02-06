@@ -1,5 +1,18 @@
 # Changelog
 
+## [2.0.0](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v1.6.0...v2.0.0) (2024-02-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* made compatible with v2 of pkg-ServiceRunner
+
+### Features
+
+* made compatible with v2 of pkg-ServiceRunner ([6cecf41](https://github.com/VU-ASE/pkg-CommunicationDefinitions/commit/6cecf416f236cee85d86828e7c54ffa90bea741d))
+* made compatible with v2 of pkg-ServiceRunner ([ec7c7d4](https://github.com/VU-ASE/pkg-CommunicationDefinitions/commit/ec7c7d48ca8bba007e0b5636bbb2bc41b5959711))
+* removed status from service list ([f8c6f30](https://github.com/VU-ASE/pkg-CommunicationDefinitions/commit/f8c6f3091034c4e15f01e478fddcd534ff45aab0))
+
 ## [1.6.0](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v1.5.0...v1.6.0) (2024-02-06)
 
 
