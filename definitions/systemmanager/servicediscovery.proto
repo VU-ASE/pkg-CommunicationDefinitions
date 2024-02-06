@@ -72,5 +72,5 @@ message ServiceListRequest {
 
 // When the system manager sends a list of services, it sends a ServiceList
 message ServiceList {
-    repeated ServiceStatus services = 1;
+    repeated Service services = 1;
 }
