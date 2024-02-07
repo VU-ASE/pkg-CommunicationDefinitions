@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.2.0](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v2.1.1...v2.2.0) (2024-02-07)
+
+
+### Features
+
+* added service output address to debug information ([996e174](https://github.com/VU-ASE/pkg-CommunicationDefinitions/commit/996e1744cb90c8e09f31b4d005e2cb32b24d057f))
+
 ## [2.1.1](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v2.1.0...v2.1.1) (2024-02-07)
 
 
