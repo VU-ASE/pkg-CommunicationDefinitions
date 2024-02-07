@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.2.4](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v2.2.3...v2.2.4) (2024-02-07)
+
+
+### Bug Fixes
+
+* used ServiceEndpoint definition in debug information ([bba95ef](https://github.com/VU-ASE/pkg-CommunicationDefinitions/commit/bba95efe49cd03378e3f36e9dce5efdc264e725c))
+
 ## [2.2.3](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v2.2.2...v2.2.3) (2024-02-07)
 
 
