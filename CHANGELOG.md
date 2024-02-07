@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.1](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v2.1.0...v2.1.1) (2024-02-07)
+
+
+### Bug Fixes
+
+* renamed "_value" to "_default" ([691e97e](https://github.com/VU-ASE/pkg-CommunicationDefinitions/commit/691e97ea46b8e1587f3700679b3b3bd22d588848))
+
 ## [2.1.0](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v2.0.2...v2.1.0) (2024-02-07)
 
 
