@@ -21,7 +21,22 @@ message ServiceEndpoint {
     string address = 2; // the zmq address to connect to
 }
 
+// The options that can be set for a service
+message ServiceOption {
+    enum Type {
+        STRING = 0;
+        INT = 1;
+        FLOAT = 2;
+    }
 
+    string name = 1;
+    Type type = 2;
+    bool mutable = 3;
+    // should be set and checked based on the type
+    string string_value = 4;
+    int32 int_value = 5;
+    float float_value = 6;
+}
 
 //
 // Service discovery messages send back and forth between the system manager and services
@@ -31,6 +46,7 @@ message ServiceEndpoint {
 message Service {
     ServiceIdentifier identifier = 1;
     repeated ServiceEndpoint endpoints = 2;
+    repeated ServiceOption options = 3;
 }
 
 // When a service requests information about other services, it sends an InformationRequest message
