@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.2.2](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v2.2.1...v2.2.2) (2024-02-07)
+
+
+### Bug Fixes
+
+* namespace conflict for imported ServiceIdentifier ([884921a](https://github.com/VU-ASE/pkg-CommunicationDefinitions/commit/884921a20fb95d6d3bf12cac49df40b7991ef832))
+
 ## [2.2.1](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v2.2.0...v2.2.1) (2024-02-07)
 
 
