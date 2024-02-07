@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.0](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v2.0.2...v2.1.0) (2024-02-07)
+
+
+### Features
+
+* support for ServiceOptions, to enforce tuning state parameters ([b97b44a](https://github.com/VU-ASE/pkg-CommunicationDefinitions/commit/b97b44aa3d559ed95ce61be6b799ad76e7cb38fa))
+
 ## [2.0.2](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v2.0.1...v2.0.2) (2024-02-06)
 
 
