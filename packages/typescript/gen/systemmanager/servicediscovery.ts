@@ -23,9 +23,9 @@ export interface ServiceOption {
   type: ServiceOption_Type;
   mutable: boolean;
   /** should be set and checked based on the type */
-  stringValue: string;
-  intValue: number;
-  floatValue: number;
+  stringDefault: string;
+  intDefault: number;
+  floatDefault: number;
 }
 
 export enum ServiceOption_Type {
@@ -341,7 +341,7 @@ export const ServiceEndpoint = {
 };
 
 function createBaseServiceOption(): ServiceOption {
-  return { name: "", type: 0, mutable: false, stringValue: "", intValue: 0, floatValue: 0 };
+  return { name: "", type: 0, mutable: false, stringDefault: "", intDefault: 0, floatDefault: 0 };
 }
 
 export const ServiceOption = {
@@ -355,14 +355,14 @@ export const ServiceOption = {
     if (message.mutable === true) {
       writer.uint32(24).bool(message.mutable);
     }
-    if (message.stringValue !== "") {
-      writer.uint32(34).string(message.stringValue);
+    if (message.stringDefault !== "") {
+      writer.uint32(34).string(message.stringDefault);
     }
-    if (message.intValue !== 0) {
-      writer.uint32(40).int32(message.intValue);
+    if (message.intDefault !== 0) {
+      writer.uint32(40).int32(message.intDefault);
     }
-    if (message.floatValue !== 0) {
-      writer.uint32(53).float(message.floatValue);
+    if (message.floatDefault !== 0) {
+      writer.uint32(53).float(message.floatDefault);
     }
     return writer;
   },
@@ -400,21 +400,21 @@ export const ServiceOption = {
             break;
           }
 
-          message.stringValue = reader.string();
+          message.stringDefault = reader.string();
           continue;
         case 5:
           if (tag !== 40) {
             break;
           }
 
-          message.intValue = reader.int32();
+          message.intDefault = reader.int32();
           continue;
         case 6:
           if (tag !== 53) {
             break;
           }
 
-          message.floatValue = reader.float();
+          message.floatDefault = reader.float();
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -430,9 +430,9 @@ export const ServiceOption = {
       name: isSet(object.name) ? globalThis.String(object.name) : "",
       type: isSet(object.type) ? serviceOption_TypeFromJSON(object.type) : 0,
       mutable: isSet(object.mutable) ? globalThis.Boolean(object.mutable) : false,
-      stringValue: isSet(object.stringValue) ? globalThis.String(object.stringValue) : "",
-      intValue: isSet(object.intValue) ? globalThis.Number(object.intValue) : 0,
-      floatValue: isSet(object.floatValue) ? globalThis.Number(object.floatValue) : 0,
+      stringDefault: isSet(object.stringDefault) ? globalThis.String(object.stringDefault) : "",
+      intDefault: isSet(object.intDefault) ? globalThis.Number(object.intDefault) : 0,
+      floatDefault: isSet(object.floatDefault) ? globalThis.Number(object.floatDefault) : 0,
     };
   },
 
@@ -447,14 +447,14 @@ export const ServiceOption = {
     if (message.mutable === true) {
       obj.mutable = message.mutable;
     }
-    if (message.stringValue !== "") {
-      obj.stringValue = message.stringValue;
+    if (message.stringDefault !== "") {
+      obj.stringDefault = message.stringDefault;
     }
-    if (message.intValue !== 0) {
-      obj.intValue = Math.round(message.intValue);
+    if (message.intDefault !== 0) {
+      obj.intDefault = Math.round(message.intDefault);
     }
-    if (message.floatValue !== 0) {
-      obj.floatValue = message.floatValue;
+    if (message.floatDefault !== 0) {
+      obj.floatDefault = message.floatDefault;
     }
     return obj;
   },
@@ -467,9 +467,9 @@ export const ServiceOption = {
     message.name = object.name ?? "";
     message.type = object.type ?? 0;
     message.mutable = object.mutable ?? false;
-    message.stringValue = object.stringValue ?? "";
-    message.intValue = object.intValue ?? 0;
-    message.floatValue = object.floatValue ?? 0;
+    message.stringDefault = object.stringDefault ?? "";
+    message.intDefault = object.intDefault ?? 0;
+    message.floatDefault = object.floatDefault ?? 0;
     return message;
   },
 };

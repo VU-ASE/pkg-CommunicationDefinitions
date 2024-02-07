@@ -583,36 +583,36 @@ static const ProtobufCFieldDescriptor protobuf_msgs__service_option__field_descr
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "string_value",
+    "string_default",
     4,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_STRING,
     0,   /* quantifier_offset */
-    offsetof(ProtobufMsgs__ServiceOption, string_value),
+    offsetof(ProtobufMsgs__ServiceOption, string_default),
     NULL,
     &protobuf_c_empty_string,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "int_value",
+    "int_default",
     5,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_INT32,
     0,   /* quantifier_offset */
-    offsetof(ProtobufMsgs__ServiceOption, int_value),
+    offsetof(ProtobufMsgs__ServiceOption, int_default),
     NULL,
     NULL,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "float_value",
+    "float_default",
     6,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_FLOAT,
     0,   /* quantifier_offset */
-    offsetof(ProtobufMsgs__ServiceOption, float_value),
+    offsetof(ProtobufMsgs__ServiceOption, float_default),
     NULL,
     NULL,
     0,             /* flags */
@@ -620,11 +620,11 @@ static const ProtobufCFieldDescriptor protobuf_msgs__service_option__field_descr
   },
 };
 static const unsigned protobuf_msgs__service_option__field_indices_by_name[] = {
-  5,   /* field[5] = float_value */
-  4,   /* field[4] = int_value */
+  5,   /* field[5] = float_default */
+  4,   /* field[4] = int_default */
   2,   /* field[2] = mutable */
   0,   /* field[0] = name */
-  3,   /* field[3] = string_value */
+  3,   /* field[3] = string_default */
   1,   /* field[1] = type */
 };
 static const ProtobufCIntRange protobuf_msgs__service_option__number_ranges[1 + 1] =

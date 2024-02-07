@@ -105,9 +105,9 @@ struct  _ProtobufMsgs__ServiceOption
   /*
    * should be set and checked based on the type
    */
-  char *string_value;
-  int32_t int_value;
-  float float_value;
+  char *string_default;
+  int32_t int_default;
+  float float_default;
 };
 #define PROTOBUF_MSGS__SERVICE_OPTION__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&protobuf_msgs__service_option__descriptor) \
