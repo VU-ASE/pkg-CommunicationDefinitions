@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.2.1](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v2.2.0...v2.2.1) (2024-02-07)
+
+
+### Bug Fixes
+
+* added ServiceIdentifier information to Debug messages ([1fb9d7c](https://github.com/VU-ASE/pkg-CommunicationDefinitions/commit/1fb9d7c261c481b42da7787a00fbad4d0f1e1498))
+
 ## [2.2.0](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v2.1.1...v2.2.0) (2024-02-07)
 
 
