@@ -1,7 +1,7 @@
 /* eslint-disable */
 import Long from "long";
 import _m0 from "protobufjs/minimal";
-import { ServiceIdentifier } from "../systemmanager/servicediscovery";
+import { ServiceIdentifier } from "./servicediscovery";
 
 export const protobufPackage = "protobuf_msgs";
 
