@@ -33,9 +33,9 @@ message ServiceOption {
     Type type = 2;
     bool mutable = 3;
     // should be set and checked based on the type
-    string string_value = 4;
-    int32 int_value = 5;
-    float float_value = 6;
+    string string_default = 4;
+    int32 int_default = 5;
+    float float_default = 6;
 }
 
 //
