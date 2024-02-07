@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.2](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v2.0.1...v2.0.2) (2024-02-06)
+
+
+### Bug Fixes
+
+* added correct import path for v2 ([b5c68b5](https://github.com/VU-ASE/pkg-CommunicationDefinitions/commit/b5c68b538b8cc1d2d892f58165d96e460ffdc027))
+
 ## [2.0.1](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v2.0.0...v2.0.1) (2024-02-06)
 
 
