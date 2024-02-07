@@ -11,8 +11,8 @@ import "systemmanager/servicediscovery.proto";
 // so that the receiver can determine from which process the message originated
 //
 message DebugServiceMessage {
-    ServiceIdentifier sender = 1; // The service that sent the message
-    string address = 2; // The service output address
+    ServiceIdentifier service = 1; // The service that sent the message
+    ServiceEndpoint endpoint = 2; // The endpoint that sent the message
     int64 sentAt = 4;
     bytes message = 3;
 }
