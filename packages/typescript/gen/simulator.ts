@@ -3,7 +3,7 @@ import _m0 from "protobufjs/minimal";
 
 export const protobufPackage = "protobuf_msgs";
 
-/** Simulator sensor outputs */
+/** Simulator sensor outputs. */
 export interface SimulatorImageOutput {
   frameid: number;
   width: number;

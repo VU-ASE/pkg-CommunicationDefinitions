@@ -20,7 +20,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// Simulator sensor outputs
+// Simulator sensor outputs.
 type SimulatorImageOutput struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

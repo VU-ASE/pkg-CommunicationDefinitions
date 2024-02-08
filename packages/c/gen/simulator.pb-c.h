@@ -24,7 +24,7 @@ typedef struct _ProtobufMsgs__SimulatorImageOutput ProtobufMsgs__SimulatorImageO
 /* --- messages --- */
 
 /*
- * Simulator sensor outputs
+ * Simulator sensor outputs.
  */
 struct  _ProtobufMsgs__SimulatorImageOutput
 {
