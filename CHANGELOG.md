@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.5.3](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v2.5.2...v2.5.3) (2024-02-08)
+
+
+### Bug Fixes
+
+* trigger rebuild ([289846e](https://github.com/VU-ASE/pkg-CommunicationDefinitions/commit/289846e80244fb32874dc25401656954145ebefe))
+
 ## [2.5.2](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v2.5.1...v2.5.2) (2024-02-08)
 
 
