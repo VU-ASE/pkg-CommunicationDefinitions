@@ -21,6 +21,7 @@ message SystemManagerMessage {
         ServiceListRequest serviceListRequest = 7;
         ServiceList serviceList = 8;
         ServiceStatusUpdate serviceStatusUpdate = 9;
+        ServiceInformationRequest serviceInformationRequest = 10;
     }
 }
 
