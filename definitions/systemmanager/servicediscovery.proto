@@ -38,6 +38,12 @@ message ServiceOption {
     float float_default = 6;
 }
 
+// The system manager knows the dependencies of each service, to build a dependency graph
+message ServiceDependency {
+    string serviceName = 1;
+    string outputName = 2;
+}
+
 //
 // Service discovery messages send back and forth between the system manager and services
 //
@@ -47,6 +53,7 @@ message Service {
     ServiceIdentifier identifier = 1;
     repeated ServiceEndpoint endpoints = 2;
     repeated ServiceOption options = 3;
+    repeated ServiceDependency dependencies = 4;
 }
 
 // When a service requests information about other services, it sends an InformationRequest message
@@ -58,10 +65,11 @@ message ServiceInformationRequest {
 // Also used to broadcast registrations to all services
 message ServiceStatus {
     enum Status {
-        UNKNOWN = 0;
-        RUNNING = 1;
-        STOPPED = 2;
-        NOT_REGISTERED = 3;
+        UNKNOWN = 0; 
+        REGISTERED = 1; // Registered, but not running yet (probably waiting for dependencies)
+        RUNNING = 2; // Currently running (after registration)
+        STOPPED = 3; // Stopped gracefully
+        NOT_REGISTERED = 4; // Not registered yet (useful if you are waiting for this dependency)
     }
 
     Service service = 1;
