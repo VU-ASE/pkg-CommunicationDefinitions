@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.5.0](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v2.4.0...v2.5.0) (2024-02-08)
+
+
+### Features
+
+* added ServiceStatusUpdate message ([8020526](https://github.com/VU-ASE/pkg-CommunicationDefinitions/commit/802052650d31f7756a8135bc6c9e5034ee30234a))
+
 ## [2.4.0](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v2.3.0...v2.4.0) (2024-02-08)
 
 
