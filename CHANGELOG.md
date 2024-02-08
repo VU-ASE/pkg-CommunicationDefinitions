@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.3.0](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v2.2.4...v2.3.0) (2024-02-08)
+
+
+### Features
+
+* added dependencies to Service description, added REGISTERED status ([cca7f57](https://github.com/VU-ASE/pkg-CommunicationDefinitions/commit/cca7f575e2a5348dc26659ea0ea4e121a88e0eac))
+
 ## [2.2.4](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v2.2.3...v2.2.4) (2024-02-07)
 
 
