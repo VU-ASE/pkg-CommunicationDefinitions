@@ -21,6 +21,14 @@ message ServiceEndpoint {
     string address = 2; // the zmq address to connect to
 }
 
+enum ServiceStatus {
+    UNKNOWN = 0; 
+    REGISTERED = 1; // Registered, but not running yet (probably waiting for dependencies)
+    RUNNING = 2; // Currently running (after registration)
+    STOPPED = 3; // Stopped gracefully
+    NOT_REGISTERED = 4; // Not registered yet (useful if you are waiting for this dependency)
+}
+
 // The options that can be set for a service
 message ServiceOption {
     enum Type {
@@ -54,26 +62,12 @@ message Service {
     repeated ServiceEndpoint endpoints = 2;
     repeated ServiceOption options = 3;
     repeated ServiceDependency dependencies = 4;
+    ServiceStatus status = 5;
 }
 
 // When a service requests information about other services, it sends an InformationRequest message
 message ServiceInformationRequest {
     ServiceIdentifier requested = 1;
-}
-
-// When the system manager sends information about a service, it sends an Information message
-// Also used to broadcast registrations to all services
-message ServiceStatus {
-    enum Status {
-        UNKNOWN = 0; 
-        REGISTERED = 1; // Registered, but not running yet (probably waiting for dependencies)
-        RUNNING = 2; // Currently running (after registration)
-        STOPPED = 3; // Stopped gracefully
-        NOT_REGISTERED = 4; // Not registered yet (useful if you are waiting for this dependency)
-    }
-
-    Service service = 1;
-    Status status = 2;
 }
 
 // The system manager can order services to stop/restart by sending a service order
