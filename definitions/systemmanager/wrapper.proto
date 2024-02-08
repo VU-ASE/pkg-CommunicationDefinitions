@@ -14,13 +14,13 @@ import "systemmanager/tuningstate.proto";
 message SystemManagerMessage {
     oneof msg {
         Service service = 1;
-        ServiceInformationRequest serviceInformationRequest = 2;
         ServiceStatus serviceStatus = 3;
         ServiceOrder serviceOrder = 4;
         TuningState tuningState = 5;
         TuningStateRequest tuningStateRequest = 6;
         ServiceListRequest serviceListRequest = 7;
         ServiceList serviceList = 8;
+        ServiceStatusUpdate serviceStatusUpdate = 9;
     }
 }
 
