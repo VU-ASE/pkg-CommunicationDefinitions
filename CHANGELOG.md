@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.5.1](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v2.5.0...v2.5.1) (2024-02-08)
+
+
+### Bug Fixes
+
+* added SeriveStatusUpdate to system manager wrapper ([477959d](https://github.com/VU-ASE/pkg-CommunicationDefinitions/commit/477959d1cdd14a9182cbbc670618bb306b38662a))
+
 ## [2.5.0](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v2.4.0...v2.5.0) (2024-02-08)
 
 
