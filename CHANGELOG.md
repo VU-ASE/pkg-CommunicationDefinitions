@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.6.0](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v2.5.3...v2.6.0) (2024-02-08)
+
+
+### Features
+
+* removed ServiceStatus from systemmanager wrapper ([0a91e18](https://github.com/VU-ASE/pkg-CommunicationDefinitions/commit/0a91e18eec0cbccc7bd3194e0d6876f9f78b5fad))
+
 ## [2.5.3](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v2.5.2...v2.5.3) (2024-02-08)
 
 
