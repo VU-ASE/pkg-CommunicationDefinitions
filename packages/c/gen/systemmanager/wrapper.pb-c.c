@@ -52,7 +52,7 @@ void   protobuf_msgs__system_manager_message__free_unpacked
   assert(message->base.descriptor == &protobuf_msgs__system_manager_message__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-static const ProtobufCFieldDescriptor protobuf_msgs__system_manager_message__field_descriptors[9] =
+static const ProtobufCFieldDescriptor protobuf_msgs__system_manager_message__field_descriptors[8] =
 {
   {
     "service",
@@ -62,18 +62,6 @@ static const ProtobufCFieldDescriptor protobuf_msgs__system_manager_message__fie
     offsetof(ProtobufMsgs__SystemManagerMessage, msg_case),
     offsetof(ProtobufMsgs__SystemManagerMessage, service),
     &protobuf_msgs__service__descriptor,
-    NULL,
-    0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "serviceStatus",
-    3,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_ENUM,
-    offsetof(ProtobufMsgs__SystemManagerMessage, msg_case),
-    offsetof(ProtobufMsgs__SystemManagerMessage, servicestatus),
-    &protobuf_msgs__service_status__descriptor,
     NULL,
     0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
@@ -165,20 +153,19 @@ static const ProtobufCFieldDescriptor protobuf_msgs__system_manager_message__fie
 };
 static const unsigned protobuf_msgs__system_manager_message__field_indices_by_name[] = {
   0,   /* field[0] = service */
-  8,   /* field[8] = serviceInformationRequest */
-  6,   /* field[6] = serviceList */
-  5,   /* field[5] = serviceListRequest */
-  2,   /* field[2] = serviceOrder */
-  1,   /* field[1] = serviceStatus */
-  7,   /* field[7] = serviceStatusUpdate */
-  3,   /* field[3] = tuningState */
-  4,   /* field[4] = tuningStateRequest */
+  7,   /* field[7] = serviceInformationRequest */
+  5,   /* field[5] = serviceList */
+  4,   /* field[4] = serviceListRequest */
+  1,   /* field[1] = serviceOrder */
+  6,   /* field[6] = serviceStatusUpdate */
+  2,   /* field[2] = tuningState */
+  3,   /* field[3] = tuningStateRequest */
 };
 static const ProtobufCIntRange protobuf_msgs__system_manager_message__number_ranges[2 + 1] =
 {
   { 1, 0 },
-  { 3, 1 },
-  { 0, 9 }
+  { 4, 1 },
+  { 0, 8 }
 };
 const ProtobufCMessageDescriptor protobuf_msgs__system_manager_message__descriptor =
 {
@@ -188,7 +175,7 @@ const ProtobufCMessageDescriptor protobuf_msgs__system_manager_message__descript
   "ProtobufMsgs__SystemManagerMessage",
   "protobuf_msgs",
   sizeof(ProtobufMsgs__SystemManagerMessage),
-  9,
+  8,
   protobuf_msgs__system_manager_message__field_descriptors,
   protobuf_msgs__system_manager_message__field_indices_by_name,
   2,  protobuf_msgs__system_manager_message__number_ranges,

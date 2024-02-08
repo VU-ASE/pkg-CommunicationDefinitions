@@ -28,7 +28,6 @@ typedef struct _ProtobufMsgs__SystemManagerMessage ProtobufMsgs__SystemManagerMe
 typedef enum {
   PROTOBUF_MSGS__SYSTEM_MANAGER_MESSAGE__MSG__NOT_SET = 0,
   PROTOBUF_MSGS__SYSTEM_MANAGER_MESSAGE__MSG_SERVICE = 1,
-  PROTOBUF_MSGS__SYSTEM_MANAGER_MESSAGE__MSG_SERVICE_STATUS = 3,
   PROTOBUF_MSGS__SYSTEM_MANAGER_MESSAGE__MSG_SERVICE_ORDER = 4,
   PROTOBUF_MSGS__SYSTEM_MANAGER_MESSAGE__MSG_TUNING_STATE = 5,
   PROTOBUF_MSGS__SYSTEM_MANAGER_MESSAGE__MSG_TUNING_STATE_REQUEST = 6,
@@ -45,7 +44,6 @@ struct  _ProtobufMsgs__SystemManagerMessage
   ProtobufMsgs__SystemManagerMessage__MsgCase msg_case;
   union {
     ProtobufMsgs__Service *service;
-    ProtobufMsgs__ServiceStatus servicestatus;
     ProtobufMsgs__ServiceOrder *serviceorder;
     ProtobufMsgs__TuningState *tuningstate;
     ProtobufMsgs__TuningStateRequest *tuningstaterequest;
