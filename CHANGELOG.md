@@ -1,5 +1,18 @@
 # Changelog
 
+## [2.6.0](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v2.5.2...v2.6.0) (2024-02-08)
+
+
+### Features
+
+* Add SimFrame message ([61e3e3d](https://github.com/VU-ASE/pkg-CommunicationDefinitions/commit/61e3e3dfdb5d9fb902551aa836a6b65271c22f73))
+* removed ServiceStatus from systemmanager wrapper ([8f5a618](https://github.com/VU-ASE/pkg-CommunicationDefinitions/commit/8f5a6180c36478ff283a7e167cae8baae2bb57c6))
+
+
+### Bug Fixes
+
+* trigger rebuild ([289846e](https://github.com/VU-ASE/pkg-CommunicationDefinitions/commit/289846e80244fb32874dc25401656954145ebefe))
+
 ## [2.6.0](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v2.5.3...v2.6.0) (2024-02-08)
 
 
