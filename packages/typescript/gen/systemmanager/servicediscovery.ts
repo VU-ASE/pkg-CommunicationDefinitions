@@ -201,6 +201,12 @@ export interface ServiceList {
   services: Service[];
 }
 
+/** This will inform the system manager of a status update */
+export interface ServiceStatusUpdate {
+  service: ServiceIdentifier | undefined;
+  status: ServiceStatus;
+}
+
 function createBaseServiceIdentifier(): ServiceIdentifier {
   return { name: "", pid: 0 };
 }
@@ -933,6 +939,82 @@ export const ServiceList = {
   fromPartial<I extends Exact<DeepPartial<ServiceList>, I>>(object: I): ServiceList {
     const message = createBaseServiceList();
     message.services = object.services?.map((e) => Service.fromPartial(e)) || [];
+    return message;
+  },
+};
+
+function createBaseServiceStatusUpdate(): ServiceStatusUpdate {
+  return { service: undefined, status: 0 };
+}
+
+export const ServiceStatusUpdate = {
+  encode(message: ServiceStatusUpdate, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.service !== undefined) {
+      ServiceIdentifier.encode(message.service, writer.uint32(10).fork()).ldelim();
+    }
+    if (message.status !== 0) {
+      writer.uint32(16).int32(message.status);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): ServiceStatusUpdate {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseServiceStatusUpdate();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.service = ServiceIdentifier.decode(reader, reader.uint32());
+          continue;
+        case 2:
+          if (tag !== 16) {
+            break;
+          }
+
+          message.status = reader.int32() as any;
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): ServiceStatusUpdate {
+    return {
+      service: isSet(object.service) ? ServiceIdentifier.fromJSON(object.service) : undefined,
+      status: isSet(object.status) ? serviceStatusFromJSON(object.status) : 0,
+    };
+  },
+
+  toJSON(message: ServiceStatusUpdate): unknown {
+    const obj: any = {};
+    if (message.service !== undefined) {
+      obj.service = ServiceIdentifier.toJSON(message.service);
+    }
+    if (message.status !== 0) {
+      obj.status = serviceStatusToJSON(message.status);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<ServiceStatusUpdate>, I>>(base?: I): ServiceStatusUpdate {
+    return ServiceStatusUpdate.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<ServiceStatusUpdate>, I>>(object: I): ServiceStatusUpdate {
+    const message = createBaseServiceStatusUpdate();
+    message.service = (object.service !== undefined && object.service !== null)
+      ? ServiceIdentifier.fromPartial(object.service)
+      : undefined;
+    message.status = object.status ?? 0;
     return message;
   },
 };

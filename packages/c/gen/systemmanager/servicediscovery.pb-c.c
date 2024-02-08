@@ -412,6 +412,51 @@ void   protobuf_msgs__service_list__free_unpacked
   assert(message->base.descriptor == &protobuf_msgs__service_list__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
+void   protobuf_msgs__service_status_update__init
+                     (ProtobufMsgs__ServiceStatusUpdate         *message)
+{
+  static const ProtobufMsgs__ServiceStatusUpdate init_value = PROTOBUF_MSGS__SERVICE_STATUS_UPDATE__INIT;
+  *message = init_value;
+}
+size_t protobuf_msgs__service_status_update__get_packed_size
+                     (const ProtobufMsgs__ServiceStatusUpdate *message)
+{
+  assert(message->base.descriptor == &protobuf_msgs__service_status_update__descriptor);
+  return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
+}
+size_t protobuf_msgs__service_status_update__pack
+                     (const ProtobufMsgs__ServiceStatusUpdate *message,
+                      uint8_t       *out)
+{
+  assert(message->base.descriptor == &protobuf_msgs__service_status_update__descriptor);
+  return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
+}
+size_t protobuf_msgs__service_status_update__pack_to_buffer
+                     (const ProtobufMsgs__ServiceStatusUpdate *message,
+                      ProtobufCBuffer *buffer)
+{
+  assert(message->base.descriptor == &protobuf_msgs__service_status_update__descriptor);
+  return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
+}
+ProtobufMsgs__ServiceStatusUpdate *
+       protobuf_msgs__service_status_update__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data)
+{
+  return (ProtobufMsgs__ServiceStatusUpdate *)
+     protobuf_c_message_unpack (&protobuf_msgs__service_status_update__descriptor,
+                                allocator, len, data);
+}
+void   protobuf_msgs__service_status_update__free_unpacked
+                     (ProtobufMsgs__ServiceStatusUpdate *message,
+                      ProtobufCAllocator *allocator)
+{
+  if(!message)
+    return;
+  assert(message->base.descriptor == &protobuf_msgs__service_status_update__descriptor);
+  protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
+}
 static const ProtobufCFieldDescriptor protobuf_msgs__service_identifier__field_descriptors[2] =
 {
   {
@@ -981,6 +1026,57 @@ const ProtobufCMessageDescriptor protobuf_msgs__service_list__descriptor =
   protobuf_msgs__service_list__field_indices_by_name,
   1,  protobuf_msgs__service_list__number_ranges,
   (ProtobufCMessageInit) protobuf_msgs__service_list__init,
+  NULL,NULL,NULL    /* reserved[123] */
+};
+static const ProtobufCFieldDescriptor protobuf_msgs__service_status_update__field_descriptors[2] =
+{
+  {
+    "service",
+    1,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_MESSAGE,
+    0,   /* quantifier_offset */
+    offsetof(ProtobufMsgs__ServiceStatusUpdate, service),
+    &protobuf_msgs__service_identifier__descriptor,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "status",
+    2,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_ENUM,
+    0,   /* quantifier_offset */
+    offsetof(ProtobufMsgs__ServiceStatusUpdate, status),
+    &protobuf_msgs__service_status__descriptor,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+};
+static const unsigned protobuf_msgs__service_status_update__field_indices_by_name[] = {
+  0,   /* field[0] = service */
+  1,   /* field[1] = status */
+};
+static const ProtobufCIntRange protobuf_msgs__service_status_update__number_ranges[1 + 1] =
+{
+  { 1, 0 },
+  { 0, 2 }
+};
+const ProtobufCMessageDescriptor protobuf_msgs__service_status_update__descriptor =
+{
+  PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
+  "protobuf_msgs.ServiceStatusUpdate",
+  "ServiceStatusUpdate",
+  "ProtobufMsgs__ServiceStatusUpdate",
+  "protobuf_msgs",
+  sizeof(ProtobufMsgs__ServiceStatusUpdate),
+  2,
+  protobuf_msgs__service_status_update__field_descriptors,
+  protobuf_msgs__service_status_update__field_indices_by_name,
+  1,  protobuf_msgs__service_status_update__number_ranges,
+  (ProtobufCMessageInit) protobuf_msgs__service_status_update__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
 static const ProtobufCEnumValue protobuf_msgs__service_status__enum_values_by_number[5] =

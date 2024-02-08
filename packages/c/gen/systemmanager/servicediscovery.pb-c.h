@@ -24,6 +24,7 @@ typedef struct _ProtobufMsgs__ServiceInformationRequest ProtobufMsgs__ServiceInf
 typedef struct _ProtobufMsgs__ServiceOrder ProtobufMsgs__ServiceOrder;
 typedef struct _ProtobufMsgs__ServiceListRequest ProtobufMsgs__ServiceListRequest;
 typedef struct _ProtobufMsgs__ServiceList ProtobufMsgs__ServiceList;
+typedef struct _ProtobufMsgs__ServiceStatusUpdate ProtobufMsgs__ServiceStatusUpdate;
 
 
 /* --- enums --- */
@@ -218,6 +219,20 @@ struct  _ProtobufMsgs__ServiceList
     , 0,NULL }
 
 
+/*
+ * This will inform the system manager of a status update
+ */
+struct  _ProtobufMsgs__ServiceStatusUpdate
+{
+  ProtobufCMessage base;
+  ProtobufMsgs__ServiceIdentifier *service;
+  ProtobufMsgs__ServiceStatus status;
+};
+#define PROTOBUF_MSGS__SERVICE_STATUS_UPDATE__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&protobuf_msgs__service_status_update__descriptor) \
+    , NULL, PROTOBUF_MSGS__SERVICE_STATUS__UNKNOWN }
+
+
 /* ProtobufMsgs__ServiceIdentifier methods */
 void   protobuf_msgs__service_identifier__init
                      (ProtobufMsgs__ServiceIdentifier         *message);
@@ -389,6 +404,25 @@ ProtobufMsgs__ServiceList *
 void   protobuf_msgs__service_list__free_unpacked
                      (ProtobufMsgs__ServiceList *message,
                       ProtobufCAllocator *allocator);
+/* ProtobufMsgs__ServiceStatusUpdate methods */
+void   protobuf_msgs__service_status_update__init
+                     (ProtobufMsgs__ServiceStatusUpdate         *message);
+size_t protobuf_msgs__service_status_update__get_packed_size
+                     (const ProtobufMsgs__ServiceStatusUpdate   *message);
+size_t protobuf_msgs__service_status_update__pack
+                     (const ProtobufMsgs__ServiceStatusUpdate   *message,
+                      uint8_t             *out);
+size_t protobuf_msgs__service_status_update__pack_to_buffer
+                     (const ProtobufMsgs__ServiceStatusUpdate   *message,
+                      ProtobufCBuffer     *buffer);
+ProtobufMsgs__ServiceStatusUpdate *
+       protobuf_msgs__service_status_update__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data);
+void   protobuf_msgs__service_status_update__free_unpacked
+                     (ProtobufMsgs__ServiceStatusUpdate *message,
+                      ProtobufCAllocator *allocator);
 /* --- per-message closures --- */
 
 typedef void (*ProtobufMsgs__ServiceIdentifier_Closure)
@@ -418,6 +452,9 @@ typedef void (*ProtobufMsgs__ServiceListRequest_Closure)
 typedef void (*ProtobufMsgs__ServiceList_Closure)
                  (const ProtobufMsgs__ServiceList *message,
                   void *closure_data);
+typedef void (*ProtobufMsgs__ServiceStatusUpdate_Closure)
+                 (const ProtobufMsgs__ServiceStatusUpdate *message,
+                  void *closure_data);
 
 /* --- services --- */
 
@@ -436,6 +473,7 @@ extern const ProtobufCMessageDescriptor protobuf_msgs__service_order__descriptor
 extern const ProtobufCEnumDescriptor    protobuf_msgs__service_order__order_type__descriptor;
 extern const ProtobufCMessageDescriptor protobuf_msgs__service_list_request__descriptor;
 extern const ProtobufCMessageDescriptor protobuf_msgs__service_list__descriptor;
+extern const ProtobufCMessageDescriptor protobuf_msgs__service_status_update__descriptor;
 
 PROTOBUF_C__END_DECLS
 
