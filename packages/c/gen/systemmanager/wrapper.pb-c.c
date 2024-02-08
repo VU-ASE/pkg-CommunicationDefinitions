@@ -82,7 +82,7 @@ static const ProtobufCFieldDescriptor protobuf_msgs__system_manager_message__fie
     "serviceStatus",
     3,
     PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_MESSAGE,
+    PROTOBUF_C_TYPE_ENUM,
     offsetof(ProtobufMsgs__SystemManagerMessage, msg_case),
     offsetof(ProtobufMsgs__SystemManagerMessage, servicestatus),
     &protobuf_msgs__service_status__descriptor,

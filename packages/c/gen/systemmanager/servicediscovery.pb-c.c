@@ -277,51 +277,6 @@ void   protobuf_msgs__service_information_request__free_unpacked
   assert(message->base.descriptor == &protobuf_msgs__service_information_request__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-void   protobuf_msgs__service_status__init
-                     (ProtobufMsgs__ServiceStatus         *message)
-{
-  static const ProtobufMsgs__ServiceStatus init_value = PROTOBUF_MSGS__SERVICE_STATUS__INIT;
-  *message = init_value;
-}
-size_t protobuf_msgs__service_status__get_packed_size
-                     (const ProtobufMsgs__ServiceStatus *message)
-{
-  assert(message->base.descriptor == &protobuf_msgs__service_status__descriptor);
-  return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
-}
-size_t protobuf_msgs__service_status__pack
-                     (const ProtobufMsgs__ServiceStatus *message,
-                      uint8_t       *out)
-{
-  assert(message->base.descriptor == &protobuf_msgs__service_status__descriptor);
-  return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
-}
-size_t protobuf_msgs__service_status__pack_to_buffer
-                     (const ProtobufMsgs__ServiceStatus *message,
-                      ProtobufCBuffer *buffer)
-{
-  assert(message->base.descriptor == &protobuf_msgs__service_status__descriptor);
-  return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
-}
-ProtobufMsgs__ServiceStatus *
-       protobuf_msgs__service_status__unpack
-                     (ProtobufCAllocator  *allocator,
-                      size_t               len,
-                      const uint8_t       *data)
-{
-  return (ProtobufMsgs__ServiceStatus *)
-     protobuf_c_message_unpack (&protobuf_msgs__service_status__descriptor,
-                                allocator, len, data);
-}
-void   protobuf_msgs__service_status__free_unpacked
-                     (ProtobufMsgs__ServiceStatus *message,
-                      ProtobufCAllocator *allocator)
-{
-  if(!message)
-    return;
-  assert(message->base.descriptor == &protobuf_msgs__service_status__descriptor);
-  protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
-}
 void   protobuf_msgs__service_order__init
                      (ProtobufMsgs__ServiceOrder         *message)
 {
@@ -743,7 +698,7 @@ const ProtobufCMessageDescriptor protobuf_msgs__service_dependency__descriptor =
   (ProtobufCMessageInit) protobuf_msgs__service_dependency__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor protobuf_msgs__service__field_descriptors[4] =
+static const ProtobufCFieldDescriptor protobuf_msgs__service__field_descriptors[5] =
 {
   {
     "identifier",
@@ -793,17 +748,30 @@ static const ProtobufCFieldDescriptor protobuf_msgs__service__field_descriptors[
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "status",
+    5,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_ENUM,
+    0,   /* quantifier_offset */
+    offsetof(ProtobufMsgs__Service, status),
+    &protobuf_msgs__service_status__descriptor,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned protobuf_msgs__service__field_indices_by_name[] = {
   3,   /* field[3] = dependencies */
   1,   /* field[1] = endpoints */
   0,   /* field[0] = identifier */
   2,   /* field[2] = options */
+  4,   /* field[4] = status */
 };
 static const ProtobufCIntRange protobuf_msgs__service__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 0, 4 }
+  { 0, 5 }
 };
 const ProtobufCMessageDescriptor protobuf_msgs__service__descriptor =
 {
@@ -813,7 +781,7 @@ const ProtobufCMessageDescriptor protobuf_msgs__service__descriptor =
   "ProtobufMsgs__Service",
   "protobuf_msgs",
   sizeof(ProtobufMsgs__Service),
-  4,
+  5,
   protobuf_msgs__service__field_descriptors,
   protobuf_msgs__service__field_indices_by_name,
   1,  protobuf_msgs__service__number_ranges,
@@ -856,91 +824,6 @@ const ProtobufCMessageDescriptor protobuf_msgs__service_information_request__des
   protobuf_msgs__service_information_request__field_indices_by_name,
   1,  protobuf_msgs__service_information_request__number_ranges,
   (ProtobufCMessageInit) protobuf_msgs__service_information_request__init,
-  NULL,NULL,NULL    /* reserved[123] */
-};
-static const ProtobufCEnumValue protobuf_msgs__service_status__status__enum_values_by_number[5] =
-{
-  { "UNKNOWN", "PROTOBUF_MSGS__SERVICE_STATUS__STATUS__UNKNOWN", 0 },
-  { "REGISTERED", "PROTOBUF_MSGS__SERVICE_STATUS__STATUS__REGISTERED", 1 },
-  { "RUNNING", "PROTOBUF_MSGS__SERVICE_STATUS__STATUS__RUNNING", 2 },
-  { "STOPPED", "PROTOBUF_MSGS__SERVICE_STATUS__STATUS__STOPPED", 3 },
-  { "NOT_REGISTERED", "PROTOBUF_MSGS__SERVICE_STATUS__STATUS__NOT_REGISTERED", 4 },
-};
-static const ProtobufCIntRange protobuf_msgs__service_status__status__value_ranges[] = {
-{0, 0},{0, 5}
-};
-static const ProtobufCEnumValueIndex protobuf_msgs__service_status__status__enum_values_by_name[5] =
-{
-  { "NOT_REGISTERED", 4 },
-  { "REGISTERED", 1 },
-  { "RUNNING", 2 },
-  { "STOPPED", 3 },
-  { "UNKNOWN", 0 },
-};
-const ProtobufCEnumDescriptor protobuf_msgs__service_status__status__descriptor =
-{
-  PROTOBUF_C__ENUM_DESCRIPTOR_MAGIC,
-  "protobuf_msgs.ServiceStatus.Status",
-  "Status",
-  "ProtobufMsgs__ServiceStatus__Status",
-  "protobuf_msgs",
-  5,
-  protobuf_msgs__service_status__status__enum_values_by_number,
-  5,
-  protobuf_msgs__service_status__status__enum_values_by_name,
-  1,
-  protobuf_msgs__service_status__status__value_ranges,
-  NULL,NULL,NULL,NULL   /* reserved[1234] */
-};
-static const ProtobufCFieldDescriptor protobuf_msgs__service_status__field_descriptors[2] =
-{
-  {
-    "service",
-    1,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_MESSAGE,
-    0,   /* quantifier_offset */
-    offsetof(ProtobufMsgs__ServiceStatus, service),
-    &protobuf_msgs__service__descriptor,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "status",
-    2,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_ENUM,
-    0,   /* quantifier_offset */
-    offsetof(ProtobufMsgs__ServiceStatus, status),
-    &protobuf_msgs__service_status__status__descriptor,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-};
-static const unsigned protobuf_msgs__service_status__field_indices_by_name[] = {
-  0,   /* field[0] = service */
-  1,   /* field[1] = status */
-};
-static const ProtobufCIntRange protobuf_msgs__service_status__number_ranges[1 + 1] =
-{
-  { 1, 0 },
-  { 0, 2 }
-};
-const ProtobufCMessageDescriptor protobuf_msgs__service_status__descriptor =
-{
-  PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "protobuf_msgs.ServiceStatus",
-  "ServiceStatus",
-  "ProtobufMsgs__ServiceStatus",
-  "protobuf_msgs",
-  sizeof(ProtobufMsgs__ServiceStatus),
-  2,
-  protobuf_msgs__service_status__field_descriptors,
-  protobuf_msgs__service_status__field_indices_by_name,
-  1,  protobuf_msgs__service_status__number_ranges,
-  (ProtobufCMessageInit) protobuf_msgs__service_status__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
 static const ProtobufCEnumValue protobuf_msgs__service_order__order_type__enum_values_by_number[3] =
@@ -1099,4 +982,38 @@ const ProtobufCMessageDescriptor protobuf_msgs__service_list__descriptor =
   1,  protobuf_msgs__service_list__number_ranges,
   (ProtobufCMessageInit) protobuf_msgs__service_list__init,
   NULL,NULL,NULL    /* reserved[123] */
+};
+static const ProtobufCEnumValue protobuf_msgs__service_status__enum_values_by_number[5] =
+{
+  { "UNKNOWN", "PROTOBUF_MSGS__SERVICE_STATUS__UNKNOWN", 0 },
+  { "REGISTERED", "PROTOBUF_MSGS__SERVICE_STATUS__REGISTERED", 1 },
+  { "RUNNING", "PROTOBUF_MSGS__SERVICE_STATUS__RUNNING", 2 },
+  { "STOPPED", "PROTOBUF_MSGS__SERVICE_STATUS__STOPPED", 3 },
+  { "NOT_REGISTERED", "PROTOBUF_MSGS__SERVICE_STATUS__NOT_REGISTERED", 4 },
+};
+static const ProtobufCIntRange protobuf_msgs__service_status__value_ranges[] = {
+{0, 0},{0, 5}
+};
+static const ProtobufCEnumValueIndex protobuf_msgs__service_status__enum_values_by_name[5] =
+{
+  { "NOT_REGISTERED", 4 },
+  { "REGISTERED", 1 },
+  { "RUNNING", 2 },
+  { "STOPPED", 3 },
+  { "UNKNOWN", 0 },
+};
+const ProtobufCEnumDescriptor protobuf_msgs__service_status__descriptor =
+{
+  PROTOBUF_C__ENUM_DESCRIPTOR_MAGIC,
+  "protobuf_msgs.ServiceStatus",
+  "ServiceStatus",
+  "ProtobufMsgs__ServiceStatus",
+  "protobuf_msgs",
+  5,
+  protobuf_msgs__service_status__enum_values_by_number,
+  5,
+  protobuf_msgs__service_status__enum_values_by_name,
+  1,
+  protobuf_msgs__service_status__value_ranges,
+  NULL,NULL,NULL,NULL   /* reserved[1234] */
 };

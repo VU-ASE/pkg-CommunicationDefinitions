@@ -7,6 +7,8 @@ import {
   ServiceListRequest,
   ServiceOrder,
   ServiceStatus,
+  serviceStatusFromJSON,
+  serviceStatusToJSON,
 } from "./servicediscovery";
 import { TuningState, TuningStateRequest } from "./tuningstate";
 
@@ -45,7 +47,7 @@ export const SystemManagerMessage = {
       ServiceInformationRequest.encode(message.serviceInformationRequest, writer.uint32(18).fork()).ldelim();
     }
     if (message.serviceStatus !== undefined) {
-      ServiceStatus.encode(message.serviceStatus, writer.uint32(26).fork()).ldelim();
+      writer.uint32(24).int32(message.serviceStatus);
     }
     if (message.serviceOrder !== undefined) {
       ServiceOrder.encode(message.serviceOrder, writer.uint32(34).fork()).ldelim();
@@ -87,11 +89,11 @@ export const SystemManagerMessage = {
           message.serviceInformationRequest = ServiceInformationRequest.decode(reader, reader.uint32());
           continue;
         case 3:
-          if (tag !== 26) {
+          if (tag !== 24) {
             break;
           }
 
-          message.serviceStatus = ServiceStatus.decode(reader, reader.uint32());
+          message.serviceStatus = reader.int32() as any;
           continue;
         case 4:
           if (tag !== 34) {
@@ -143,7 +145,7 @@ export const SystemManagerMessage = {
       serviceInformationRequest: isSet(object.serviceInformationRequest)
         ? ServiceInformationRequest.fromJSON(object.serviceInformationRequest)
         : undefined,
-      serviceStatus: isSet(object.serviceStatus) ? ServiceStatus.fromJSON(object.serviceStatus) : undefined,
+      serviceStatus: isSet(object.serviceStatus) ? serviceStatusFromJSON(object.serviceStatus) : undefined,
       serviceOrder: isSet(object.serviceOrder) ? ServiceOrder.fromJSON(object.serviceOrder) : undefined,
       tuningState: isSet(object.tuningState) ? TuningState.fromJSON(object.tuningState) : undefined,
       tuningStateRequest: isSet(object.tuningStateRequest)
@@ -165,7 +167,7 @@ export const SystemManagerMessage = {
       obj.serviceInformationRequest = ServiceInformationRequest.toJSON(message.serviceInformationRequest);
     }
     if (message.serviceStatus !== undefined) {
-      obj.serviceStatus = ServiceStatus.toJSON(message.serviceStatus);
+      obj.serviceStatus = serviceStatusToJSON(message.serviceStatus);
     }
     if (message.serviceOrder !== undefined) {
       obj.serviceOrder = ServiceOrder.toJSON(message.serviceOrder);
@@ -197,9 +199,7 @@ export const SystemManagerMessage = {
       (object.serviceInformationRequest !== undefined && object.serviceInformationRequest !== null)
         ? ServiceInformationRequest.fromPartial(object.serviceInformationRequest)
         : undefined;
-    message.serviceStatus = (object.serviceStatus !== undefined && object.serviceStatus !== null)
-      ? ServiceStatus.fromPartial(object.serviceStatus)
-      : undefined;
+    message.serviceStatus = object.serviceStatus ?? undefined;
     message.serviceOrder = (object.serviceOrder !== undefined && object.serviceOrder !== null)
       ? ServiceOrder.fromPartial(object.serviceOrder)
       : undefined;

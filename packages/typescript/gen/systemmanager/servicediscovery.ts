@@ -3,6 +3,61 @@ import _m0 from "protobufjs/minimal";
 
 export const protobufPackage = "protobuf_msgs";
 
+export enum ServiceStatus {
+  UNKNOWN = 0,
+  /** REGISTERED - Registered, but not running yet (probably waiting for dependencies) */
+  REGISTERED = 1,
+  /** RUNNING - Currently running (after registration) */
+  RUNNING = 2,
+  /** STOPPED - Stopped gracefully */
+  STOPPED = 3,
+  /** NOT_REGISTERED - Not registered yet (useful if you are waiting for this dependency) */
+  NOT_REGISTERED = 4,
+  UNRECOGNIZED = -1,
+}
+
+export function serviceStatusFromJSON(object: any): ServiceStatus {
+  switch (object) {
+    case 0:
+    case "UNKNOWN":
+      return ServiceStatus.UNKNOWN;
+    case 1:
+    case "REGISTERED":
+      return ServiceStatus.REGISTERED;
+    case 2:
+    case "RUNNING":
+      return ServiceStatus.RUNNING;
+    case 3:
+    case "STOPPED":
+      return ServiceStatus.STOPPED;
+    case 4:
+    case "NOT_REGISTERED":
+      return ServiceStatus.NOT_REGISTERED;
+    case -1:
+    case "UNRECOGNIZED":
+    default:
+      return ServiceStatus.UNRECOGNIZED;
+  }
+}
+
+export function serviceStatusToJSON(object: ServiceStatus): string {
+  switch (object) {
+    case ServiceStatus.UNKNOWN:
+      return "UNKNOWN";
+    case ServiceStatus.REGISTERED:
+      return "REGISTERED";
+    case ServiceStatus.RUNNING:
+      return "RUNNING";
+    case ServiceStatus.STOPPED:
+      return "STOPPED";
+    case ServiceStatus.NOT_REGISTERED:
+      return "NOT_REGISTERED";
+    case ServiceStatus.UNRECOGNIZED:
+    default:
+      return "UNRECOGNIZED";
+  }
+}
+
 /** Used to identify a service within the system */
 export interface ServiceIdentifier {
   name: string;
@@ -79,75 +134,12 @@ export interface Service {
   endpoints: ServiceEndpoint[];
   options: ServiceOption[];
   dependencies: ServiceDependency[];
+  status: ServiceStatus;
 }
 
 /** When a service requests information about other services, it sends an InformationRequest message */
 export interface ServiceInformationRequest {
   requested: ServiceIdentifier | undefined;
-}
-
-/**
- * When the system manager sends information about a service, it sends an Information message
- * Also used to broadcast registrations to all services
- */
-export interface ServiceStatus {
-  service: Service | undefined;
-  status: ServiceStatus_Status;
-}
-
-export enum ServiceStatus_Status {
-  UNKNOWN = 0,
-  /** REGISTERED - Registered, but not running yet (probably waiting for dependencies) */
-  REGISTERED = 1,
-  /** RUNNING - Currently running (after registration) */
-  RUNNING = 2,
-  /** STOPPED - Stopped gracefully */
-  STOPPED = 3,
-  /** NOT_REGISTERED - Not registered yet (useful if you are waiting for this dependency) */
-  NOT_REGISTERED = 4,
-  UNRECOGNIZED = -1,
-}
-
-export function serviceStatus_StatusFromJSON(object: any): ServiceStatus_Status {
-  switch (object) {
-    case 0:
-    case "UNKNOWN":
-      return ServiceStatus_Status.UNKNOWN;
-    case 1:
-    case "REGISTERED":
-      return ServiceStatus_Status.REGISTERED;
-    case 2:
-    case "RUNNING":
-      return ServiceStatus_Status.RUNNING;
-    case 3:
-    case "STOPPED":
-      return ServiceStatus_Status.STOPPED;
-    case 4:
-    case "NOT_REGISTERED":
-      return ServiceStatus_Status.NOT_REGISTERED;
-    case -1:
-    case "UNRECOGNIZED":
-    default:
-      return ServiceStatus_Status.UNRECOGNIZED;
-  }
-}
-
-export function serviceStatus_StatusToJSON(object: ServiceStatus_Status): string {
-  switch (object) {
-    case ServiceStatus_Status.UNKNOWN:
-      return "UNKNOWN";
-    case ServiceStatus_Status.REGISTERED:
-      return "REGISTERED";
-    case ServiceStatus_Status.RUNNING:
-      return "RUNNING";
-    case ServiceStatus_Status.STOPPED:
-      return "STOPPED";
-    case ServiceStatus_Status.NOT_REGISTERED:
-      return "NOT_REGISTERED";
-    case ServiceStatus_Status.UNRECOGNIZED:
-    default:
-      return "UNRECOGNIZED";
-  }
 }
 
 /** The system manager can order services to stop/restart by sending a service order */
@@ -566,7 +558,7 @@ export const ServiceDependency = {
 };
 
 function createBaseService(): Service {
-  return { identifier: undefined, endpoints: [], options: [], dependencies: [] };
+  return { identifier: undefined, endpoints: [], options: [], dependencies: [], status: 0 };
 }
 
 export const Service = {
@@ -582,6 +574,9 @@ export const Service = {
     }
     for (const v of message.dependencies) {
       ServiceDependency.encode(v!, writer.uint32(34).fork()).ldelim();
+    }
+    if (message.status !== 0) {
+      writer.uint32(40).int32(message.status);
     }
     return writer;
   },
@@ -621,6 +616,13 @@ export const Service = {
 
           message.dependencies.push(ServiceDependency.decode(reader, reader.uint32()));
           continue;
+        case 5:
+          if (tag !== 40) {
+            break;
+          }
+
+          message.status = reader.int32() as any;
+          continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -642,6 +644,7 @@ export const Service = {
       dependencies: globalThis.Array.isArray(object?.dependencies)
         ? object.dependencies.map((e: any) => ServiceDependency.fromJSON(e))
         : [],
+      status: isSet(object.status) ? serviceStatusFromJSON(object.status) : 0,
     };
   },
 
@@ -659,6 +662,9 @@ export const Service = {
     if (message.dependencies?.length) {
       obj.dependencies = message.dependencies.map((e) => ServiceDependency.toJSON(e));
     }
+    if (message.status !== 0) {
+      obj.status = serviceStatusToJSON(message.status);
+    }
     return obj;
   },
 
@@ -673,6 +679,7 @@ export const Service = {
     message.endpoints = object.endpoints?.map((e) => ServiceEndpoint.fromPartial(e)) || [];
     message.options = object.options?.map((e) => ServiceOption.fromPartial(e)) || [];
     message.dependencies = object.dependencies?.map((e) => ServiceDependency.fromPartial(e)) || [];
+    message.status = object.status ?? 0;
     return message;
   },
 };
@@ -732,82 +739,6 @@ export const ServiceInformationRequest = {
     message.requested = (object.requested !== undefined && object.requested !== null)
       ? ServiceIdentifier.fromPartial(object.requested)
       : undefined;
-    return message;
-  },
-};
-
-function createBaseServiceStatus(): ServiceStatus {
-  return { service: undefined, status: 0 };
-}
-
-export const ServiceStatus = {
-  encode(message: ServiceStatus, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.service !== undefined) {
-      Service.encode(message.service, writer.uint32(10).fork()).ldelim();
-    }
-    if (message.status !== 0) {
-      writer.uint32(16).int32(message.status);
-    }
-    return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): ServiceStatus {
-    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseServiceStatus();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          if (tag !== 10) {
-            break;
-          }
-
-          message.service = Service.decode(reader, reader.uint32());
-          continue;
-        case 2:
-          if (tag !== 16) {
-            break;
-          }
-
-          message.status = reader.int32() as any;
-          continue;
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skipType(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): ServiceStatus {
-    return {
-      service: isSet(object.service) ? Service.fromJSON(object.service) : undefined,
-      status: isSet(object.status) ? serviceStatus_StatusFromJSON(object.status) : 0,
-    };
-  },
-
-  toJSON(message: ServiceStatus): unknown {
-    const obj: any = {};
-    if (message.service !== undefined) {
-      obj.service = Service.toJSON(message.service);
-    }
-    if (message.status !== 0) {
-      obj.status = serviceStatus_StatusToJSON(message.status);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<ServiceStatus>, I>>(base?: I): ServiceStatus {
-    return ServiceStatus.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<ServiceStatus>, I>>(object: I): ServiceStatus {
-    const message = createBaseServiceStatus();
-    message.service = (object.service !== undefined && object.service !== null)
-      ? Service.fromPartial(object.service)
-      : undefined;
-    message.status = object.status ?? 0;
     return message;
   },
 };

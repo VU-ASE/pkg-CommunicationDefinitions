@@ -45,7 +45,7 @@ struct  _ProtobufMsgs__SystemManagerMessage
   union {
     ProtobufMsgs__Service *service;
     ProtobufMsgs__ServiceInformationRequest *serviceinformationrequest;
-    ProtobufMsgs__ServiceStatus *servicestatus;
+    ProtobufMsgs__ServiceStatus servicestatus;
     ProtobufMsgs__ServiceOrder *serviceorder;
     ProtobufMsgs__TuningState *tuningstate;
     ProtobufMsgs__TuningStateRequest *tuningstaterequest;

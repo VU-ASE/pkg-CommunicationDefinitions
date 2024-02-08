@@ -21,7 +21,6 @@ typedef struct _ProtobufMsgs__ServiceOption ProtobufMsgs__ServiceOption;
 typedef struct _ProtobufMsgs__ServiceDependency ProtobufMsgs__ServiceDependency;
 typedef struct _ProtobufMsgs__Service ProtobufMsgs__Service;
 typedef struct _ProtobufMsgs__ServiceInformationRequest ProtobufMsgs__ServiceInformationRequest;
-typedef struct _ProtobufMsgs__ServiceStatus ProtobufMsgs__ServiceStatus;
 typedef struct _ProtobufMsgs__ServiceOrder ProtobufMsgs__ServiceOrder;
 typedef struct _ProtobufMsgs__ServiceListRequest ProtobufMsgs__ServiceListRequest;
 typedef struct _ProtobufMsgs__ServiceList ProtobufMsgs__ServiceList;
@@ -35,26 +34,6 @@ typedef enum _ProtobufMsgs__ServiceOption__Type {
   PROTOBUF_MSGS__SERVICE_OPTION__TYPE__FLOAT = 2
     PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(PROTOBUF_MSGS__SERVICE_OPTION__TYPE)
 } ProtobufMsgs__ServiceOption__Type;
-typedef enum _ProtobufMsgs__ServiceStatus__Status {
-  PROTOBUF_MSGS__SERVICE_STATUS__STATUS__UNKNOWN = 0,
-  /*
-   * Registered, but not running yet (probably waiting for dependencies)
-   */
-  PROTOBUF_MSGS__SERVICE_STATUS__STATUS__REGISTERED = 1,
-  /*
-   * Currently running (after registration)
-   */
-  PROTOBUF_MSGS__SERVICE_STATUS__STATUS__RUNNING = 2,
-  /*
-   * Stopped gracefully
-   */
-  PROTOBUF_MSGS__SERVICE_STATUS__STATUS__STOPPED = 3,
-  /*
-   * Not registered yet (useful if you are waiting for this dependency)
-   */
-  PROTOBUF_MSGS__SERVICE_STATUS__STATUS__NOT_REGISTERED = 4
-    PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(PROTOBUF_MSGS__SERVICE_STATUS__STATUS)
-} ProtobufMsgs__ServiceStatus__Status;
 typedef enum _ProtobufMsgs__ServiceOrder__OrderType {
   /*
    * will attempt a graceful shutdown
@@ -70,6 +49,26 @@ typedef enum _ProtobufMsgs__ServiceOrder__OrderType {
   PROTOBUF_MSGS__SERVICE_ORDER__ORDER_TYPE__FORCE_RESTART = 2
     PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(PROTOBUF_MSGS__SERVICE_ORDER__ORDER_TYPE)
 } ProtobufMsgs__ServiceOrder__OrderType;
+typedef enum _ProtobufMsgs__ServiceStatus {
+  PROTOBUF_MSGS__SERVICE_STATUS__UNKNOWN = 0,
+  /*
+   * Registered, but not running yet (probably waiting for dependencies)
+   */
+  PROTOBUF_MSGS__SERVICE_STATUS__REGISTERED = 1,
+  /*
+   * Currently running (after registration)
+   */
+  PROTOBUF_MSGS__SERVICE_STATUS__RUNNING = 2,
+  /*
+   * Stopped gracefully
+   */
+  PROTOBUF_MSGS__SERVICE_STATUS__STOPPED = 3,
+  /*
+   * Not registered yet (useful if you are waiting for this dependency)
+   */
+  PROTOBUF_MSGS__SERVICE_STATUS__NOT_REGISTERED = 4
+    PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(PROTOBUF_MSGS__SERVICE_STATUS)
+} ProtobufMsgs__ServiceStatus;
 
 /* --- messages --- */
 
@@ -155,10 +154,11 @@ struct  _ProtobufMsgs__Service
   ProtobufMsgs__ServiceOption **options;
   size_t n_dependencies;
   ProtobufMsgs__ServiceDependency **dependencies;
+  ProtobufMsgs__ServiceStatus status;
 };
 #define PROTOBUF_MSGS__SERVICE__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&protobuf_msgs__service__descriptor) \
-    , NULL, 0,NULL, 0,NULL, 0,NULL }
+    , NULL, 0,NULL, 0,NULL, 0,NULL, PROTOBUF_MSGS__SERVICE_STATUS__UNKNOWN }
 
 
 /*
@@ -172,21 +172,6 @@ struct  _ProtobufMsgs__ServiceInformationRequest
 #define PROTOBUF_MSGS__SERVICE_INFORMATION_REQUEST__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&protobuf_msgs__service_information_request__descriptor) \
     , NULL }
-
-
-/*
- * When the system manager sends information about a service, it sends an Information message
- * Also used to broadcast registrations to all services
- */
-struct  _ProtobufMsgs__ServiceStatus
-{
-  ProtobufCMessage base;
-  ProtobufMsgs__Service *service;
-  ProtobufMsgs__ServiceStatus__Status status;
-};
-#define PROTOBUF_MSGS__SERVICE_STATUS__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&protobuf_msgs__service_status__descriptor) \
-    , NULL, PROTOBUF_MSGS__SERVICE_STATUS__STATUS__UNKNOWN }
 
 
 /*
@@ -347,25 +332,6 @@ ProtobufMsgs__ServiceInformationRequest *
 void   protobuf_msgs__service_information_request__free_unpacked
                      (ProtobufMsgs__ServiceInformationRequest *message,
                       ProtobufCAllocator *allocator);
-/* ProtobufMsgs__ServiceStatus methods */
-void   protobuf_msgs__service_status__init
-                     (ProtobufMsgs__ServiceStatus         *message);
-size_t protobuf_msgs__service_status__get_packed_size
-                     (const ProtobufMsgs__ServiceStatus   *message);
-size_t protobuf_msgs__service_status__pack
-                     (const ProtobufMsgs__ServiceStatus   *message,
-                      uint8_t             *out);
-size_t protobuf_msgs__service_status__pack_to_buffer
-                     (const ProtobufMsgs__ServiceStatus   *message,
-                      ProtobufCBuffer     *buffer);
-ProtobufMsgs__ServiceStatus *
-       protobuf_msgs__service_status__unpack
-                     (ProtobufCAllocator  *allocator,
-                      size_t               len,
-                      const uint8_t       *data);
-void   protobuf_msgs__service_status__free_unpacked
-                     (ProtobufMsgs__ServiceStatus *message,
-                      ProtobufCAllocator *allocator);
 /* ProtobufMsgs__ServiceOrder methods */
 void   protobuf_msgs__service_order__init
                      (ProtobufMsgs__ServiceOrder         *message);
@@ -443,9 +409,6 @@ typedef void (*ProtobufMsgs__Service_Closure)
 typedef void (*ProtobufMsgs__ServiceInformationRequest_Closure)
                  (const ProtobufMsgs__ServiceInformationRequest *message,
                   void *closure_data);
-typedef void (*ProtobufMsgs__ServiceStatus_Closure)
-                 (const ProtobufMsgs__ServiceStatus *message,
-                  void *closure_data);
 typedef void (*ProtobufMsgs__ServiceOrder_Closure)
                  (const ProtobufMsgs__ServiceOrder *message,
                   void *closure_data);
@@ -461,6 +424,7 @@ typedef void (*ProtobufMsgs__ServiceList_Closure)
 
 /* --- descriptors --- */
 
+extern const ProtobufCEnumDescriptor    protobuf_msgs__service_status__descriptor;
 extern const ProtobufCMessageDescriptor protobuf_msgs__service_identifier__descriptor;
 extern const ProtobufCMessageDescriptor protobuf_msgs__service_endpoint__descriptor;
 extern const ProtobufCMessageDescriptor protobuf_msgs__service_option__descriptor;
@@ -468,8 +432,6 @@ extern const ProtobufCEnumDescriptor    protobuf_msgs__service_option__type__des
 extern const ProtobufCMessageDescriptor protobuf_msgs__service_dependency__descriptor;
 extern const ProtobufCMessageDescriptor protobuf_msgs__service__descriptor;
 extern const ProtobufCMessageDescriptor protobuf_msgs__service_information_request__descriptor;
-extern const ProtobufCMessageDescriptor protobuf_msgs__service_status__descriptor;
-extern const ProtobufCEnumDescriptor    protobuf_msgs__service_status__status__descriptor;
 extern const ProtobufCMessageDescriptor protobuf_msgs__service_order__descriptor;
 extern const ProtobufCEnumDescriptor    protobuf_msgs__service_order__order_type__descriptor;
 extern const ProtobufCMessageDescriptor protobuf_msgs__service_list_request__descriptor;
