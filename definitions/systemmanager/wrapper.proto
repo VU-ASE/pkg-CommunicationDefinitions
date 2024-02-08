@@ -14,7 +14,6 @@ import "systemmanager/tuningstate.proto";
 message SystemManagerMessage {
     oneof msg {
         Service service = 1;
-        ServiceStatus serviceStatus = 3;
         ServiceOrder serviceOrder = 4;
         TuningState tuningState = 5;
         TuningStateRequest tuningStateRequest = 6;
