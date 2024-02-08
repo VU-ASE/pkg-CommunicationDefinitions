@@ -92,3 +92,9 @@ message ServiceListRequest {
 message ServiceList {
     repeated Service services = 1;
 }
+
+// This will inform the system manager of a status update
+message ServiceStatusUpdate {
+    ServiceIdentifier service = 1;
+    ServiceStatus status = 2;
+}
