@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.7.1](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v2.7.0...v2.7.1) (2024-02-10)
+
+
+### Bug Fixes
+
+* test version bump ([fbabe1c](https://github.com/VU-ASE/pkg-CommunicationDefinitions/commit/fbabe1c096933f6b275fbda73b55033afefb8367))
+
 ## [2.7.0](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v2.6.0...v2.7.0) (2024-02-10)
 
 
