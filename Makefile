@@ -1,7 +1,4 @@
 .PHONY: build start
-
-
-
 package-go-install-deps:
 	@go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
 
