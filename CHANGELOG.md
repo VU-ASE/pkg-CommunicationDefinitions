@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.8.0](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v2.7.1...v2.8.0) (2024-02-14)
+
+
+### Features
+
+* Add Simulator State ([7748f0a](https://github.com/VU-ASE/pkg-CommunicationDefinitions/commit/7748f0a560a701bef5cb1432e99db6c2b81f9ca1))
+
 ## [2.7.1](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v2.7.0...v2.7.1) (2024-02-10)
 
 
