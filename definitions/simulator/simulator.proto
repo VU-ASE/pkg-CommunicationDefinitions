@@ -13,5 +13,3 @@ message SimulatorImageOutput {
     uint32 height = 3;
     bytes  pixels = 4;
 }
-
-
