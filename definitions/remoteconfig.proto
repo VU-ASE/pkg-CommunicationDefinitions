@@ -6,8 +6,15 @@ option go_package = "ase/pb_remote_config_messages";
 
 // control messages exchanged by client(s), the server and the car
 message ConfigMessage {
-    message HumanControlTakeoverRequest {}
-    message HumanControlReleaseRequest {}
+    enum ControlRequestType {
+        HUMAN_CONTROL_TAKEOVER = 0;
+        HUMAN_CONTROL_RELEASE = 1;
+    }
+
+    message HumanControlRequest {
+        ControlRequestType type = 1;
+    }
+
     message HumanControlState {
         // let everyone know who is the active controller now
         string activeControllerId = 1;
@@ -24,8 +31,7 @@ message ConfigMessage {
     }
 
     oneof action {
-        HumanControlTakeoverRequest humanControlTakeoverRequest = 1;
-        HumanControlReleaseRequest humanControlReleaseRequest = 2;
+        HumanControlRequest humanControlRequest = 1;
         HumanControlState humanControlState = 3;
         CarState carState = 6;
         Error error = 7;
