@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.8.1](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v2.8.0...v2.8.1) (2024-02-16)
+
+
+### Bug Fixes
+
+* remote control requests ([156f589](https://github.com/VU-ASE/pkg-CommunicationDefinitions/commit/156f589bd7e3b2ec0258a87ec40995fd4692a8a4))
+
 ## [2.8.0](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v2.7.1...v2.8.0) (2024-02-14)
 
 
