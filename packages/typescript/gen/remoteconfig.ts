@@ -5,17 +5,47 @@ export const protobufPackage = "protobuf_msgs";
 
 /** control messages exchanged by client(s), the server and the car */
 export interface ConfigMessage {
-  humanControlTakeoverRequest?: ConfigMessage_HumanControlTakeoverRequest | undefined;
-  humanControlReleaseRequest?: ConfigMessage_HumanControlReleaseRequest | undefined;
+  humanControlRequest?: ConfigMessage_HumanControlRequest | undefined;
   humanControlState?: ConfigMessage_HumanControlState | undefined;
   carState?: ConfigMessage_CarState | undefined;
   error?: ConfigMessage_Error | undefined;
 }
 
-export interface ConfigMessage_HumanControlTakeoverRequest {
+export enum ConfigMessage_ControlRequestType {
+  HUMAN_CONTROL_TAKEOVER = 0,
+  HUMAN_CONTROL_RELEASE = 1,
+  UNRECOGNIZED = -1,
 }
 
-export interface ConfigMessage_HumanControlReleaseRequest {
+export function configMessage_ControlRequestTypeFromJSON(object: any): ConfigMessage_ControlRequestType {
+  switch (object) {
+    case 0:
+    case "HUMAN_CONTROL_TAKEOVER":
+      return ConfigMessage_ControlRequestType.HUMAN_CONTROL_TAKEOVER;
+    case 1:
+    case "HUMAN_CONTROL_RELEASE":
+      return ConfigMessage_ControlRequestType.HUMAN_CONTROL_RELEASE;
+    case -1:
+    case "UNRECOGNIZED":
+    default:
+      return ConfigMessage_ControlRequestType.UNRECOGNIZED;
+  }
+}
+
+export function configMessage_ControlRequestTypeToJSON(object: ConfigMessage_ControlRequestType): string {
+  switch (object) {
+    case ConfigMessage_ControlRequestType.HUMAN_CONTROL_TAKEOVER:
+      return "HUMAN_CONTROL_TAKEOVER";
+    case ConfigMessage_ControlRequestType.HUMAN_CONTROL_RELEASE:
+      return "HUMAN_CONTROL_RELEASE";
+    case ConfigMessage_ControlRequestType.UNRECOGNIZED:
+    default:
+      return "UNRECOGNIZED";
+  }
+}
+
+export interface ConfigMessage_HumanControlRequest {
+  type: ConfigMessage_ControlRequestType;
 }
 
 export interface ConfigMessage_HumanControlState {
@@ -34,24 +64,13 @@ export interface ConfigMessage_Error {
 }
 
 function createBaseConfigMessage(): ConfigMessage {
-  return {
-    humanControlTakeoverRequest: undefined,
-    humanControlReleaseRequest: undefined,
-    humanControlState: undefined,
-    carState: undefined,
-    error: undefined,
-  };
+  return { humanControlRequest: undefined, humanControlState: undefined, carState: undefined, error: undefined };
 }
 
 export const ConfigMessage = {
   encode(message: ConfigMessage, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.humanControlTakeoverRequest !== undefined) {
-      ConfigMessage_HumanControlTakeoverRequest.encode(message.humanControlTakeoverRequest, writer.uint32(10).fork())
-        .ldelim();
-    }
-    if (message.humanControlReleaseRequest !== undefined) {
-      ConfigMessage_HumanControlReleaseRequest.encode(message.humanControlReleaseRequest, writer.uint32(18).fork())
-        .ldelim();
+    if (message.humanControlRequest !== undefined) {
+      ConfigMessage_HumanControlRequest.encode(message.humanControlRequest, writer.uint32(10).fork()).ldelim();
     }
     if (message.humanControlState !== undefined) {
       ConfigMessage_HumanControlState.encode(message.humanControlState, writer.uint32(26).fork()).ldelim();
@@ -77,17 +96,7 @@ export const ConfigMessage = {
             break;
           }
 
-          message.humanControlTakeoverRequest = ConfigMessage_HumanControlTakeoverRequest.decode(
-            reader,
-            reader.uint32(),
-          );
-          continue;
-        case 2:
-          if (tag !== 18) {
-            break;
-          }
-
-          message.humanControlReleaseRequest = ConfigMessage_HumanControlReleaseRequest.decode(reader, reader.uint32());
+          message.humanControlRequest = ConfigMessage_HumanControlRequest.decode(reader, reader.uint32());
           continue;
         case 3:
           if (tag !== 26) {
@@ -121,11 +130,8 @@ export const ConfigMessage = {
 
   fromJSON(object: any): ConfigMessage {
     return {
-      humanControlTakeoverRequest: isSet(object.humanControlTakeoverRequest)
-        ? ConfigMessage_HumanControlTakeoverRequest.fromJSON(object.humanControlTakeoverRequest)
-        : undefined,
-      humanControlReleaseRequest: isSet(object.humanControlReleaseRequest)
-        ? ConfigMessage_HumanControlReleaseRequest.fromJSON(object.humanControlReleaseRequest)
+      humanControlRequest: isSet(object.humanControlRequest)
+        ? ConfigMessage_HumanControlRequest.fromJSON(object.humanControlRequest)
         : undefined,
       humanControlState: isSet(object.humanControlState)
         ? ConfigMessage_HumanControlState.fromJSON(object.humanControlState)
@@ -137,15 +143,8 @@ export const ConfigMessage = {
 
   toJSON(message: ConfigMessage): unknown {
     const obj: any = {};
-    if (message.humanControlTakeoverRequest !== undefined) {
-      obj.humanControlTakeoverRequest = ConfigMessage_HumanControlTakeoverRequest.toJSON(
-        message.humanControlTakeoverRequest,
-      );
-    }
-    if (message.humanControlReleaseRequest !== undefined) {
-      obj.humanControlReleaseRequest = ConfigMessage_HumanControlReleaseRequest.toJSON(
-        message.humanControlReleaseRequest,
-      );
+    if (message.humanControlRequest !== undefined) {
+      obj.humanControlRequest = ConfigMessage_HumanControlRequest.toJSON(message.humanControlRequest);
     }
     if (message.humanControlState !== undefined) {
       obj.humanControlState = ConfigMessage_HumanControlState.toJSON(message.humanControlState);
@@ -164,14 +163,9 @@ export const ConfigMessage = {
   },
   fromPartial<I extends Exact<DeepPartial<ConfigMessage>, I>>(object: I): ConfigMessage {
     const message = createBaseConfigMessage();
-    message.humanControlTakeoverRequest =
-      (object.humanControlTakeoverRequest !== undefined && object.humanControlTakeoverRequest !== null)
-        ? ConfigMessage_HumanControlTakeoverRequest.fromPartial(object.humanControlTakeoverRequest)
-        : undefined;
-    message.humanControlReleaseRequest =
-      (object.humanControlReleaseRequest !== undefined && object.humanControlReleaseRequest !== null)
-        ? ConfigMessage_HumanControlReleaseRequest.fromPartial(object.humanControlReleaseRequest)
-        : undefined;
+    message.humanControlRequest = (object.humanControlRequest !== undefined && object.humanControlRequest !== null)
+      ? ConfigMessage_HumanControlRequest.fromPartial(object.humanControlRequest)
+      : undefined;
     message.humanControlState = (object.humanControlState !== undefined && object.humanControlState !== null)
       ? ConfigMessage_HumanControlState.fromPartial(object.humanControlState)
       : undefined;
@@ -185,22 +179,32 @@ export const ConfigMessage = {
   },
 };
 
-function createBaseConfigMessage_HumanControlTakeoverRequest(): ConfigMessage_HumanControlTakeoverRequest {
-  return {};
+function createBaseConfigMessage_HumanControlRequest(): ConfigMessage_HumanControlRequest {
+  return { type: 0 };
 }
 
-export const ConfigMessage_HumanControlTakeoverRequest = {
-  encode(_: ConfigMessage_HumanControlTakeoverRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export const ConfigMessage_HumanControlRequest = {
+  encode(message: ConfigMessage_HumanControlRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.type !== 0) {
+      writer.uint32(8).int32(message.type);
+    }
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): ConfigMessage_HumanControlTakeoverRequest {
+  decode(input: _m0.Reader | Uint8Array, length?: number): ConfigMessage_HumanControlRequest {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseConfigMessage_HumanControlTakeoverRequest();
+    const message = createBaseConfigMessage_HumanControlRequest();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+
+          message.type = reader.int32() as any;
+          continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -210,71 +214,28 @@ export const ConfigMessage_HumanControlTakeoverRequest = {
     return message;
   },
 
-  fromJSON(_: any): ConfigMessage_HumanControlTakeoverRequest {
-    return {};
+  fromJSON(object: any): ConfigMessage_HumanControlRequest {
+    return { type: isSet(object.type) ? configMessage_ControlRequestTypeFromJSON(object.type) : 0 };
   },
 
-  toJSON(_: ConfigMessage_HumanControlTakeoverRequest): unknown {
+  toJSON(message: ConfigMessage_HumanControlRequest): unknown {
     const obj: any = {};
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<ConfigMessage_HumanControlTakeoverRequest>, I>>(
-    base?: I,
-  ): ConfigMessage_HumanControlTakeoverRequest {
-    return ConfigMessage_HumanControlTakeoverRequest.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<ConfigMessage_HumanControlTakeoverRequest>, I>>(
-    _: I,
-  ): ConfigMessage_HumanControlTakeoverRequest {
-    const message = createBaseConfigMessage_HumanControlTakeoverRequest();
-    return message;
-  },
-};
-
-function createBaseConfigMessage_HumanControlReleaseRequest(): ConfigMessage_HumanControlReleaseRequest {
-  return {};
-}
-
-export const ConfigMessage_HumanControlReleaseRequest = {
-  encode(_: ConfigMessage_HumanControlReleaseRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): ConfigMessage_HumanControlReleaseRequest {
-    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseConfigMessage_HumanControlReleaseRequest();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skipType(tag & 7);
+    if (message.type !== 0) {
+      obj.type = configMessage_ControlRequestTypeToJSON(message.type);
     }
-    return message;
-  },
-
-  fromJSON(_: any): ConfigMessage_HumanControlReleaseRequest {
-    return {};
-  },
-
-  toJSON(_: ConfigMessage_HumanControlReleaseRequest): unknown {
-    const obj: any = {};
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<ConfigMessage_HumanControlReleaseRequest>, I>>(
+  create<I extends Exact<DeepPartial<ConfigMessage_HumanControlRequest>, I>>(
     base?: I,
-  ): ConfigMessage_HumanControlReleaseRequest {
-    return ConfigMessage_HumanControlReleaseRequest.fromPartial(base ?? ({} as any));
+  ): ConfigMessage_HumanControlRequest {
+    return ConfigMessage_HumanControlRequest.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<ConfigMessage_HumanControlReleaseRequest>, I>>(
-    _: I,
-  ): ConfigMessage_HumanControlReleaseRequest {
-    const message = createBaseConfigMessage_HumanControlReleaseRequest();
+  fromPartial<I extends Exact<DeepPartial<ConfigMessage_HumanControlRequest>, I>>(
+    object: I,
+  ): ConfigMessage_HumanControlRequest {
+    const message = createBaseConfigMessage_HumanControlRequest();
+    message.type = object.type ?? 0;
     return message;
   },
 };

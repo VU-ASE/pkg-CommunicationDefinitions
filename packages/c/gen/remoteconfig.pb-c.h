@@ -16,8 +16,7 @@ PROTOBUF_C__BEGIN_DECLS
 
 
 typedef struct _ProtobufMsgs__ConfigMessage ProtobufMsgs__ConfigMessage;
-typedef struct _ProtobufMsgs__ConfigMessage__HumanControlTakeoverRequest ProtobufMsgs__ConfigMessage__HumanControlTakeoverRequest;
-typedef struct _ProtobufMsgs__ConfigMessage__HumanControlReleaseRequest ProtobufMsgs__ConfigMessage__HumanControlReleaseRequest;
+typedef struct _ProtobufMsgs__ConfigMessage__HumanControlRequest ProtobufMsgs__ConfigMessage__HumanControlRequest;
 typedef struct _ProtobufMsgs__ConfigMessage__HumanControlState ProtobufMsgs__ConfigMessage__HumanControlState;
 typedef struct _ProtobufMsgs__ConfigMessage__CarState ProtobufMsgs__ConfigMessage__CarState;
 typedef struct _ProtobufMsgs__ConfigMessage__Error ProtobufMsgs__ConfigMessage__Error;
@@ -25,25 +24,22 @@ typedef struct _ProtobufMsgs__ConfigMessage__Error ProtobufMsgs__ConfigMessage__
 
 /* --- enums --- */
 
+typedef enum _ProtobufMsgs__ConfigMessage__ControlRequestType {
+  PROTOBUF_MSGS__CONFIG_MESSAGE__CONTROL_REQUEST_TYPE__HUMAN_CONTROL_TAKEOVER = 0,
+  PROTOBUF_MSGS__CONFIG_MESSAGE__CONTROL_REQUEST_TYPE__HUMAN_CONTROL_RELEASE = 1
+    PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(PROTOBUF_MSGS__CONFIG_MESSAGE__CONTROL_REQUEST_TYPE)
+} ProtobufMsgs__ConfigMessage__ControlRequestType;
 
 /* --- messages --- */
 
-struct  _ProtobufMsgs__ConfigMessage__HumanControlTakeoverRequest
+struct  _ProtobufMsgs__ConfigMessage__HumanControlRequest
 {
   ProtobufCMessage base;
+  ProtobufMsgs__ConfigMessage__ControlRequestType type;
 };
-#define PROTOBUF_MSGS__CONFIG_MESSAGE__HUMAN_CONTROL_TAKEOVER_REQUEST__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&protobuf_msgs__config_message__human_control_takeover_request__descriptor) \
-     }
-
-
-struct  _ProtobufMsgs__ConfigMessage__HumanControlReleaseRequest
-{
-  ProtobufCMessage base;
-};
-#define PROTOBUF_MSGS__CONFIG_MESSAGE__HUMAN_CONTROL_RELEASE_REQUEST__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&protobuf_msgs__config_message__human_control_release_request__descriptor) \
-     }
+#define PROTOBUF_MSGS__CONFIG_MESSAGE__HUMAN_CONTROL_REQUEST__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&protobuf_msgs__config_message__human_control_request__descriptor) \
+    , PROTOBUF_MSGS__CONFIG_MESSAGE__CONTROL_REQUEST_TYPE__HUMAN_CONTROL_TAKEOVER }
 
 
 struct  _ProtobufMsgs__ConfigMessage__HumanControlState
@@ -87,8 +83,7 @@ struct  _ProtobufMsgs__ConfigMessage__Error
 
 typedef enum {
   PROTOBUF_MSGS__CONFIG_MESSAGE__ACTION__NOT_SET = 0,
-  PROTOBUF_MSGS__CONFIG_MESSAGE__ACTION_HUMAN_CONTROL_TAKEOVER_REQUEST = 1,
-  PROTOBUF_MSGS__CONFIG_MESSAGE__ACTION_HUMAN_CONTROL_RELEASE_REQUEST = 2,
+  PROTOBUF_MSGS__CONFIG_MESSAGE__ACTION_HUMAN_CONTROL_REQUEST = 1,
   PROTOBUF_MSGS__CONFIG_MESSAGE__ACTION_HUMAN_CONTROL_STATE = 3,
   PROTOBUF_MSGS__CONFIG_MESSAGE__ACTION_CAR_STATE = 6,
   PROTOBUF_MSGS__CONFIG_MESSAGE__ACTION_ERROR = 7
@@ -103,8 +98,7 @@ struct  _ProtobufMsgs__ConfigMessage
   ProtobufCMessage base;
   ProtobufMsgs__ConfigMessage__ActionCase action_case;
   union {
-    ProtobufMsgs__ConfigMessage__HumanControlTakeoverRequest *humancontroltakeoverrequest;
-    ProtobufMsgs__ConfigMessage__HumanControlReleaseRequest *humancontrolreleaserequest;
+    ProtobufMsgs__ConfigMessage__HumanControlRequest *humancontrolrequest;
     ProtobufMsgs__ConfigMessage__HumanControlState *humancontrolstate;
     ProtobufMsgs__ConfigMessage__CarState *carstate;
     ProtobufMsgs__ConfigMessage__Error *error;
@@ -115,12 +109,9 @@ struct  _ProtobufMsgs__ConfigMessage
     , PROTOBUF_MSGS__CONFIG_MESSAGE__ACTION__NOT_SET, {0} }
 
 
-/* ProtobufMsgs__ConfigMessage__HumanControlTakeoverRequest methods */
-void   protobuf_msgs__config_message__human_control_takeover_request__init
-                     (ProtobufMsgs__ConfigMessage__HumanControlTakeoverRequest         *message);
-/* ProtobufMsgs__ConfigMessage__HumanControlReleaseRequest methods */
-void   protobuf_msgs__config_message__human_control_release_request__init
-                     (ProtobufMsgs__ConfigMessage__HumanControlReleaseRequest         *message);
+/* ProtobufMsgs__ConfigMessage__HumanControlRequest methods */
+void   protobuf_msgs__config_message__human_control_request__init
+                     (ProtobufMsgs__ConfigMessage__HumanControlRequest         *message);
 /* ProtobufMsgs__ConfigMessage__HumanControlState methods */
 void   protobuf_msgs__config_message__human_control_state__init
                      (ProtobufMsgs__ConfigMessage__HumanControlState         *message);
@@ -151,11 +142,8 @@ void   protobuf_msgs__config_message__free_unpacked
                       ProtobufCAllocator *allocator);
 /* --- per-message closures --- */
 
-typedef void (*ProtobufMsgs__ConfigMessage__HumanControlTakeoverRequest_Closure)
-                 (const ProtobufMsgs__ConfigMessage__HumanControlTakeoverRequest *message,
-                  void *closure_data);
-typedef void (*ProtobufMsgs__ConfigMessage__HumanControlReleaseRequest_Closure)
-                 (const ProtobufMsgs__ConfigMessage__HumanControlReleaseRequest *message,
+typedef void (*ProtobufMsgs__ConfigMessage__HumanControlRequest_Closure)
+                 (const ProtobufMsgs__ConfigMessage__HumanControlRequest *message,
                   void *closure_data);
 typedef void (*ProtobufMsgs__ConfigMessage__HumanControlState_Closure)
                  (const ProtobufMsgs__ConfigMessage__HumanControlState *message,
@@ -176,11 +164,11 @@ typedef void (*ProtobufMsgs__ConfigMessage_Closure)
 /* --- descriptors --- */
 
 extern const ProtobufCMessageDescriptor protobuf_msgs__config_message__descriptor;
-extern const ProtobufCMessageDescriptor protobuf_msgs__config_message__human_control_takeover_request__descriptor;
-extern const ProtobufCMessageDescriptor protobuf_msgs__config_message__human_control_release_request__descriptor;
+extern const ProtobufCMessageDescriptor protobuf_msgs__config_message__human_control_request__descriptor;
 extern const ProtobufCMessageDescriptor protobuf_msgs__config_message__human_control_state__descriptor;
 extern const ProtobufCMessageDescriptor protobuf_msgs__config_message__car_state__descriptor;
 extern const ProtobufCMessageDescriptor protobuf_msgs__config_message__error__descriptor;
+extern const ProtobufCEnumDescriptor    protobuf_msgs__config_message__control_request_type__descriptor;
 
 PROTOBUF_C__END_DECLS
 

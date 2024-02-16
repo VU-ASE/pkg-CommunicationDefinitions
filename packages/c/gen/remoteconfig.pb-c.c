@@ -7,16 +7,10 @@
 #endif
 
 #include "remoteconfig.pb-c.h"
-void   protobuf_msgs__config_message__human_control_takeover_request__init
-                     (ProtobufMsgs__ConfigMessage__HumanControlTakeoverRequest         *message)
+void   protobuf_msgs__config_message__human_control_request__init
+                     (ProtobufMsgs__ConfigMessage__HumanControlRequest         *message)
 {
-  static const ProtobufMsgs__ConfigMessage__HumanControlTakeoverRequest init_value = PROTOBUF_MSGS__CONFIG_MESSAGE__HUMAN_CONTROL_TAKEOVER_REQUEST__INIT;
-  *message = init_value;
-}
-void   protobuf_msgs__config_message__human_control_release_request__init
-                     (ProtobufMsgs__ConfigMessage__HumanControlReleaseRequest         *message)
-{
-  static const ProtobufMsgs__ConfigMessage__HumanControlReleaseRequest init_value = PROTOBUF_MSGS__CONFIG_MESSAGE__HUMAN_CONTROL_RELEASE_REQUEST__INIT;
+  static const ProtobufMsgs__ConfigMessage__HumanControlRequest init_value = PROTOBUF_MSGS__CONFIG_MESSAGE__HUMAN_CONTROL_REQUEST__INIT;
   *message = init_value;
 }
 void   protobuf_msgs__config_message__human_control_state__init
@@ -82,40 +76,42 @@ void   protobuf_msgs__config_message__free_unpacked
   assert(message->base.descriptor == &protobuf_msgs__config_message__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-#define protobuf_msgs__config_message__human_control_takeover_request__field_descriptors NULL
-#define protobuf_msgs__config_message__human_control_takeover_request__field_indices_by_name NULL
-#define protobuf_msgs__config_message__human_control_takeover_request__number_ranges NULL
-const ProtobufCMessageDescriptor protobuf_msgs__config_message__human_control_takeover_request__descriptor =
+static const ProtobufCFieldDescriptor protobuf_msgs__config_message__human_control_request__field_descriptors[1] =
 {
-  PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "protobuf_msgs.ConfigMessage.HumanControlTakeoverRequest",
-  "HumanControlTakeoverRequest",
-  "ProtobufMsgs__ConfigMessage__HumanControlTakeoverRequest",
-  "protobuf_msgs",
-  sizeof(ProtobufMsgs__ConfigMessage__HumanControlTakeoverRequest),
-  0,
-  protobuf_msgs__config_message__human_control_takeover_request__field_descriptors,
-  protobuf_msgs__config_message__human_control_takeover_request__field_indices_by_name,
-  0,  protobuf_msgs__config_message__human_control_takeover_request__number_ranges,
-  (ProtobufCMessageInit) protobuf_msgs__config_message__human_control_takeover_request__init,
-  NULL,NULL,NULL    /* reserved[123] */
+  {
+    "type",
+    1,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_ENUM,
+    0,   /* quantifier_offset */
+    offsetof(ProtobufMsgs__ConfigMessage__HumanControlRequest, type),
+    &protobuf_msgs__config_message__control_request_type__descriptor,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
-#define protobuf_msgs__config_message__human_control_release_request__field_descriptors NULL
-#define protobuf_msgs__config_message__human_control_release_request__field_indices_by_name NULL
-#define protobuf_msgs__config_message__human_control_release_request__number_ranges NULL
-const ProtobufCMessageDescriptor protobuf_msgs__config_message__human_control_release_request__descriptor =
+static const unsigned protobuf_msgs__config_message__human_control_request__field_indices_by_name[] = {
+  0,   /* field[0] = type */
+};
+static const ProtobufCIntRange protobuf_msgs__config_message__human_control_request__number_ranges[1 + 1] =
+{
+  { 1, 0 },
+  { 0, 1 }
+};
+const ProtobufCMessageDescriptor protobuf_msgs__config_message__human_control_request__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "protobuf_msgs.ConfigMessage.HumanControlReleaseRequest",
-  "HumanControlReleaseRequest",
-  "ProtobufMsgs__ConfigMessage__HumanControlReleaseRequest",
+  "protobuf_msgs.ConfigMessage.HumanControlRequest",
+  "HumanControlRequest",
+  "ProtobufMsgs__ConfigMessage__HumanControlRequest",
   "protobuf_msgs",
-  sizeof(ProtobufMsgs__ConfigMessage__HumanControlReleaseRequest),
-  0,
-  protobuf_msgs__config_message__human_control_release_request__field_descriptors,
-  protobuf_msgs__config_message__human_control_release_request__field_indices_by_name,
-  0,  protobuf_msgs__config_message__human_control_release_request__number_ranges,
-  (ProtobufCMessageInit) protobuf_msgs__config_message__human_control_release_request__init,
+  sizeof(ProtobufMsgs__ConfigMessage__HumanControlRequest),
+  1,
+  protobuf_msgs__config_message__human_control_request__field_descriptors,
+  protobuf_msgs__config_message__human_control_request__field_indices_by_name,
+  1,  protobuf_msgs__config_message__human_control_request__number_ranges,
+  (ProtobufCMessageInit) protobuf_msgs__config_message__human_control_request__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
 static const ProtobufCFieldDescriptor protobuf_msgs__config_message__human_control_state__field_descriptors[1] =
@@ -232,28 +228,44 @@ const ProtobufCMessageDescriptor protobuf_msgs__config_message__error__descripto
   (ProtobufCMessageInit) protobuf_msgs__config_message__error__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor protobuf_msgs__config_message__field_descriptors[5] =
+static const ProtobufCEnumValue protobuf_msgs__config_message__control_request_type__enum_values_by_number[2] =
+{
+  { "HUMAN_CONTROL_TAKEOVER", "PROTOBUF_MSGS__CONFIG_MESSAGE__CONTROL_REQUEST_TYPE__HUMAN_CONTROL_TAKEOVER", 0 },
+  { "HUMAN_CONTROL_RELEASE", "PROTOBUF_MSGS__CONFIG_MESSAGE__CONTROL_REQUEST_TYPE__HUMAN_CONTROL_RELEASE", 1 },
+};
+static const ProtobufCIntRange protobuf_msgs__config_message__control_request_type__value_ranges[] = {
+{0, 0},{0, 2}
+};
+static const ProtobufCEnumValueIndex protobuf_msgs__config_message__control_request_type__enum_values_by_name[2] =
+{
+  { "HUMAN_CONTROL_RELEASE", 1 },
+  { "HUMAN_CONTROL_TAKEOVER", 0 },
+};
+const ProtobufCEnumDescriptor protobuf_msgs__config_message__control_request_type__descriptor =
+{
+  PROTOBUF_C__ENUM_DESCRIPTOR_MAGIC,
+  "protobuf_msgs.ConfigMessage.ControlRequestType",
+  "ControlRequestType",
+  "ProtobufMsgs__ConfigMessage__ControlRequestType",
+  "protobuf_msgs",
+  2,
+  protobuf_msgs__config_message__control_request_type__enum_values_by_number,
+  2,
+  protobuf_msgs__config_message__control_request_type__enum_values_by_name,
+  1,
+  protobuf_msgs__config_message__control_request_type__value_ranges,
+  NULL,NULL,NULL,NULL   /* reserved[1234] */
+};
+static const ProtobufCFieldDescriptor protobuf_msgs__config_message__field_descriptors[4] =
 {
   {
-    "humanControlTakeoverRequest",
+    "humanControlRequest",
     1,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_MESSAGE,
     offsetof(ProtobufMsgs__ConfigMessage, action_case),
-    offsetof(ProtobufMsgs__ConfigMessage, humancontroltakeoverrequest),
-    &protobuf_msgs__config_message__human_control_takeover_request__descriptor,
-    NULL,
-    0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "humanControlReleaseRequest",
-    2,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_MESSAGE,
-    offsetof(ProtobufMsgs__ConfigMessage, action_case),
-    offsetof(ProtobufMsgs__ConfigMessage, humancontrolreleaserequest),
-    &protobuf_msgs__config_message__human_control_release_request__descriptor,
+    offsetof(ProtobufMsgs__ConfigMessage, humancontrolrequest),
+    &protobuf_msgs__config_message__human_control_request__descriptor,
     NULL,
     0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
@@ -296,17 +308,17 @@ static const ProtobufCFieldDescriptor protobuf_msgs__config_message__field_descr
   },
 };
 static const unsigned protobuf_msgs__config_message__field_indices_by_name[] = {
-  3,   /* field[3] = carState */
-  4,   /* field[4] = error */
-  1,   /* field[1] = humanControlReleaseRequest */
-  2,   /* field[2] = humanControlState */
-  0,   /* field[0] = humanControlTakeoverRequest */
+  2,   /* field[2] = carState */
+  3,   /* field[3] = error */
+  0,   /* field[0] = humanControlRequest */
+  1,   /* field[1] = humanControlState */
 };
-static const ProtobufCIntRange protobuf_msgs__config_message__number_ranges[2 + 1] =
+static const ProtobufCIntRange protobuf_msgs__config_message__number_ranges[3 + 1] =
 {
   { 1, 0 },
-  { 6, 3 },
-  { 0, 5 }
+  { 3, 1 },
+  { 6, 2 },
+  { 0, 4 }
 };
 const ProtobufCMessageDescriptor protobuf_msgs__config_message__descriptor =
 {
@@ -316,10 +328,10 @@ const ProtobufCMessageDescriptor protobuf_msgs__config_message__descriptor =
   "ProtobufMsgs__ConfigMessage",
   "protobuf_msgs",
   sizeof(ProtobufMsgs__ConfigMessage),
-  5,
+  4,
   protobuf_msgs__config_message__field_descriptors,
   protobuf_msgs__config_message__field_indices_by_name,
-  2,  protobuf_msgs__config_message__number_ranges,
+  3,  protobuf_msgs__config_message__number_ranges,
   (ProtobufCMessageInit) protobuf_msgs__config_message__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
