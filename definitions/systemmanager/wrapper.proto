@@ -11,6 +11,10 @@ import "systemmanager/tuningstate.proto";
 // This wrapper allows us to use generic types and let the receiver switch on the oneof type
 //
 
+message Error {
+    string message = 1;
+}
+
 message SystemManagerMessage {
     oneof msg {
         Service service = 1;
@@ -21,6 +25,7 @@ message SystemManagerMessage {
         ServiceList serviceList = 8;
         ServiceStatusUpdate serviceStatusUpdate = 9;
         ServiceInformationRequest serviceInformationRequest = 10;
+        Error error = 11;
     }
 }
 
