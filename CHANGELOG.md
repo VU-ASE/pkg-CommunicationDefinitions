@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.9.0](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v2.8.1...v2.9.0) (2024-02-28)
+
+
+### Features
+
+* added Error message to system manager communication ([2aee4ef](https://github.com/VU-ASE/pkg-CommunicationDefinitions/commit/2aee4ef029bf4163a47ff3d13036b46d0cc8fae5))
+
 ## [2.8.1](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v2.8.0...v2.8.1) (2024-02-16)
 
 
