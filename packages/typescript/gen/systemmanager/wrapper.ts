@@ -12,6 +12,10 @@ import { TuningState, TuningStateRequest } from "./tuningstate";
 
 export const protobufPackage = "protobuf_msgs";
 
+export interface Error {
+  message: string;
+}
+
 export interface SystemManagerMessage {
   service?: Service | undefined;
   serviceOrder?: ServiceOrder | undefined;
@@ -21,7 +25,65 @@ export interface SystemManagerMessage {
   serviceList?: ServiceList | undefined;
   serviceStatusUpdate?: ServiceStatusUpdate | undefined;
   serviceInformationRequest?: ServiceInformationRequest | undefined;
+  error?: Error | undefined;
 }
+
+function createBaseError(): Error {
+  return { message: "" };
+}
+
+export const Error = {
+  encode(message: Error, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.message !== "") {
+      writer.uint32(10).string(message.message);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): Error {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseError();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.message = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): Error {
+    return { message: isSet(object.message) ? globalThis.String(object.message) : "" };
+  },
+
+  toJSON(message: Error): unknown {
+    const obj: any = {};
+    if (message.message !== "") {
+      obj.message = message.message;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<Error>, I>>(base?: I): Error {
+    return Error.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<Error>, I>>(object: I): Error {
+    const message = createBaseError();
+    message.message = object.message ?? "";
+    return message;
+  },
+};
 
 function createBaseSystemManagerMessage(): SystemManagerMessage {
   return {
@@ -33,6 +95,7 @@ function createBaseSystemManagerMessage(): SystemManagerMessage {
     serviceList: undefined,
     serviceStatusUpdate: undefined,
     serviceInformationRequest: undefined,
+    error: undefined,
   };
 }
 
@@ -61,6 +124,9 @@ export const SystemManagerMessage = {
     }
     if (message.serviceInformationRequest !== undefined) {
       ServiceInformationRequest.encode(message.serviceInformationRequest, writer.uint32(82).fork()).ldelim();
+    }
+    if (message.error !== undefined) {
+      Error.encode(message.error, writer.uint32(90).fork()).ldelim();
     }
     return writer;
   },
@@ -128,6 +194,13 @@ export const SystemManagerMessage = {
 
           message.serviceInformationRequest = ServiceInformationRequest.decode(reader, reader.uint32());
           continue;
+        case 11:
+          if (tag !== 90) {
+            break;
+          }
+
+          message.error = Error.decode(reader, reader.uint32());
+          continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -155,6 +228,7 @@ export const SystemManagerMessage = {
       serviceInformationRequest: isSet(object.serviceInformationRequest)
         ? ServiceInformationRequest.fromJSON(object.serviceInformationRequest)
         : undefined,
+      error: isSet(object.error) ? Error.fromJSON(object.error) : undefined,
     };
   },
 
@@ -183,6 +257,9 @@ export const SystemManagerMessage = {
     }
     if (message.serviceInformationRequest !== undefined) {
       obj.serviceInformationRequest = ServiceInformationRequest.toJSON(message.serviceInformationRequest);
+    }
+    if (message.error !== undefined) {
+      obj.error = Error.toJSON(message.error);
     }
     return obj;
   },
@@ -217,6 +294,7 @@ export const SystemManagerMessage = {
       (object.serviceInformationRequest !== undefined && object.serviceInformationRequest !== null)
         ? ServiceInformationRequest.fromPartial(object.serviceInformationRequest)
         : undefined;
+    message.error = (object.error !== undefined && object.error !== null) ? Error.fromPartial(object.error) : undefined;
     return message;
   },
 };

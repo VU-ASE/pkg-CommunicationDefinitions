@@ -17,6 +17,7 @@ PROTOBUF_C__BEGIN_DECLS
 #include "systemmanager/servicediscovery.pb-c.h"
 #include "systemmanager/tuningstate.pb-c.h"
 
+typedef struct _ProtobufMsgs__Error ProtobufMsgs__Error;
 typedef struct _ProtobufMsgs__SystemManagerMessage ProtobufMsgs__SystemManagerMessage;
 
 
@@ -24,6 +25,16 @@ typedef struct _ProtobufMsgs__SystemManagerMessage ProtobufMsgs__SystemManagerMe
 
 
 /* --- messages --- */
+
+struct  _ProtobufMsgs__Error
+{
+  ProtobufCMessage base;
+  char *message;
+};
+#define PROTOBUF_MSGS__ERROR__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&protobuf_msgs__error__descriptor) \
+    , (char *)protobuf_c_empty_string }
+
 
 typedef enum {
   PROTOBUF_MSGS__SYSTEM_MANAGER_MESSAGE__MSG__NOT_SET = 0,
@@ -34,7 +45,8 @@ typedef enum {
   PROTOBUF_MSGS__SYSTEM_MANAGER_MESSAGE__MSG_SERVICE_LIST_REQUEST = 7,
   PROTOBUF_MSGS__SYSTEM_MANAGER_MESSAGE__MSG_SERVICE_LIST = 8,
   PROTOBUF_MSGS__SYSTEM_MANAGER_MESSAGE__MSG_SERVICE_STATUS_UPDATE = 9,
-  PROTOBUF_MSGS__SYSTEM_MANAGER_MESSAGE__MSG_SERVICE_INFORMATION_REQUEST = 10
+  PROTOBUF_MSGS__SYSTEM_MANAGER_MESSAGE__MSG_SERVICE_INFORMATION_REQUEST = 10,
+  PROTOBUF_MSGS__SYSTEM_MANAGER_MESSAGE__MSG_ERROR = 11
     PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(PROTOBUF_MSGS__SYSTEM_MANAGER_MESSAGE__MSG)
 } ProtobufMsgs__SystemManagerMessage__MsgCase;
 
@@ -51,6 +63,7 @@ struct  _ProtobufMsgs__SystemManagerMessage
     ProtobufMsgs__ServiceList *servicelist;
     ProtobufMsgs__ServiceStatusUpdate *servicestatusupdate;
     ProtobufMsgs__ServiceInformationRequest *serviceinformationrequest;
+    ProtobufMsgs__Error *error;
   };
 };
 #define PROTOBUF_MSGS__SYSTEM_MANAGER_MESSAGE__INIT \
@@ -58,6 +71,25 @@ struct  _ProtobufMsgs__SystemManagerMessage
     , PROTOBUF_MSGS__SYSTEM_MANAGER_MESSAGE__MSG__NOT_SET, {0} }
 
 
+/* ProtobufMsgs__Error methods */
+void   protobuf_msgs__error__init
+                     (ProtobufMsgs__Error         *message);
+size_t protobuf_msgs__error__get_packed_size
+                     (const ProtobufMsgs__Error   *message);
+size_t protobuf_msgs__error__pack
+                     (const ProtobufMsgs__Error   *message,
+                      uint8_t             *out);
+size_t protobuf_msgs__error__pack_to_buffer
+                     (const ProtobufMsgs__Error   *message,
+                      ProtobufCBuffer     *buffer);
+ProtobufMsgs__Error *
+       protobuf_msgs__error__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data);
+void   protobuf_msgs__error__free_unpacked
+                     (ProtobufMsgs__Error *message,
+                      ProtobufCAllocator *allocator);
 /* ProtobufMsgs__SystemManagerMessage methods */
 void   protobuf_msgs__system_manager_message__init
                      (ProtobufMsgs__SystemManagerMessage         *message);
@@ -79,6 +111,9 @@ void   protobuf_msgs__system_manager_message__free_unpacked
                       ProtobufCAllocator *allocator);
 /* --- per-message closures --- */
 
+typedef void (*ProtobufMsgs__Error_Closure)
+                 (const ProtobufMsgs__Error *message,
+                  void *closure_data);
 typedef void (*ProtobufMsgs__SystemManagerMessage_Closure)
                  (const ProtobufMsgs__SystemManagerMessage *message,
                   void *closure_data);
@@ -88,6 +123,7 @@ typedef void (*ProtobufMsgs__SystemManagerMessage_Closure)
 
 /* --- descriptors --- */
 
+extern const ProtobufCMessageDescriptor protobuf_msgs__error__descriptor;
 extern const ProtobufCMessageDescriptor protobuf_msgs__system_manager_message__descriptor;
 
 PROTOBUF_C__END_DECLS
