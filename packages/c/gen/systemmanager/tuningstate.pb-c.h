@@ -31,34 +31,31 @@ typedef struct _ProtobufMsgs__TuningStateRequest ProtobufMsgs__TuningStateReques
 struct  _ProtobufMsgs__TuningState__Parameter__FloatParameter
 {
   ProtobufCMessage base;
-  char *key;
   float value;
 };
 #define PROTOBUF_MSGS__TUNING_STATE__PARAMETER__FLOAT_PARAMETER__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&protobuf_msgs__tuning_state__parameter__float_parameter__descriptor) \
-    , (char *)protobuf_c_empty_string, 0 }
+    , 0 }
 
 
 struct  _ProtobufMsgs__TuningState__Parameter__IntParameter
 {
   ProtobufCMessage base;
-  char *key;
   int64_t value;
 };
 #define PROTOBUF_MSGS__TUNING_STATE__PARAMETER__INT_PARAMETER__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&protobuf_msgs__tuning_state__parameter__int_parameter__descriptor) \
-    , (char *)protobuf_c_empty_string, 0 }
+    , 0 }
 
 
 struct  _ProtobufMsgs__TuningState__Parameter__StringParameter
 {
   ProtobufCMessage base;
-  char *key;
   char *value;
 };
 #define PROTOBUF_MSGS__TUNING_STATE__PARAMETER__STRING_PARAMETER__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&protobuf_msgs__tuning_state__parameter__string_parameter__descriptor) \
-    , (char *)protobuf_c_empty_string, (char *)protobuf_c_empty_string }
+    , (char *)protobuf_c_empty_string }
 
 
 typedef enum {
@@ -72,6 +69,7 @@ typedef enum {
 struct  _ProtobufMsgs__TuningState__Parameter
 {
   ProtobufCMessage base;
+  char *key;
   ProtobufMsgs__TuningState__Parameter__ParameterCase parameter_case;
   union {
     ProtobufMsgs__TuningState__Parameter__FloatParameter *float_;
@@ -81,7 +79,7 @@ struct  _ProtobufMsgs__TuningState__Parameter
 };
 #define PROTOBUF_MSGS__TUNING_STATE__PARAMETER__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&protobuf_msgs__tuning_state__parameter__descriptor) \
-    , PROTOBUF_MSGS__TUNING_STATE__PARAMETER__PARAMETER__NOT_SET, {0} }
+    , (char *)protobuf_c_empty_string, PROTOBUF_MSGS__TUNING_STATE__PARAMETER__PARAMETER__NOT_SET, {0} }
 
 
 struct  _ProtobufMsgs__TuningState
