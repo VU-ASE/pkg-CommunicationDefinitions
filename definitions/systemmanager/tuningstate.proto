@@ -17,17 +17,21 @@ message TuningState {
     uint64 timestamp = 1; // increased when the state changes, used to prevent unnecessary updates
 
     message Parameter {
+        // note: it may seem weird to not extract the key from the oneof, but this is so that the parser can easily determine the type of the parameter
+        // extracting it to a separate field on the same level as oneof would make it ambiguous
         message FloatParameter {
-            float value = 1;
+            string key = 1;
+            float value = 2;
         }
         message IntParameter {
-            int64 value = 1;
+            string key = 1;
+            int64 value = 2;
         }
         message StringParameter {
-            string value = 1;
+            string key = 1;
+            string value = 2;
         }
 
-        string key = 4;
         oneof parameter {
             FloatParameter float = 1;
             IntParameter int = 2;
