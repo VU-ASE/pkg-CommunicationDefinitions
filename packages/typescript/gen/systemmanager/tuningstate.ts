@@ -11,21 +11,27 @@ export interface TuningState {
 }
 
 export interface TuningState_Parameter {
-  key: string;
   float?: TuningState_Parameter_FloatParameter | undefined;
   int?: TuningState_Parameter_IntParameter | undefined;
   string?: TuningState_Parameter_StringParameter | undefined;
 }
 
+/**
+ * note: it may seem weird to not extract the key from the oneof, but this is so that the parser can easily determine the type of the parameter
+ * extracting it to a separate field on the same level as oneof would make it ambiguous
+ */
 export interface TuningState_Parameter_FloatParameter {
+  key: string;
   value: number;
 }
 
 export interface TuningState_Parameter_IntParameter {
+  key: string;
   value: number;
 }
 
 export interface TuningState_Parameter_StringParameter {
+  key: string;
   value: string;
 }
 
@@ -111,14 +117,11 @@ export const TuningState = {
 };
 
 function createBaseTuningState_Parameter(): TuningState_Parameter {
-  return { key: "", float: undefined, int: undefined, string: undefined };
+  return { float: undefined, int: undefined, string: undefined };
 }
 
 export const TuningState_Parameter = {
   encode(message: TuningState_Parameter, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.key !== "") {
-      writer.uint32(34).string(message.key);
-    }
     if (message.float !== undefined) {
       TuningState_Parameter_FloatParameter.encode(message.float, writer.uint32(10).fork()).ldelim();
     }
@@ -138,13 +141,6 @@ export const TuningState_Parameter = {
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
-        case 4:
-          if (tag !== 34) {
-            break;
-          }
-
-          message.key = reader.string();
-          continue;
         case 1:
           if (tag !== 10) {
             break;
@@ -177,7 +173,6 @@ export const TuningState_Parameter = {
 
   fromJSON(object: any): TuningState_Parameter {
     return {
-      key: isSet(object.key) ? globalThis.String(object.key) : "",
       float: isSet(object.float) ? TuningState_Parameter_FloatParameter.fromJSON(object.float) : undefined,
       int: isSet(object.int) ? TuningState_Parameter_IntParameter.fromJSON(object.int) : undefined,
       string: isSet(object.string) ? TuningState_Parameter_StringParameter.fromJSON(object.string) : undefined,
@@ -186,9 +181,6 @@ export const TuningState_Parameter = {
 
   toJSON(message: TuningState_Parameter): unknown {
     const obj: any = {};
-    if (message.key !== "") {
-      obj.key = message.key;
-    }
     if (message.float !== undefined) {
       obj.float = TuningState_Parameter_FloatParameter.toJSON(message.float);
     }
@@ -206,7 +198,6 @@ export const TuningState_Parameter = {
   },
   fromPartial<I extends Exact<DeepPartial<TuningState_Parameter>, I>>(object: I): TuningState_Parameter {
     const message = createBaseTuningState_Parameter();
-    message.key = object.key ?? "";
     message.float = (object.float !== undefined && object.float !== null)
       ? TuningState_Parameter_FloatParameter.fromPartial(object.float)
       : undefined;
@@ -221,13 +212,16 @@ export const TuningState_Parameter = {
 };
 
 function createBaseTuningState_Parameter_FloatParameter(): TuningState_Parameter_FloatParameter {
-  return { value: 0 };
+  return { key: "", value: 0 };
 }
 
 export const TuningState_Parameter_FloatParameter = {
   encode(message: TuningState_Parameter_FloatParameter, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.key !== "") {
+      writer.uint32(10).string(message.key);
+    }
     if (message.value !== 0) {
-      writer.uint32(13).float(message.value);
+      writer.uint32(21).float(message.value);
     }
     return writer;
   },
@@ -240,7 +234,14 @@ export const TuningState_Parameter_FloatParameter = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          if (tag !== 13) {
+          if (tag !== 10) {
+            break;
+          }
+
+          message.key = reader.string();
+          continue;
+        case 2:
+          if (tag !== 21) {
             break;
           }
 
@@ -256,11 +257,17 @@ export const TuningState_Parameter_FloatParameter = {
   },
 
   fromJSON(object: any): TuningState_Parameter_FloatParameter {
-    return { value: isSet(object.value) ? globalThis.Number(object.value) : 0 };
+    return {
+      key: isSet(object.key) ? globalThis.String(object.key) : "",
+      value: isSet(object.value) ? globalThis.Number(object.value) : 0,
+    };
   },
 
   toJSON(message: TuningState_Parameter_FloatParameter): unknown {
     const obj: any = {};
+    if (message.key !== "") {
+      obj.key = message.key;
+    }
     if (message.value !== 0) {
       obj.value = message.value;
     }
@@ -276,19 +283,23 @@ export const TuningState_Parameter_FloatParameter = {
     object: I,
   ): TuningState_Parameter_FloatParameter {
     const message = createBaseTuningState_Parameter_FloatParameter();
+    message.key = object.key ?? "";
     message.value = object.value ?? 0;
     return message;
   },
 };
 
 function createBaseTuningState_Parameter_IntParameter(): TuningState_Parameter_IntParameter {
-  return { value: 0 };
+  return { key: "", value: 0 };
 }
 
 export const TuningState_Parameter_IntParameter = {
   encode(message: TuningState_Parameter_IntParameter, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.key !== "") {
+      writer.uint32(10).string(message.key);
+    }
     if (message.value !== 0) {
-      writer.uint32(8).int64(message.value);
+      writer.uint32(16).int64(message.value);
     }
     return writer;
   },
@@ -301,7 +312,14 @@ export const TuningState_Parameter_IntParameter = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          if (tag !== 8) {
+          if (tag !== 10) {
+            break;
+          }
+
+          message.key = reader.string();
+          continue;
+        case 2:
+          if (tag !== 16) {
             break;
           }
 
@@ -317,11 +335,17 @@ export const TuningState_Parameter_IntParameter = {
   },
 
   fromJSON(object: any): TuningState_Parameter_IntParameter {
-    return { value: isSet(object.value) ? globalThis.Number(object.value) : 0 };
+    return {
+      key: isSet(object.key) ? globalThis.String(object.key) : "",
+      value: isSet(object.value) ? globalThis.Number(object.value) : 0,
+    };
   },
 
   toJSON(message: TuningState_Parameter_IntParameter): unknown {
     const obj: any = {};
+    if (message.key !== "") {
+      obj.key = message.key;
+    }
     if (message.value !== 0) {
       obj.value = Math.round(message.value);
     }
@@ -337,19 +361,23 @@ export const TuningState_Parameter_IntParameter = {
     object: I,
   ): TuningState_Parameter_IntParameter {
     const message = createBaseTuningState_Parameter_IntParameter();
+    message.key = object.key ?? "";
     message.value = object.value ?? 0;
     return message;
   },
 };
 
 function createBaseTuningState_Parameter_StringParameter(): TuningState_Parameter_StringParameter {
-  return { value: "" };
+  return { key: "", value: "" };
 }
 
 export const TuningState_Parameter_StringParameter = {
   encode(message: TuningState_Parameter_StringParameter, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.key !== "") {
+      writer.uint32(10).string(message.key);
+    }
     if (message.value !== "") {
-      writer.uint32(10).string(message.value);
+      writer.uint32(18).string(message.value);
     }
     return writer;
   },
@@ -366,6 +394,13 @@ export const TuningState_Parameter_StringParameter = {
             break;
           }
 
+          message.key = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
           message.value = reader.string();
           continue;
       }
@@ -378,11 +413,17 @@ export const TuningState_Parameter_StringParameter = {
   },
 
   fromJSON(object: any): TuningState_Parameter_StringParameter {
-    return { value: isSet(object.value) ? globalThis.String(object.value) : "" };
+    return {
+      key: isSet(object.key) ? globalThis.String(object.key) : "",
+      value: isSet(object.value) ? globalThis.String(object.value) : "",
+    };
   },
 
   toJSON(message: TuningState_Parameter_StringParameter): unknown {
     const obj: any = {};
+    if (message.key !== "") {
+      obj.key = message.key;
+    }
     if (message.value !== "") {
       obj.value = message.value;
     }
@@ -398,6 +439,7 @@ export const TuningState_Parameter_StringParameter = {
     object: I,
   ): TuningState_Parameter_StringParameter {
     const message = createBaseTuningState_Parameter_StringParameter();
+    message.key = object.key ?? "";
     message.value = object.value ?? "";
     return message;
   },
