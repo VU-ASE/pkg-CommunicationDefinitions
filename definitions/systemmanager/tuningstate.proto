@@ -18,18 +18,16 @@ message TuningState {
 
     message Parameter {
         message FloatParameter {
-            string key = 1;
-            float value = 2;
+            float value = 1;
         }
         message IntParameter {
-            string key = 1;
-            int64 value = 2;
+            int64 value = 1;
         }
         message StringParameter {
-            string key = 1;
-            string value = 2;
+            string value = 1;
         }
 
+        string key = 4;
         oneof parameter {
             FloatParameter float = 1;
             IntParameter int = 2;
