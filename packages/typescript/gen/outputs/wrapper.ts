@@ -4,6 +4,7 @@ import _m0 from "protobufjs/minimal";
 import { CameraSensorOutput } from "./camera";
 import { ControllerOutput } from "./controller";
 import { DistanceSensorOutput } from "./distance";
+import { ImuOutput } from "./imu";
 import { SpeedSensorOutput } from "./speed";
 
 export const protobufPackage = "protobuf_msgs";
@@ -22,6 +23,7 @@ export interface SensorOutput {
   distanceOutput?: DistanceSensorOutput | undefined;
   speedOutput?: SpeedSensorOutput | undefined;
   controllerOutput?: ControllerOutput | undefined;
+  imuOuput?: ImuOutput | undefined;
 }
 
 function createBaseSensorOutput(): SensorOutput {
@@ -33,6 +35,7 @@ function createBaseSensorOutput(): SensorOutput {
     distanceOutput: undefined,
     speedOutput: undefined,
     controllerOutput: undefined,
+    imuOuput: undefined,
   };
 }
 
@@ -58,6 +61,9 @@ export const SensorOutput = {
     }
     if (message.controllerOutput !== undefined) {
       ControllerOutput.encode(message.controllerOutput, writer.uint32(58).fork()).ldelim();
+    }
+    if (message.imuOuput !== undefined) {
+      ImuOutput.encode(message.imuOuput, writer.uint32(66).fork()).ldelim();
     }
     return writer;
   },
@@ -118,6 +124,13 @@ export const SensorOutput = {
 
           message.controllerOutput = ControllerOutput.decode(reader, reader.uint32());
           continue;
+        case 8:
+          if (tag !== 66) {
+            break;
+          }
+
+          message.imuOuput = ImuOutput.decode(reader, reader.uint32());
+          continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -136,6 +149,7 @@ export const SensorOutput = {
       distanceOutput: isSet(object.distanceOutput) ? DistanceSensorOutput.fromJSON(object.distanceOutput) : undefined,
       speedOutput: isSet(object.speedOutput) ? SpeedSensorOutput.fromJSON(object.speedOutput) : undefined,
       controllerOutput: isSet(object.controllerOutput) ? ControllerOutput.fromJSON(object.controllerOutput) : undefined,
+      imuOuput: isSet(object.imuOuput) ? ImuOutput.fromJSON(object.imuOuput) : undefined,
     };
   },
 
@@ -162,6 +176,9 @@ export const SensorOutput = {
     if (message.controllerOutput !== undefined) {
       obj.controllerOutput = ControllerOutput.toJSON(message.controllerOutput);
     }
+    if (message.imuOuput !== undefined) {
+      obj.imuOuput = ImuOutput.toJSON(message.imuOuput);
+    }
     return obj;
   },
 
@@ -184,6 +201,9 @@ export const SensorOutput = {
       : undefined;
     message.controllerOutput = (object.controllerOutput !== undefined && object.controllerOutput !== null)
       ? ControllerOutput.fromPartial(object.controllerOutput)
+      : undefined;
+    message.imuOuput = (object.imuOuput !== undefined && object.imuOuput !== null)
+      ? ImuOutput.fromPartial(object.imuOuput)
       : undefined;
     return message;
   },

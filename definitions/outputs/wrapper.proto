@@ -8,6 +8,7 @@ import "outputs/camera.proto";
 import "outputs/distance.proto";
 import "outputs/speed.proto";
 import "outputs/controller.proto";
+import "outputs/imu.proto";
 
 //
 // This file containes the wrapper SensorOutput message, that holds one of the sensor/controller output messages
@@ -31,6 +32,7 @@ message SensorOutput {
         DistanceSensorOutput distanceOutput = 5;
         SpeedSensorOutput speedOutput = 6;
         ControllerOutput controllerOutput = 7;
+        ImuOutput imuOuput = 8;
     }
 }
 
