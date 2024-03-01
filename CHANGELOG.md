@@ -1,5 +1,18 @@
 # Changelog
 
+## [2.10.0](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v2.9.0...v2.10.0) (2024-03-01)
+
+
+### Features
+
+* Add ImuOutput message ([d05b065](https://github.com/VU-ASE/pkg-CommunicationDefinitions/commit/d05b0655312d208e7fd7902ee5f8daee4e94b0c6))
+
+
+### Bug Fixes
+
+* reusable "key" in tuningstate parameter ([0b27d9b](https://github.com/VU-ASE/pkg-CommunicationDefinitions/commit/0b27d9b9b7211256aa089d036f4503a96d4c0018))
+* reverted reusable "key" from tuningstate parameter ([f0e4ced](https://github.com/VU-ASE/pkg-CommunicationDefinitions/commit/f0e4ceda00ceab96560f69bcff94116f9821464a))
+
 ## [2.9.0](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v2.8.1...v2.9.0) (2024-02-28)
 
 
