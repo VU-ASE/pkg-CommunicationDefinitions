@@ -59,13 +59,18 @@ message Canvas {
 // The following sensor outputs are specific to the sensor type, bring your own sensor and add your own output here!
 //
 message CameraSensorOutput {
-    message Point {
-        uint32 x = 1;
-        uint32 y = 2;
+    // Defined by the Path Planner
+    message Trajectory {
+        message Point {
+            uint32 x = 1;
+            uint32 y = 2;
+        }
+        repeated Point points = 1;
+        uint32 width = 2;
+        uint32 height = 3;
     }
 
-    // Defined by the Path Planner
-    repeated Point trajectory = 1;
+    Trajectory trajectory = 1;
 
     message DebugFrame {
         bytes jpeg = 1;
@@ -75,4 +80,3 @@ message CameraSensorOutput {
 
     DebugFrame debug_frame = 2;
 }
-
