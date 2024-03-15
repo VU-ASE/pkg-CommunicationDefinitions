@@ -23,7 +23,8 @@ typedef struct _ProtobufMsgs__CanvasObject__Rectangle ProtobufMsgs__CanvasObject
 typedef struct _ProtobufMsgs__CanvasObject__Circle ProtobufMsgs__CanvasObject__Circle;
 typedef struct _ProtobufMsgs__Canvas ProtobufMsgs__Canvas;
 typedef struct _ProtobufMsgs__CameraSensorOutput ProtobufMsgs__CameraSensorOutput;
-typedef struct _ProtobufMsgs__CameraSensorOutput__Point ProtobufMsgs__CameraSensorOutput__Point;
+typedef struct _ProtobufMsgs__CameraSensorOutput__Trajectory ProtobufMsgs__CameraSensorOutput__Trajectory;
+typedef struct _ProtobufMsgs__CameraSensorOutput__Trajectory__Point ProtobufMsgs__CameraSensorOutput__Trajectory__Point;
 typedef struct _ProtobufMsgs__CameraSensorOutput__DebugFrame ProtobufMsgs__CameraSensorOutput__DebugFrame;
 
 
@@ -131,15 +132,31 @@ struct  _ProtobufMsgs__Canvas
     , 0, 0, 0,NULL }
 
 
-struct  _ProtobufMsgs__CameraSensorOutput__Point
+struct  _ProtobufMsgs__CameraSensorOutput__Trajectory__Point
 {
   ProtobufCMessage base;
   uint32_t x;
   uint32_t y;
 };
-#define PROTOBUF_MSGS__CAMERA_SENSOR_OUTPUT__POINT__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&protobuf_msgs__camera_sensor_output__point__descriptor) \
+#define PROTOBUF_MSGS__CAMERA_SENSOR_OUTPUT__TRAJECTORY__POINT__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&protobuf_msgs__camera_sensor_output__trajectory__point__descriptor) \
     , 0, 0 }
+
+
+/*
+ * Defined by the Path Planner
+ */
+struct  _ProtobufMsgs__CameraSensorOutput__Trajectory
+{
+  ProtobufCMessage base;
+  size_t n_points;
+  ProtobufMsgs__CameraSensorOutput__Trajectory__Point **points;
+  uint32_t width;
+  uint32_t height;
+};
+#define PROTOBUF_MSGS__CAMERA_SENSOR_OUTPUT__TRAJECTORY__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&protobuf_msgs__camera_sensor_output__trajectory__descriptor) \
+    , 0,NULL, 0, 0 }
 
 
 struct  _ProtobufMsgs__CameraSensorOutput__DebugFrame
@@ -162,16 +179,12 @@ struct  _ProtobufMsgs__CameraSensorOutput__DebugFrame
 struct  _ProtobufMsgs__CameraSensorOutput
 {
   ProtobufCMessage base;
-  /*
-   * Defined by the Path Planner
-   */
-  size_t n_trajectory;
-  ProtobufMsgs__CameraSensorOutput__Point **trajectory;
+  ProtobufMsgs__CameraSensorOutput__Trajectory *trajectory;
   ProtobufMsgs__CameraSensorOutput__DebugFrame *debug_frame;
 };
 #define PROTOBUF_MSGS__CAMERA_SENSOR_OUTPUT__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&protobuf_msgs__camera_sensor_output__descriptor) \
-    , 0,NULL, NULL }
+    , NULL, NULL }
 
 
 /* ProtobufMsgs__CanvasObject__Point methods */
@@ -227,9 +240,12 @@ ProtobufMsgs__Canvas *
 void   protobuf_msgs__canvas__free_unpacked
                      (ProtobufMsgs__Canvas *message,
                       ProtobufCAllocator *allocator);
-/* ProtobufMsgs__CameraSensorOutput__Point methods */
-void   protobuf_msgs__camera_sensor_output__point__init
-                     (ProtobufMsgs__CameraSensorOutput__Point         *message);
+/* ProtobufMsgs__CameraSensorOutput__Trajectory__Point methods */
+void   protobuf_msgs__camera_sensor_output__trajectory__point__init
+                     (ProtobufMsgs__CameraSensorOutput__Trajectory__Point         *message);
+/* ProtobufMsgs__CameraSensorOutput__Trajectory methods */
+void   protobuf_msgs__camera_sensor_output__trajectory__init
+                     (ProtobufMsgs__CameraSensorOutput__Trajectory         *message);
 /* ProtobufMsgs__CameraSensorOutput__DebugFrame methods */
 void   protobuf_msgs__camera_sensor_output__debug_frame__init
                      (ProtobufMsgs__CameraSensorOutput__DebugFrame         *message);
@@ -275,8 +291,11 @@ typedef void (*ProtobufMsgs__CanvasObject_Closure)
 typedef void (*ProtobufMsgs__Canvas_Closure)
                  (const ProtobufMsgs__Canvas *message,
                   void *closure_data);
-typedef void (*ProtobufMsgs__CameraSensorOutput__Point_Closure)
-                 (const ProtobufMsgs__CameraSensorOutput__Point *message,
+typedef void (*ProtobufMsgs__CameraSensorOutput__Trajectory__Point_Closure)
+                 (const ProtobufMsgs__CameraSensorOutput__Trajectory__Point *message,
+                  void *closure_data);
+typedef void (*ProtobufMsgs__CameraSensorOutput__Trajectory_Closure)
+                 (const ProtobufMsgs__CameraSensorOutput__Trajectory *message,
                   void *closure_data);
 typedef void (*ProtobufMsgs__CameraSensorOutput__DebugFrame_Closure)
                  (const ProtobufMsgs__CameraSensorOutput__DebugFrame *message,
@@ -298,7 +317,8 @@ extern const ProtobufCMessageDescriptor protobuf_msgs__canvas_object__rectangle_
 extern const ProtobufCMessageDescriptor protobuf_msgs__canvas_object__circle__descriptor;
 extern const ProtobufCMessageDescriptor protobuf_msgs__canvas__descriptor;
 extern const ProtobufCMessageDescriptor protobuf_msgs__camera_sensor_output__descriptor;
-extern const ProtobufCMessageDescriptor protobuf_msgs__camera_sensor_output__point__descriptor;
+extern const ProtobufCMessageDescriptor protobuf_msgs__camera_sensor_output__trajectory__descriptor;
+extern const ProtobufCMessageDescriptor protobuf_msgs__camera_sensor_output__trajectory__point__descriptor;
 extern const ProtobufCMessageDescriptor protobuf_msgs__camera_sensor_output__debug_frame__descriptor;
 
 PROTOBUF_C__END_DECLS

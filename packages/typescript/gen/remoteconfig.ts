@@ -305,7 +305,7 @@ function createBaseConfigMessage_CarState(): ConfigMessage_CarState {
 
 export const ConfigMessage_CarState = {
   encode(message: ConfigMessage_CarState, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.connected === true) {
+    if (message.connected !== false) {
       writer.uint32(8).bool(message.connected);
     }
     return writer;
@@ -340,7 +340,7 @@ export const ConfigMessage_CarState = {
 
   toJSON(message: ConfigMessage_CarState): unknown {
     const obj: any = {};
-    if (message.connected === true) {
+    if (message.connected !== false) {
       obj.connected = message.connected;
     }
     return obj;

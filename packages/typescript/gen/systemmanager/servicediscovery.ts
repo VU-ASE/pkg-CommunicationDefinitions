@@ -367,7 +367,7 @@ export const ServiceOption = {
     if (message.type !== 0) {
       writer.uint32(16).int32(message.type);
     }
-    if (message.mutable === true) {
+    if (message.mutable !== false) {
       writer.uint32(24).bool(message.mutable);
     }
     if (message.stringDefault !== "") {
@@ -459,7 +459,7 @@ export const ServiceOption = {
     if (message.type !== 0) {
       obj.type = serviceOption_TypeToJSON(message.type);
     }
-    if (message.mutable === true) {
+    if (message.mutable !== false) {
       obj.mutable = message.mutable;
     }
     if (message.stringDefault !== "") {

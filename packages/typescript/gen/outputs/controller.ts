@@ -34,7 +34,7 @@ export const ControllerOutput = {
     if (message.rightThrottle !== 0) {
       writer.uint32(37).float(message.rightThrottle);
     }
-    if (message.frontLights === true) {
+    if (message.frontLights !== false) {
       writer.uint32(40).bool(message.frontLights);
     }
     return writer;
@@ -115,7 +115,7 @@ export const ControllerOutput = {
     if (message.rightThrottle !== 0) {
       obj.rightThrottle = message.rightThrottle;
     }
-    if (message.frontLights === true) {
+    if (message.frontLights !== false) {
       obj.frontLights = message.frontLights;
     }
     return obj;

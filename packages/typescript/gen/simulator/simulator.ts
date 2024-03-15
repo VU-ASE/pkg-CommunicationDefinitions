@@ -180,7 +180,7 @@ export const SimulatorState = {
       writer.float(v);
     }
     writer.ldelim();
-    if (message.isDrifting === true) {
+    if (message.isDrifting !== false) {
       writer.uint32(40).bool(message.isDrifting);
     }
     return writer;
@@ -283,7 +283,7 @@ export const SimulatorState = {
     if (message.pos?.length) {
       obj.pos = message.pos;
     }
-    if (message.isDrifting === true) {
+    if (message.isDrifting !== false) {
       obj.isDrifting = message.isDrifting;
     }
     return obj;

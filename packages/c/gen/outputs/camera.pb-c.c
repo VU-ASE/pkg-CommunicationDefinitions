@@ -127,10 +127,16 @@ void   protobuf_msgs__canvas__free_unpacked
   assert(message->base.descriptor == &protobuf_msgs__canvas__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-void   protobuf_msgs__camera_sensor_output__point__init
-                     (ProtobufMsgs__CameraSensorOutput__Point         *message)
+void   protobuf_msgs__camera_sensor_output__trajectory__point__init
+                     (ProtobufMsgs__CameraSensorOutput__Trajectory__Point         *message)
 {
-  static const ProtobufMsgs__CameraSensorOutput__Point init_value = PROTOBUF_MSGS__CAMERA_SENSOR_OUTPUT__POINT__INIT;
+  static const ProtobufMsgs__CameraSensorOutput__Trajectory__Point init_value = PROTOBUF_MSGS__CAMERA_SENSOR_OUTPUT__TRAJECTORY__POINT__INIT;
+  *message = init_value;
+}
+void   protobuf_msgs__camera_sensor_output__trajectory__init
+                     (ProtobufMsgs__CameraSensorOutput__Trajectory         *message)
+{
+  static const ProtobufMsgs__CameraSensorOutput__Trajectory init_value = PROTOBUF_MSGS__CAMERA_SENSOR_OUTPUT__TRAJECTORY__INIT;
   *message = init_value;
 }
 void   protobuf_msgs__camera_sensor_output__debug_frame__init
@@ -671,7 +677,7 @@ const ProtobufCMessageDescriptor protobuf_msgs__canvas__descriptor =
   (ProtobufCMessageInit) protobuf_msgs__canvas__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor protobuf_msgs__camera_sensor_output__point__field_descriptors[2] =
+static const ProtobufCFieldDescriptor protobuf_msgs__camera_sensor_output__trajectory__point__field_descriptors[2] =
 {
   {
     "x",
@@ -679,7 +685,7 @@ static const ProtobufCFieldDescriptor protobuf_msgs__camera_sensor_output__point
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_UINT32,
     0,   /* quantifier_offset */
-    offsetof(ProtobufMsgs__CameraSensorOutput__Point, x),
+    offsetof(ProtobufMsgs__CameraSensorOutput__Trajectory__Point, x),
     NULL,
     NULL,
     0,             /* flags */
@@ -691,35 +697,99 @@ static const ProtobufCFieldDescriptor protobuf_msgs__camera_sensor_output__point
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_UINT32,
     0,   /* quantifier_offset */
-    offsetof(ProtobufMsgs__CameraSensorOutput__Point, y),
+    offsetof(ProtobufMsgs__CameraSensorOutput__Trajectory__Point, y),
     NULL,
     NULL,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
 };
-static const unsigned protobuf_msgs__camera_sensor_output__point__field_indices_by_name[] = {
+static const unsigned protobuf_msgs__camera_sensor_output__trajectory__point__field_indices_by_name[] = {
   0,   /* field[0] = x */
   1,   /* field[1] = y */
 };
-static const ProtobufCIntRange protobuf_msgs__camera_sensor_output__point__number_ranges[1 + 1] =
+static const ProtobufCIntRange protobuf_msgs__camera_sensor_output__trajectory__point__number_ranges[1 + 1] =
 {
   { 1, 0 },
   { 0, 2 }
 };
-const ProtobufCMessageDescriptor protobuf_msgs__camera_sensor_output__point__descriptor =
+const ProtobufCMessageDescriptor protobuf_msgs__camera_sensor_output__trajectory__point__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "protobuf_msgs.CameraSensorOutput.Point",
+  "protobuf_msgs.CameraSensorOutput.Trajectory.Point",
   "Point",
-  "ProtobufMsgs__CameraSensorOutput__Point",
+  "ProtobufMsgs__CameraSensorOutput__Trajectory__Point",
   "protobuf_msgs",
-  sizeof(ProtobufMsgs__CameraSensorOutput__Point),
+  sizeof(ProtobufMsgs__CameraSensorOutput__Trajectory__Point),
   2,
-  protobuf_msgs__camera_sensor_output__point__field_descriptors,
-  protobuf_msgs__camera_sensor_output__point__field_indices_by_name,
-  1,  protobuf_msgs__camera_sensor_output__point__number_ranges,
-  (ProtobufCMessageInit) protobuf_msgs__camera_sensor_output__point__init,
+  protobuf_msgs__camera_sensor_output__trajectory__point__field_descriptors,
+  protobuf_msgs__camera_sensor_output__trajectory__point__field_indices_by_name,
+  1,  protobuf_msgs__camera_sensor_output__trajectory__point__number_ranges,
+  (ProtobufCMessageInit) protobuf_msgs__camera_sensor_output__trajectory__point__init,
+  NULL,NULL,NULL    /* reserved[123] */
+};
+static const ProtobufCFieldDescriptor protobuf_msgs__camera_sensor_output__trajectory__field_descriptors[3] =
+{
+  {
+    "points",
+    1,
+    PROTOBUF_C_LABEL_REPEATED,
+    PROTOBUF_C_TYPE_MESSAGE,
+    offsetof(ProtobufMsgs__CameraSensorOutput__Trajectory, n_points),
+    offsetof(ProtobufMsgs__CameraSensorOutput__Trajectory, points),
+    &protobuf_msgs__camera_sensor_output__trajectory__point__descriptor,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "width",
+    2,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_UINT32,
+    0,   /* quantifier_offset */
+    offsetof(ProtobufMsgs__CameraSensorOutput__Trajectory, width),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "height",
+    3,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_UINT32,
+    0,   /* quantifier_offset */
+    offsetof(ProtobufMsgs__CameraSensorOutput__Trajectory, height),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+};
+static const unsigned protobuf_msgs__camera_sensor_output__trajectory__field_indices_by_name[] = {
+  2,   /* field[2] = height */
+  0,   /* field[0] = points */
+  1,   /* field[1] = width */
+};
+static const ProtobufCIntRange protobuf_msgs__camera_sensor_output__trajectory__number_ranges[1 + 1] =
+{
+  { 1, 0 },
+  { 0, 3 }
+};
+const ProtobufCMessageDescriptor protobuf_msgs__camera_sensor_output__trajectory__descriptor =
+{
+  PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
+  "protobuf_msgs.CameraSensorOutput.Trajectory",
+  "Trajectory",
+  "ProtobufMsgs__CameraSensorOutput__Trajectory",
+  "protobuf_msgs",
+  sizeof(ProtobufMsgs__CameraSensorOutput__Trajectory),
+  3,
+  protobuf_msgs__camera_sensor_output__trajectory__field_descriptors,
+  protobuf_msgs__camera_sensor_output__trajectory__field_indices_by_name,
+  1,  protobuf_msgs__camera_sensor_output__trajectory__number_ranges,
+  (ProtobufCMessageInit) protobuf_msgs__camera_sensor_output__trajectory__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
 static const ProtobufCFieldDescriptor protobuf_msgs__camera_sensor_output__debug_frame__field_descriptors[2] =
@@ -779,11 +849,11 @@ static const ProtobufCFieldDescriptor protobuf_msgs__camera_sensor_output__field
   {
     "trajectory",
     1,
-    PROTOBUF_C_LABEL_REPEATED,
+    PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_MESSAGE,
-    offsetof(ProtobufMsgs__CameraSensorOutput, n_trajectory),
+    0,   /* quantifier_offset */
     offsetof(ProtobufMsgs__CameraSensorOutput, trajectory),
-    &protobuf_msgs__camera_sensor_output__point__descriptor,
+    &protobuf_msgs__camera_sensor_output__trajectory__descriptor,
     NULL,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */

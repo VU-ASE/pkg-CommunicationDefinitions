@@ -50,12 +50,18 @@ export interface Canvas {
 
 /** The following sensor outputs are specific to the sensor type, bring your own sensor and add your own output here! */
 export interface CameraSensorOutput {
-  /** Defined by the Path Planner */
-  trajectory: CameraSensorOutput_Point[];
+  trajectory: CameraSensorOutput_Trajectory | undefined;
   debugFrame: CameraSensorOutput_DebugFrame | undefined;
 }
 
-export interface CameraSensorOutput_Point {
+/** Defined by the Path Planner */
+export interface CameraSensorOutput_Trajectory {
+  points: CameraSensorOutput_Trajectory_Point[];
+  width: number;
+  height: number;
+}
+
+export interface CameraSensorOutput_Trajectory_Point {
   x: number;
   y: number;
 }
@@ -759,13 +765,13 @@ export const Canvas = {
 };
 
 function createBaseCameraSensorOutput(): CameraSensorOutput {
-  return { trajectory: [], debugFrame: undefined };
+  return { trajectory: undefined, debugFrame: undefined };
 }
 
 export const CameraSensorOutput = {
   encode(message: CameraSensorOutput, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    for (const v of message.trajectory) {
-      CameraSensorOutput_Point.encode(v!, writer.uint32(10).fork()).ldelim();
+    if (message.trajectory !== undefined) {
+      CameraSensorOutput_Trajectory.encode(message.trajectory, writer.uint32(10).fork()).ldelim();
     }
     if (message.debugFrame !== undefined) {
       CameraSensorOutput_DebugFrame.encode(message.debugFrame, writer.uint32(18).fork()).ldelim();
@@ -785,7 +791,7 @@ export const CameraSensorOutput = {
             break;
           }
 
-          message.trajectory.push(CameraSensorOutput_Point.decode(reader, reader.uint32()));
+          message.trajectory = CameraSensorOutput_Trajectory.decode(reader, reader.uint32());
           continue;
         case 2:
           if (tag !== 18) {
@@ -805,17 +811,15 @@ export const CameraSensorOutput = {
 
   fromJSON(object: any): CameraSensorOutput {
     return {
-      trajectory: globalThis.Array.isArray(object?.trajectory)
-        ? object.trajectory.map((e: any) => CameraSensorOutput_Point.fromJSON(e))
-        : [],
+      trajectory: isSet(object.trajectory) ? CameraSensorOutput_Trajectory.fromJSON(object.trajectory) : undefined,
       debugFrame: isSet(object.debugFrame) ? CameraSensorOutput_DebugFrame.fromJSON(object.debugFrame) : undefined,
     };
   },
 
   toJSON(message: CameraSensorOutput): unknown {
     const obj: any = {};
-    if (message.trajectory?.length) {
-      obj.trajectory = message.trajectory.map((e) => CameraSensorOutput_Point.toJSON(e));
+    if (message.trajectory !== undefined) {
+      obj.trajectory = CameraSensorOutput_Trajectory.toJSON(message.trajectory);
     }
     if (message.debugFrame !== undefined) {
       obj.debugFrame = CameraSensorOutput_DebugFrame.toJSON(message.debugFrame);
@@ -828,7 +832,9 @@ export const CameraSensorOutput = {
   },
   fromPartial<I extends Exact<DeepPartial<CameraSensorOutput>, I>>(object: I): CameraSensorOutput {
     const message = createBaseCameraSensorOutput();
-    message.trajectory = object.trajectory?.map((e) => CameraSensorOutput_Point.fromPartial(e)) || [];
+    message.trajectory = (object.trajectory !== undefined && object.trajectory !== null)
+      ? CameraSensorOutput_Trajectory.fromPartial(object.trajectory)
+      : undefined;
     message.debugFrame = (object.debugFrame !== undefined && object.debugFrame !== null)
       ? CameraSensorOutput_DebugFrame.fromPartial(object.debugFrame)
       : undefined;
@@ -836,12 +842,105 @@ export const CameraSensorOutput = {
   },
 };
 
-function createBaseCameraSensorOutput_Point(): CameraSensorOutput_Point {
+function createBaseCameraSensorOutput_Trajectory(): CameraSensorOutput_Trajectory {
+  return { points: [], width: 0, height: 0 };
+}
+
+export const CameraSensorOutput_Trajectory = {
+  encode(message: CameraSensorOutput_Trajectory, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    for (const v of message.points) {
+      CameraSensorOutput_Trajectory_Point.encode(v!, writer.uint32(10).fork()).ldelim();
+    }
+    if (message.width !== 0) {
+      writer.uint32(16).uint32(message.width);
+    }
+    if (message.height !== 0) {
+      writer.uint32(24).uint32(message.height);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): CameraSensorOutput_Trajectory {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseCameraSensorOutput_Trajectory();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.points.push(CameraSensorOutput_Trajectory_Point.decode(reader, reader.uint32()));
+          continue;
+        case 2:
+          if (tag !== 16) {
+            break;
+          }
+
+          message.width = reader.uint32();
+          continue;
+        case 3:
+          if (tag !== 24) {
+            break;
+          }
+
+          message.height = reader.uint32();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): CameraSensorOutput_Trajectory {
+    return {
+      points: globalThis.Array.isArray(object?.points)
+        ? object.points.map((e: any) => CameraSensorOutput_Trajectory_Point.fromJSON(e))
+        : [],
+      width: isSet(object.width) ? globalThis.Number(object.width) : 0,
+      height: isSet(object.height) ? globalThis.Number(object.height) : 0,
+    };
+  },
+
+  toJSON(message: CameraSensorOutput_Trajectory): unknown {
+    const obj: any = {};
+    if (message.points?.length) {
+      obj.points = message.points.map((e) => CameraSensorOutput_Trajectory_Point.toJSON(e));
+    }
+    if (message.width !== 0) {
+      obj.width = Math.round(message.width);
+    }
+    if (message.height !== 0) {
+      obj.height = Math.round(message.height);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<CameraSensorOutput_Trajectory>, I>>(base?: I): CameraSensorOutput_Trajectory {
+    return CameraSensorOutput_Trajectory.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<CameraSensorOutput_Trajectory>, I>>(
+    object: I,
+  ): CameraSensorOutput_Trajectory {
+    const message = createBaseCameraSensorOutput_Trajectory();
+    message.points = object.points?.map((e) => CameraSensorOutput_Trajectory_Point.fromPartial(e)) || [];
+    message.width = object.width ?? 0;
+    message.height = object.height ?? 0;
+    return message;
+  },
+};
+
+function createBaseCameraSensorOutput_Trajectory_Point(): CameraSensorOutput_Trajectory_Point {
   return { x: 0, y: 0 };
 }
 
-export const CameraSensorOutput_Point = {
-  encode(message: CameraSensorOutput_Point, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export const CameraSensorOutput_Trajectory_Point = {
+  encode(message: CameraSensorOutput_Trajectory_Point, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.x !== 0) {
       writer.uint32(8).uint32(message.x);
     }
@@ -851,10 +950,10 @@ export const CameraSensorOutput_Point = {
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): CameraSensorOutput_Point {
+  decode(input: _m0.Reader | Uint8Array, length?: number): CameraSensorOutput_Trajectory_Point {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseCameraSensorOutput_Point();
+    const message = createBaseCameraSensorOutput_Trajectory_Point();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -881,14 +980,14 @@ export const CameraSensorOutput_Point = {
     return message;
   },
 
-  fromJSON(object: any): CameraSensorOutput_Point {
+  fromJSON(object: any): CameraSensorOutput_Trajectory_Point {
     return {
       x: isSet(object.x) ? globalThis.Number(object.x) : 0,
       y: isSet(object.y) ? globalThis.Number(object.y) : 0,
     };
   },
 
-  toJSON(message: CameraSensorOutput_Point): unknown {
+  toJSON(message: CameraSensorOutput_Trajectory_Point): unknown {
     const obj: any = {};
     if (message.x !== 0) {
       obj.x = Math.round(message.x);
@@ -899,11 +998,15 @@ export const CameraSensorOutput_Point = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<CameraSensorOutput_Point>, I>>(base?: I): CameraSensorOutput_Point {
-    return CameraSensorOutput_Point.fromPartial(base ?? ({} as any));
+  create<I extends Exact<DeepPartial<CameraSensorOutput_Trajectory_Point>, I>>(
+    base?: I,
+  ): CameraSensorOutput_Trajectory_Point {
+    return CameraSensorOutput_Trajectory_Point.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<CameraSensorOutput_Point>, I>>(object: I): CameraSensorOutput_Point {
-    const message = createBaseCameraSensorOutput_Point();
+  fromPartial<I extends Exact<DeepPartial<CameraSensorOutput_Trajectory_Point>, I>>(
+    object: I,
+  ): CameraSensorOutput_Trajectory_Point {
+    const message = createBaseCameraSensorOutput_Trajectory_Point();
     message.x = object.x ?? 0;
     message.y = object.y ?? 0;
     return message;
