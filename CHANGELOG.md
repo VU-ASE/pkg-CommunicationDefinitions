@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.11.0](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v2.10.0...v2.11.0) (2024-03-15)
+
+
+### Features
+
+* Update Trajectory defintion ([95b510e](https://github.com/VU-ASE/pkg-CommunicationDefinitions/commit/95b510e8b4ef2190e3ae664dde2258da97b33a67))
+
 ## [2.10.0](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v2.9.0...v2.10.0) (2024-03-01)
 
 
