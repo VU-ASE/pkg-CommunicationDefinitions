@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.12.0](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v2.11.0...v2.12.0) (2024-03-21)
+
+
+### Features
+
+* Add battery proto ([2c91b56](https://github.com/VU-ASE/pkg-CommunicationDefinitions/commit/2c91b56b13fb1e3b92d5ba509901ca529eb94057))
+
 ## [2.11.0](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v2.10.0...v2.11.0) (2024-03-15)
 
 
