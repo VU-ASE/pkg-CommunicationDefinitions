@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.13.0](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v2.12.0...v2.13.0) (2024-04-06)
+
+
+### Features
+
+* added flag field to Camera output ([ff2459f](https://github.com/VU-ASE/pkg-CommunicationDefinitions/commit/ff2459fb59f85e982c9fda9610279872fcf1df78))
+
 ## [2.12.0](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v2.11.0...v2.12.0) (2024-03-21)
 
 
