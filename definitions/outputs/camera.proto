@@ -72,11 +72,15 @@ message CameraSensorOutput {
 
     Trajectory trajectory = 1;
 
+    
     message DebugFrame {
         bytes jpeg = 1;
         // if image livestreaming is disabled, or imaging module wants to draw additional information on the image, it can be done here
         Canvas canvas = 5; 
     }
-
+    
     DebugFrame debug_frame = 2;
+
+    // Defined by convention
+    int64 flags = 3;
 }
