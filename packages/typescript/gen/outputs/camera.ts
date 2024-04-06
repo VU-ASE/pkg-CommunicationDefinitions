@@ -1,4 +1,5 @@
 /* eslint-disable */
+import Long from "long";
 import _m0 from "protobufjs/minimal";
 
 export const protobufPackage = "protobuf_msgs";
@@ -51,7 +52,11 @@ export interface Canvas {
 /** The following sensor outputs are specific to the sensor type, bring your own sensor and add your own output here! */
 export interface CameraSensorOutput {
   trajectory: CameraSensorOutput_Trajectory | undefined;
-  debugFrame: CameraSensorOutput_DebugFrame | undefined;
+  debugFrame:
+    | CameraSensorOutput_DebugFrame
+    | undefined;
+  /** Defined by convention */
+  flags: number;
 }
 
 /** Defined by the Path Planner */
@@ -765,7 +770,7 @@ export const Canvas = {
 };
 
 function createBaseCameraSensorOutput(): CameraSensorOutput {
-  return { trajectory: undefined, debugFrame: undefined };
+  return { trajectory: undefined, debugFrame: undefined, flags: 0 };
 }
 
 export const CameraSensorOutput = {
@@ -775,6 +780,9 @@ export const CameraSensorOutput = {
     }
     if (message.debugFrame !== undefined) {
       CameraSensorOutput_DebugFrame.encode(message.debugFrame, writer.uint32(18).fork()).ldelim();
+    }
+    if (message.flags !== 0) {
+      writer.uint32(24).int64(message.flags);
     }
     return writer;
   },
@@ -800,6 +808,13 @@ export const CameraSensorOutput = {
 
           message.debugFrame = CameraSensorOutput_DebugFrame.decode(reader, reader.uint32());
           continue;
+        case 3:
+          if (tag !== 24) {
+            break;
+          }
+
+          message.flags = longToNumber(reader.int64() as Long);
+          continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -813,6 +828,7 @@ export const CameraSensorOutput = {
     return {
       trajectory: isSet(object.trajectory) ? CameraSensorOutput_Trajectory.fromJSON(object.trajectory) : undefined,
       debugFrame: isSet(object.debugFrame) ? CameraSensorOutput_DebugFrame.fromJSON(object.debugFrame) : undefined,
+      flags: isSet(object.flags) ? globalThis.Number(object.flags) : 0,
     };
   },
 
@@ -823,6 +839,9 @@ export const CameraSensorOutput = {
     }
     if (message.debugFrame !== undefined) {
       obj.debugFrame = CameraSensorOutput_DebugFrame.toJSON(message.debugFrame);
+    }
+    if (message.flags !== 0) {
+      obj.flags = Math.round(message.flags);
     }
     return obj;
   },
@@ -838,6 +857,7 @@ export const CameraSensorOutput = {
     message.debugFrame = (object.debugFrame !== undefined && object.debugFrame !== null)
       ? CameraSensorOutput_DebugFrame.fromPartial(object.debugFrame)
       : undefined;
+    message.flags = object.flags ?? 0;
     return message;
   },
 };
@@ -1127,6 +1147,18 @@ export type DeepPartial<T> = T extends Builtin ? T
 type KeysOfUnion<T> = T extends T ? keyof T : never;
 export type Exact<P, I extends P> = P extends Builtin ? P
   : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
+
+function longToNumber(long: Long): number {
+  if (long.gt(globalThis.Number.MAX_SAFE_INTEGER)) {
+    throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
+  }
+  return long.toNumber();
+}
+
+if (_m0.util.Long !== Long) {
+  _m0.util.Long = Long as any;
+  _m0.configure();
+}
 
 function isSet(value: any): boolean {
   return value !== null && value !== undefined;

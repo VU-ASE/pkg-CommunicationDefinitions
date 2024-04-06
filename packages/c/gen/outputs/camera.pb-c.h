@@ -181,10 +181,14 @@ struct  _ProtobufMsgs__CameraSensorOutput
   ProtobufCMessage base;
   ProtobufMsgs__CameraSensorOutput__Trajectory *trajectory;
   ProtobufMsgs__CameraSensorOutput__DebugFrame *debug_frame;
+  /*
+   * Defined by convention
+   */
+  int64_t flags;
 };
 #define PROTOBUF_MSGS__CAMERA_SENSOR_OUTPUT__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&protobuf_msgs__camera_sensor_output__descriptor) \
-    , NULL, NULL }
+    , NULL, NULL, 0 }
 
 
 /* ProtobufMsgs__CanvasObject__Point methods */
