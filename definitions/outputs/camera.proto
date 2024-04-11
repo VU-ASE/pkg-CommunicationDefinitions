@@ -55,6 +55,13 @@ message Canvas {
     repeated CanvasObject objects = 3;
 }
 
+// Possible Objects the Imaging Module may detect
+enum DetectedObjects {
+    FINISH_LINE = 0; /* Finish_line_detected */
+    OFF_TRACK   = 1; /* Car no longer on the track */
+    OBSTACLE    = 2; /* Detected obstacle */
+}
+
 //
 // The following sensor outputs are specific to the sensor type, bring your own sensor and add your own output here!
 //
@@ -72,7 +79,6 @@ message CameraSensorOutput {
 
     Trajectory trajectory = 1;
 
-    
     message DebugFrame {
         bytes jpeg = 1;
         // if image livestreaming is disabled, or imaging module wants to draw additional information on the image, it can be done here
@@ -81,6 +87,9 @@ message CameraSensorOutput {
     
     DebugFrame debug_frame = 2;
 
-    // Defined by convention
-    int64 flags = 3;
+    message Objects {
+        repeated DetectedObjects items = 1;
+    }
+
+    Objects objects = 3;
 }
