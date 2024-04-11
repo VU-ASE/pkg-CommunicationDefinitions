@@ -145,6 +145,12 @@ void   protobuf_msgs__camera_sensor_output__debug_frame__init
   static const ProtobufMsgs__CameraSensorOutput__DebugFrame init_value = PROTOBUF_MSGS__CAMERA_SENSOR_OUTPUT__DEBUG_FRAME__INIT;
   *message = init_value;
 }
+void   protobuf_msgs__camera_sensor_output__objects__init
+                     (ProtobufMsgs__CameraSensorOutput__Objects         *message)
+{
+  static const ProtobufMsgs__CameraSensorOutput__Objects init_value = PROTOBUF_MSGS__CAMERA_SENSOR_OUTPUT__OBJECTS__INIT;
+  *message = init_value;
+}
 void   protobuf_msgs__camera_sensor_output__init
                      (ProtobufMsgs__CameraSensorOutput         *message)
 {
@@ -844,6 +850,44 @@ const ProtobufCMessageDescriptor protobuf_msgs__camera_sensor_output__debug_fram
   (ProtobufCMessageInit) protobuf_msgs__camera_sensor_output__debug_frame__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
+static const ProtobufCFieldDescriptor protobuf_msgs__camera_sensor_output__objects__field_descriptors[1] =
+{
+  {
+    "items",
+    1,
+    PROTOBUF_C_LABEL_REPEATED,
+    PROTOBUF_C_TYPE_ENUM,
+    offsetof(ProtobufMsgs__CameraSensorOutput__Objects, n_items),
+    offsetof(ProtobufMsgs__CameraSensorOutput__Objects, items),
+    &protobuf_msgs__detected_objects__descriptor,
+    NULL,
+    0 | PROTOBUF_C_FIELD_FLAG_PACKED,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+};
+static const unsigned protobuf_msgs__camera_sensor_output__objects__field_indices_by_name[] = {
+  0,   /* field[0] = items */
+};
+static const ProtobufCIntRange protobuf_msgs__camera_sensor_output__objects__number_ranges[1 + 1] =
+{
+  { 1, 0 },
+  { 0, 1 }
+};
+const ProtobufCMessageDescriptor protobuf_msgs__camera_sensor_output__objects__descriptor =
+{
+  PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
+  "protobuf_msgs.CameraSensorOutput.Objects",
+  "Objects",
+  "ProtobufMsgs__CameraSensorOutput__Objects",
+  "protobuf_msgs",
+  sizeof(ProtobufMsgs__CameraSensorOutput__Objects),
+  1,
+  protobuf_msgs__camera_sensor_output__objects__field_descriptors,
+  protobuf_msgs__camera_sensor_output__objects__field_indices_by_name,
+  1,  protobuf_msgs__camera_sensor_output__objects__number_ranges,
+  (ProtobufCMessageInit) protobuf_msgs__camera_sensor_output__objects__init,
+  NULL,NULL,NULL    /* reserved[123] */
+};
 static const ProtobufCFieldDescriptor protobuf_msgs__camera_sensor_output__field_descriptors[3] =
 {
   {
@@ -871,13 +915,13 @@ static const ProtobufCFieldDescriptor protobuf_msgs__camera_sensor_output__field
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "flags",
+    "objects",
     3,
     PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_INT64,
+    PROTOBUF_C_TYPE_MESSAGE,
     0,   /* quantifier_offset */
-    offsetof(ProtobufMsgs__CameraSensorOutput, flags),
-    NULL,
+    offsetof(ProtobufMsgs__CameraSensorOutput, objects),
+    &protobuf_msgs__camera_sensor_output__objects__descriptor,
     NULL,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
@@ -885,7 +929,7 @@ static const ProtobufCFieldDescriptor protobuf_msgs__camera_sensor_output__field
 };
 static const unsigned protobuf_msgs__camera_sensor_output__field_indices_by_name[] = {
   1,   /* field[1] = debug_frame */
-  2,   /* field[2] = flags */
+  2,   /* field[2] = objects */
   0,   /* field[0] = trajectory */
 };
 static const ProtobufCIntRange protobuf_msgs__camera_sensor_output__number_ranges[1 + 1] =
@@ -907,4 +951,34 @@ const ProtobufCMessageDescriptor protobuf_msgs__camera_sensor_output__descriptor
   1,  protobuf_msgs__camera_sensor_output__number_ranges,
   (ProtobufCMessageInit) protobuf_msgs__camera_sensor_output__init,
   NULL,NULL,NULL    /* reserved[123] */
+};
+static const ProtobufCEnumValue protobuf_msgs__detected_objects__enum_values_by_number[3] =
+{
+  { "FINISH_LINE", "PROTOBUF_MSGS__DETECTED_OBJECTS__FINISH_LINE", 0 },
+  { "OFF_TRACK", "PROTOBUF_MSGS__DETECTED_OBJECTS__OFF_TRACK", 1 },
+  { "OBSTACLE", "PROTOBUF_MSGS__DETECTED_OBJECTS__OBSTACLE", 2 },
+};
+static const ProtobufCIntRange protobuf_msgs__detected_objects__value_ranges[] = {
+{0, 0},{0, 3}
+};
+static const ProtobufCEnumValueIndex protobuf_msgs__detected_objects__enum_values_by_name[3] =
+{
+  { "FINISH_LINE", 0 },
+  { "OBSTACLE", 2 },
+  { "OFF_TRACK", 1 },
+};
+const ProtobufCEnumDescriptor protobuf_msgs__detected_objects__descriptor =
+{
+  PROTOBUF_C__ENUM_DESCRIPTOR_MAGIC,
+  "protobuf_msgs.DetectedObjects",
+  "DetectedObjects",
+  "ProtobufMsgs__DetectedObjects",
+  "protobuf_msgs",
+  3,
+  protobuf_msgs__detected_objects__enum_values_by_number,
+  3,
+  protobuf_msgs__detected_objects__enum_values_by_name,
+  1,
+  protobuf_msgs__detected_objects__value_ranges,
+  NULL,NULL,NULL,NULL   /* reserved[1234] */
 };

@@ -1,8 +1,50 @@
 /* eslint-disable */
-import Long from "long";
 import _m0 from "protobufjs/minimal";
 
 export const protobufPackage = "protobuf_msgs";
+
+/** Possible Objects the Imaging Module may detect */
+export enum DetectedObjects {
+  /** FINISH_LINE - Finish_line_detected */
+  FINISH_LINE = 0,
+  /** OFF_TRACK - Car no longer on the track */
+  OFF_TRACK = 1,
+  /** OBSTACLE - Detected obstacle */
+  OBSTACLE = 2,
+  UNRECOGNIZED = -1,
+}
+
+export function detectedObjectsFromJSON(object: any): DetectedObjects {
+  switch (object) {
+    case 0:
+    case "FINISH_LINE":
+      return DetectedObjects.FINISH_LINE;
+    case 1:
+    case "OFF_TRACK":
+      return DetectedObjects.OFF_TRACK;
+    case 2:
+    case "OBSTACLE":
+      return DetectedObjects.OBSTACLE;
+    case -1:
+    case "UNRECOGNIZED":
+    default:
+      return DetectedObjects.UNRECOGNIZED;
+  }
+}
+
+export function detectedObjectsToJSON(object: DetectedObjects): string {
+  switch (object) {
+    case DetectedObjects.FINISH_LINE:
+      return "FINISH_LINE";
+    case DetectedObjects.OFF_TRACK:
+      return "OFF_TRACK";
+    case DetectedObjects.OBSTACLE:
+      return "OBSTACLE";
+    case DetectedObjects.UNRECOGNIZED:
+    default:
+      return "UNRECOGNIZED";
+  }
+}
 
 export interface CanvasObject {
   line?: CanvasObject_Line | undefined;
@@ -52,11 +94,8 @@ export interface Canvas {
 /** The following sensor outputs are specific to the sensor type, bring your own sensor and add your own output here! */
 export interface CameraSensorOutput {
   trajectory: CameraSensorOutput_Trajectory | undefined;
-  debugFrame:
-    | CameraSensorOutput_DebugFrame
-    | undefined;
-  /** Defined by convention */
-  flags: number;
+  debugFrame: CameraSensorOutput_DebugFrame | undefined;
+  objects: CameraSensorOutput_Objects | undefined;
 }
 
 /** Defined by the Path Planner */
@@ -75,6 +114,10 @@ export interface CameraSensorOutput_DebugFrame {
   jpeg: Uint8Array;
   /** if image livestreaming is disabled, or imaging module wants to draw additional information on the image, it can be done here */
   canvas: Canvas | undefined;
+}
+
+export interface CameraSensorOutput_Objects {
+  items: DetectedObjects[];
 }
 
 function createBaseCanvasObject(): CanvasObject {
@@ -770,7 +813,7 @@ export const Canvas = {
 };
 
 function createBaseCameraSensorOutput(): CameraSensorOutput {
-  return { trajectory: undefined, debugFrame: undefined, flags: 0 };
+  return { trajectory: undefined, debugFrame: undefined, objects: undefined };
 }
 
 export const CameraSensorOutput = {
@@ -781,8 +824,8 @@ export const CameraSensorOutput = {
     if (message.debugFrame !== undefined) {
       CameraSensorOutput_DebugFrame.encode(message.debugFrame, writer.uint32(18).fork()).ldelim();
     }
-    if (message.flags !== 0) {
-      writer.uint32(24).int64(message.flags);
+    if (message.objects !== undefined) {
+      CameraSensorOutput_Objects.encode(message.objects, writer.uint32(26).fork()).ldelim();
     }
     return writer;
   },
@@ -809,11 +852,11 @@ export const CameraSensorOutput = {
           message.debugFrame = CameraSensorOutput_DebugFrame.decode(reader, reader.uint32());
           continue;
         case 3:
-          if (tag !== 24) {
+          if (tag !== 26) {
             break;
           }
 
-          message.flags = longToNumber(reader.int64() as Long);
+          message.objects = CameraSensorOutput_Objects.decode(reader, reader.uint32());
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -828,7 +871,7 @@ export const CameraSensorOutput = {
     return {
       trajectory: isSet(object.trajectory) ? CameraSensorOutput_Trajectory.fromJSON(object.trajectory) : undefined,
       debugFrame: isSet(object.debugFrame) ? CameraSensorOutput_DebugFrame.fromJSON(object.debugFrame) : undefined,
-      flags: isSet(object.flags) ? globalThis.Number(object.flags) : 0,
+      objects: isSet(object.objects) ? CameraSensorOutput_Objects.fromJSON(object.objects) : undefined,
     };
   },
 
@@ -840,8 +883,8 @@ export const CameraSensorOutput = {
     if (message.debugFrame !== undefined) {
       obj.debugFrame = CameraSensorOutput_DebugFrame.toJSON(message.debugFrame);
     }
-    if (message.flags !== 0) {
-      obj.flags = Math.round(message.flags);
+    if (message.objects !== undefined) {
+      obj.objects = CameraSensorOutput_Objects.toJSON(message.objects);
     }
     return obj;
   },
@@ -857,7 +900,9 @@ export const CameraSensorOutput = {
     message.debugFrame = (object.debugFrame !== undefined && object.debugFrame !== null)
       ? CameraSensorOutput_DebugFrame.fromPartial(object.debugFrame)
       : undefined;
-    message.flags = object.flags ?? 0;
+    message.objects = (object.objects !== undefined && object.objects !== null)
+      ? CameraSensorOutput_Objects.fromPartial(object.objects)
+      : undefined;
     return message;
   },
 };
@@ -1111,6 +1156,77 @@ export const CameraSensorOutput_DebugFrame = {
   },
 };
 
+function createBaseCameraSensorOutput_Objects(): CameraSensorOutput_Objects {
+  return { items: [] };
+}
+
+export const CameraSensorOutput_Objects = {
+  encode(message: CameraSensorOutput_Objects, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    writer.uint32(10).fork();
+    for (const v of message.items) {
+      writer.int32(v);
+    }
+    writer.ldelim();
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): CameraSensorOutput_Objects {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseCameraSensorOutput_Objects();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag === 8) {
+            message.items.push(reader.int32() as any);
+
+            continue;
+          }
+
+          if (tag === 10) {
+            const end2 = reader.uint32() + reader.pos;
+            while (reader.pos < end2) {
+              message.items.push(reader.int32() as any);
+            }
+
+            continue;
+          }
+
+          break;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): CameraSensorOutput_Objects {
+    return {
+      items: globalThis.Array.isArray(object?.items) ? object.items.map((e: any) => detectedObjectsFromJSON(e)) : [],
+    };
+  },
+
+  toJSON(message: CameraSensorOutput_Objects): unknown {
+    const obj: any = {};
+    if (message.items?.length) {
+      obj.items = message.items.map((e) => detectedObjectsToJSON(e));
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<CameraSensorOutput_Objects>, I>>(base?: I): CameraSensorOutput_Objects {
+    return CameraSensorOutput_Objects.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<CameraSensorOutput_Objects>, I>>(object: I): CameraSensorOutput_Objects {
+    const message = createBaseCameraSensorOutput_Objects();
+    message.items = object.items?.map((e) => e) || [];
+    return message;
+  },
+};
+
 function bytesFromBase64(b64: string): Uint8Array {
   if ((globalThis as any).Buffer) {
     return Uint8Array.from(globalThis.Buffer.from(b64, "base64"));
@@ -1147,18 +1263,6 @@ export type DeepPartial<T> = T extends Builtin ? T
 type KeysOfUnion<T> = T extends T ? keyof T : never;
 export type Exact<P, I extends P> = P extends Builtin ? P
   : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
-
-function longToNumber(long: Long): number {
-  if (long.gt(globalThis.Number.MAX_SAFE_INTEGER)) {
-    throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
-  }
-  return long.toNumber();
-}
-
-if (_m0.util.Long !== Long) {
-  _m0.util.Long = Long as any;
-  _m0.configure();
-}
 
 function isSet(value: any): boolean {
   return value !== null && value !== undefined;

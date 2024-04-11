@@ -26,10 +26,29 @@ typedef struct _ProtobufMsgs__CameraSensorOutput ProtobufMsgs__CameraSensorOutpu
 typedef struct _ProtobufMsgs__CameraSensorOutput__Trajectory ProtobufMsgs__CameraSensorOutput__Trajectory;
 typedef struct _ProtobufMsgs__CameraSensorOutput__Trajectory__Point ProtobufMsgs__CameraSensorOutput__Trajectory__Point;
 typedef struct _ProtobufMsgs__CameraSensorOutput__DebugFrame ProtobufMsgs__CameraSensorOutput__DebugFrame;
+typedef struct _ProtobufMsgs__CameraSensorOutput__Objects ProtobufMsgs__CameraSensorOutput__Objects;
 
 
 /* --- enums --- */
 
+/*
+ * Possible Objects the Imaging Module may detect
+ */
+typedef enum _ProtobufMsgs__DetectedObjects {
+  /*
+   * Finish_line_detected 
+   */
+  PROTOBUF_MSGS__DETECTED_OBJECTS__FINISH_LINE = 0,
+  /*
+   * Car no longer on the track 
+   */
+  PROTOBUF_MSGS__DETECTED_OBJECTS__OFF_TRACK = 1,
+  /*
+   * Detected obstacle 
+   */
+  PROTOBUF_MSGS__DETECTED_OBJECTS__OBSTACLE = 2
+    PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(PROTOBUF_MSGS__DETECTED_OBJECTS)
+} ProtobufMsgs__DetectedObjects;
 
 /* --- messages --- */
 
@@ -173,6 +192,17 @@ struct  _ProtobufMsgs__CameraSensorOutput__DebugFrame
     , {0,NULL}, NULL }
 
 
+struct  _ProtobufMsgs__CameraSensorOutput__Objects
+{
+  ProtobufCMessage base;
+  size_t n_items;
+  ProtobufMsgs__DetectedObjects *items;
+};
+#define PROTOBUF_MSGS__CAMERA_SENSOR_OUTPUT__OBJECTS__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&protobuf_msgs__camera_sensor_output__objects__descriptor) \
+    , 0,NULL }
+
+
 /*
  * The following sensor outputs are specific to the sensor type, bring your own sensor and add your own output here!
  */
@@ -181,14 +211,11 @@ struct  _ProtobufMsgs__CameraSensorOutput
   ProtobufCMessage base;
   ProtobufMsgs__CameraSensorOutput__Trajectory *trajectory;
   ProtobufMsgs__CameraSensorOutput__DebugFrame *debug_frame;
-  /*
-   * Defined by convention
-   */
-  int64_t flags;
+  ProtobufMsgs__CameraSensorOutput__Objects *objects;
 };
 #define PROTOBUF_MSGS__CAMERA_SENSOR_OUTPUT__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&protobuf_msgs__camera_sensor_output__descriptor) \
-    , NULL, NULL, 0 }
+    , NULL, NULL, NULL }
 
 
 /* ProtobufMsgs__CanvasObject__Point methods */
@@ -253,6 +280,9 @@ void   protobuf_msgs__camera_sensor_output__trajectory__init
 /* ProtobufMsgs__CameraSensorOutput__DebugFrame methods */
 void   protobuf_msgs__camera_sensor_output__debug_frame__init
                      (ProtobufMsgs__CameraSensorOutput__DebugFrame         *message);
+/* ProtobufMsgs__CameraSensorOutput__Objects methods */
+void   protobuf_msgs__camera_sensor_output__objects__init
+                     (ProtobufMsgs__CameraSensorOutput__Objects         *message);
 /* ProtobufMsgs__CameraSensorOutput methods */
 void   protobuf_msgs__camera_sensor_output__init
                      (ProtobufMsgs__CameraSensorOutput         *message);
@@ -304,6 +334,9 @@ typedef void (*ProtobufMsgs__CameraSensorOutput__Trajectory_Closure)
 typedef void (*ProtobufMsgs__CameraSensorOutput__DebugFrame_Closure)
                  (const ProtobufMsgs__CameraSensorOutput__DebugFrame *message,
                   void *closure_data);
+typedef void (*ProtobufMsgs__CameraSensorOutput__Objects_Closure)
+                 (const ProtobufMsgs__CameraSensorOutput__Objects *message,
+                  void *closure_data);
 typedef void (*ProtobufMsgs__CameraSensorOutput_Closure)
                  (const ProtobufMsgs__CameraSensorOutput *message,
                   void *closure_data);
@@ -313,6 +346,7 @@ typedef void (*ProtobufMsgs__CameraSensorOutput_Closure)
 
 /* --- descriptors --- */
 
+extern const ProtobufCEnumDescriptor    protobuf_msgs__detected_objects__descriptor;
 extern const ProtobufCMessageDescriptor protobuf_msgs__canvas_object__descriptor;
 extern const ProtobufCMessageDescriptor protobuf_msgs__canvas_object__point__descriptor;
 extern const ProtobufCMessageDescriptor protobuf_msgs__canvas_object__color__descriptor;
@@ -324,6 +358,7 @@ extern const ProtobufCMessageDescriptor protobuf_msgs__camera_sensor_output__des
 extern const ProtobufCMessageDescriptor protobuf_msgs__camera_sensor_output__trajectory__descriptor;
 extern const ProtobufCMessageDescriptor protobuf_msgs__camera_sensor_output__trajectory__point__descriptor;
 extern const ProtobufCMessageDescriptor protobuf_msgs__camera_sensor_output__debug_frame__descriptor;
+extern const ProtobufCMessageDescriptor protobuf_msgs__camera_sensor_output__objects__descriptor;
 
 PROTOBUF_C__END_DECLS
 
