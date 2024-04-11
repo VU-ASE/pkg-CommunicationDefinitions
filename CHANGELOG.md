@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.14.0](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v2.13.0...v2.14.0) (2024-04-11)
+
+
+### Features
+
+* Add objects to camera proto ([8dc7f99](https://github.com/VU-ASE/pkg-CommunicationDefinitions/commit/8dc7f99dcd4c866c97a6e7231e8d5208d1f8c418))
+
 ## [2.13.0](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v2.12.0...v2.13.0) (2024-04-06)
 
 
