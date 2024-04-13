@@ -69,8 +69,8 @@ message CameraSensorOutput {
     // Defined by the Path Planner
     message Trajectory {
         message Point {
-            uint32 x = 1;
-            uint32 y = 2;
+            int32 x = 1;
+            int32 y = 2;
         }
         repeated Point points = 1;
         uint32 width = 2;
