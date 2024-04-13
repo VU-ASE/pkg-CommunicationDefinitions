@@ -689,7 +689,7 @@ static const ProtobufCFieldDescriptor protobuf_msgs__camera_sensor_output__traje
     "x",
     1,
     PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_UINT32,
+    PROTOBUF_C_TYPE_INT32,
     0,   /* quantifier_offset */
     offsetof(ProtobufMsgs__CameraSensorOutput__Trajectory__Point, x),
     NULL,
@@ -701,7 +701,7 @@ static const ProtobufCFieldDescriptor protobuf_msgs__camera_sensor_output__traje
     "y",
     2,
     PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_UINT32,
+    PROTOBUF_C_TYPE_INT32,
     0,   /* quantifier_offset */
     offsetof(ProtobufMsgs__CameraSensorOutput__Trajectory__Point, y),
     NULL,

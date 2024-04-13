@@ -1007,10 +1007,10 @@ function createBaseCameraSensorOutput_Trajectory_Point(): CameraSensorOutput_Tra
 export const CameraSensorOutput_Trajectory_Point = {
   encode(message: CameraSensorOutput_Trajectory_Point, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.x !== 0) {
-      writer.uint32(8).uint32(message.x);
+      writer.uint32(8).int32(message.x);
     }
     if (message.y !== 0) {
-      writer.uint32(16).uint32(message.y);
+      writer.uint32(16).int32(message.y);
     }
     return writer;
   },
@@ -1027,14 +1027,14 @@ export const CameraSensorOutput_Trajectory_Point = {
             break;
           }
 
-          message.x = reader.uint32();
+          message.x = reader.int32();
           continue;
         case 2:
           if (tag !== 16) {
             break;
           }
 
-          message.y = reader.uint32();
+          message.y = reader.int32();
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {

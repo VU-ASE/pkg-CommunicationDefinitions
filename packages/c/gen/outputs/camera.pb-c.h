@@ -154,8 +154,8 @@ struct  _ProtobufMsgs__Canvas
 struct  _ProtobufMsgs__CameraSensorOutput__Trajectory__Point
 {
   ProtobufCMessage base;
-  uint32_t x;
-  uint32_t y;
+  int32_t x;
+  int32_t y;
 };
 #define PROTOBUF_MSGS__CAMERA_SENSOR_OUTPUT__TRAJECTORY__POINT__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&protobuf_msgs__camera_sensor_output__trajectory__point__descriptor) \
