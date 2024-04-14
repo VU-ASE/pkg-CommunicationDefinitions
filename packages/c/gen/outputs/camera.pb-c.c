@@ -952,20 +952,34 @@ const ProtobufCMessageDescriptor protobuf_msgs__camera_sensor_output__descriptor
   (ProtobufCMessageInit) protobuf_msgs__camera_sensor_output__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCEnumValue protobuf_msgs__detected_objects__enum_values_by_number[3] =
+static const ProtobufCEnumValue protobuf_msgs__detected_objects__enum_values_by_number[10] =
 {
   { "FINISH_LINE", "PROTOBUF_MSGS__DETECTED_OBJECTS__FINISH_LINE", 0 },
   { "OFF_TRACK", "PROTOBUF_MSGS__DETECTED_OBJECTS__OFF_TRACK", 1 },
   { "OBSTACLE", "PROTOBUF_MSGS__DETECTED_OBJECTS__OBSTACLE", 2 },
+  { "INTERSECTION", "PROTOBUF_MSGS__DETECTED_OBJECTS__INTERSECTION", 3 },
+  { "MISSING_LEFT_LANE", "PROTOBUF_MSGS__DETECTED_OBJECTS__MISSING_LEFT_LANE", 4 },
+  { "MISSING_RIGHT_LANE", "PROTOBUF_MSGS__DETECTED_OBJECTS__MISSING_RIGHT_LANE", 5 },
+  { "SHARP_RIGHT", "PROTOBUF_MSGS__DETECTED_OBJECTS__SHARP_RIGHT", 6 },
+  { "SHARP_LEFT", "PROTOBUF_MSGS__DETECTED_OBJECTS__SHARP_LEFT", 7 },
+  { "U_TURN", "PROTOBUF_MSGS__DETECTED_OBJECTS__U_TURN", 8 },
+  { "S_TURN", "PROTOBUF_MSGS__DETECTED_OBJECTS__S_TURN", 9 },
 };
 static const ProtobufCIntRange protobuf_msgs__detected_objects__value_ranges[] = {
-{0, 0},{0, 3}
+{0, 0},{0, 10}
 };
-static const ProtobufCEnumValueIndex protobuf_msgs__detected_objects__enum_values_by_name[3] =
+static const ProtobufCEnumValueIndex protobuf_msgs__detected_objects__enum_values_by_name[10] =
 {
   { "FINISH_LINE", 0 },
+  { "INTERSECTION", 3 },
+  { "MISSING_LEFT_LANE", 4 },
+  { "MISSING_RIGHT_LANE", 5 },
   { "OBSTACLE", 2 },
   { "OFF_TRACK", 1 },
+  { "SHARP_LEFT", 7 },
+  { "SHARP_RIGHT", 6 },
+  { "S_TURN", 9 },
+  { "U_TURN", 8 },
 };
 const ProtobufCEnumDescriptor protobuf_msgs__detected_objects__descriptor =
 {
@@ -974,9 +988,9 @@ const ProtobufCEnumDescriptor protobuf_msgs__detected_objects__descriptor =
   "DetectedObjects",
   "ProtobufMsgs__DetectedObjects",
   "protobuf_msgs",
-  3,
+  10,
   protobuf_msgs__detected_objects__enum_values_by_number,
-  3,
+  10,
   protobuf_msgs__detected_objects__enum_values_by_name,
   1,
   protobuf_msgs__detected_objects__value_ranges,

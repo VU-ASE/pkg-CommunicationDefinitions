@@ -11,6 +11,20 @@ export enum DetectedObjects {
   OFF_TRACK = 1,
   /** OBSTACLE - Detected obstacle */
   OBSTACLE = 2,
+  /** INTERSECTION - Detected intersection */
+  INTERSECTION = 3,
+  /** MISSING_LEFT_LANE - Can not find left lane */
+  MISSING_LEFT_LANE = 4,
+  /** MISSING_RIGHT_LANE - Can not find right lane */
+  MISSING_RIGHT_LANE = 5,
+  /** SHARP_RIGHT - 90 degree right turn */
+  SHARP_RIGHT = 6,
+  /** SHARP_LEFT - 90 degree left turn */
+  SHARP_LEFT = 7,
+  /** U_TURN - Detected U turn */
+  U_TURN = 8,
+  /** S_TURN - Detected S turn (double u turn) */
+  S_TURN = 9,
   UNRECOGNIZED = -1,
 }
 
@@ -25,6 +39,27 @@ export function detectedObjectsFromJSON(object: any): DetectedObjects {
     case 2:
     case "OBSTACLE":
       return DetectedObjects.OBSTACLE;
+    case 3:
+    case "INTERSECTION":
+      return DetectedObjects.INTERSECTION;
+    case 4:
+    case "MISSING_LEFT_LANE":
+      return DetectedObjects.MISSING_LEFT_LANE;
+    case 5:
+    case "MISSING_RIGHT_LANE":
+      return DetectedObjects.MISSING_RIGHT_LANE;
+    case 6:
+    case "SHARP_RIGHT":
+      return DetectedObjects.SHARP_RIGHT;
+    case 7:
+    case "SHARP_LEFT":
+      return DetectedObjects.SHARP_LEFT;
+    case 8:
+    case "U_TURN":
+      return DetectedObjects.U_TURN;
+    case 9:
+    case "S_TURN":
+      return DetectedObjects.S_TURN;
     case -1:
     case "UNRECOGNIZED":
     default:
@@ -40,6 +75,20 @@ export function detectedObjectsToJSON(object: DetectedObjects): string {
       return "OFF_TRACK";
     case DetectedObjects.OBSTACLE:
       return "OBSTACLE";
+    case DetectedObjects.INTERSECTION:
+      return "INTERSECTION";
+    case DetectedObjects.MISSING_LEFT_LANE:
+      return "MISSING_LEFT_LANE";
+    case DetectedObjects.MISSING_RIGHT_LANE:
+      return "MISSING_RIGHT_LANE";
+    case DetectedObjects.SHARP_RIGHT:
+      return "SHARP_RIGHT";
+    case DetectedObjects.SHARP_LEFT:
+      return "SHARP_LEFT";
+    case DetectedObjects.U_TURN:
+      return "U_TURN";
+    case DetectedObjects.S_TURN:
+      return "S_TURN";
     case DetectedObjects.UNRECOGNIZED:
     default:
       return "UNRECOGNIZED";

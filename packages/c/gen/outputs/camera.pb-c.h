@@ -46,7 +46,35 @@ typedef enum _ProtobufMsgs__DetectedObjects {
   /*
    * Detected obstacle 
    */
-  PROTOBUF_MSGS__DETECTED_OBJECTS__OBSTACLE = 2
+  PROTOBUF_MSGS__DETECTED_OBJECTS__OBSTACLE = 2,
+  /*
+   * Detected intersection 
+   */
+  PROTOBUF_MSGS__DETECTED_OBJECTS__INTERSECTION = 3,
+  /*
+   * Can not find left lane 
+   */
+  PROTOBUF_MSGS__DETECTED_OBJECTS__MISSING_LEFT_LANE = 4,
+  /*
+   * Can not find right lane 
+   */
+  PROTOBUF_MSGS__DETECTED_OBJECTS__MISSING_RIGHT_LANE = 5,
+  /*
+   * 90 degree right turn 
+   */
+  PROTOBUF_MSGS__DETECTED_OBJECTS__SHARP_RIGHT = 6,
+  /*
+   * 90 degree left turn  
+   */
+  PROTOBUF_MSGS__DETECTED_OBJECTS__SHARP_LEFT = 7,
+  /*
+   * Detected U turn 
+   */
+  PROTOBUF_MSGS__DETECTED_OBJECTS__U_TURN = 8,
+  /*
+   * Detected S turn (double u turn) 
+   */
+  PROTOBUF_MSGS__DETECTED_OBJECTS__S_TURN = 9
     PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(PROTOBUF_MSGS__DETECTED_OBJECTS)
 } ProtobufMsgs__DetectedObjects;
 
