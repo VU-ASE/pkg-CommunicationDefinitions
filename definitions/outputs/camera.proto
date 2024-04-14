@@ -57,9 +57,16 @@ message Canvas {
 
 // Possible Objects the Imaging Module may detect
 enum DetectedObjects {
-    FINISH_LINE = 0; /* Finish_line_detected */
-    OFF_TRACK   = 1; /* Car no longer on the track */
-    OBSTACLE    = 2; /* Detected obstacle */
+    FINISH_LINE         = 0; /* Finish_line_detected */
+    OFF_TRACK           = 1; /* Car no longer on the track */
+    OBSTACLE            = 2; /* Detected obstacle */
+    INTERSECTION        = 3;  /* Detected intersection */
+    MISSING_LEFT_LANE   = 4;  /* Can not find left lane */
+    MISSING_RIGHT_LANE  = 5;  /* Can not find right lane */
+    SHARP_RIGHT         = 6;  /* 90 degree right turn */
+    SHARP_LEFT          = 7;  /* 90 degree left turn  */
+    U_TURN              = 8;  /* Detected U turn */
+    S_TURN              = 9;  /* Detected S turn (double u turn) */
 }
 
 //
