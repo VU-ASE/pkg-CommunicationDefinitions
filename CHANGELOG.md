@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.16.0](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v2.15.0...v2.16.0) (2024-04-14)
+
+
+### Features
+
+* Add more objects to camera ([20a581e](https://github.com/VU-ASE/pkg-CommunicationDefinitions/commit/20a581efc839a589b22b25d8f91df2acc71d97c9))
+
 ## [2.15.0](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v2.14.0...v2.15.0) (2024-04-13)
 
 
