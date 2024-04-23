@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.17.0](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v2.16.0...v2.17.0) (2024-04-23)
+
+
+### Features
+
+* added "registeredAt" to service information ([b14fbef](https://github.com/VU-ASE/pkg-CommunicationDefinitions/commit/b14fbef5e67c8121dc63d52765e462e80522f6a7))
+
+
+### Bug Fixes
+
+* timestamp type ([77c968a](https://github.com/VU-ASE/pkg-CommunicationDefinitions/commit/77c968aab93cafb960a7d09e126ed0949d2f3bc9))
+
 ## [2.16.0](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v2.15.0...v2.16.0) (2024-04-14)
 
 
