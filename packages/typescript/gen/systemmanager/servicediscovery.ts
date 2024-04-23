@@ -1,4 +1,5 @@
 /* eslint-disable */
+import Long from "long";
 import _m0 from "protobufjs/minimal";
 
 export const protobufPackage = "protobuf_msgs";
@@ -135,6 +136,7 @@ export interface Service {
   options: ServiceOption[];
   dependencies: ServiceDependency[];
   status: ServiceStatus;
+  registeredAt: number;
 }
 
 /** When a service requests information about other services, it sends an InformationRequest message */
@@ -564,7 +566,7 @@ export const ServiceDependency = {
 };
 
 function createBaseService(): Service {
-  return { identifier: undefined, endpoints: [], options: [], dependencies: [], status: 0 };
+  return { identifier: undefined, endpoints: [], options: [], dependencies: [], status: 0, registeredAt: 0 };
 }
 
 export const Service = {
@@ -583,6 +585,9 @@ export const Service = {
     }
     if (message.status !== 0) {
       writer.uint32(40).int32(message.status);
+    }
+    if (message.registeredAt !== 0) {
+      writer.uint32(48).int64(message.registeredAt);
     }
     return writer;
   },
@@ -629,6 +634,13 @@ export const Service = {
 
           message.status = reader.int32() as any;
           continue;
+        case 6:
+          if (tag !== 48) {
+            break;
+          }
+
+          message.registeredAt = longToNumber(reader.int64() as Long);
+          continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -651,6 +663,7 @@ export const Service = {
         ? object.dependencies.map((e: any) => ServiceDependency.fromJSON(e))
         : [],
       status: isSet(object.status) ? serviceStatusFromJSON(object.status) : 0,
+      registeredAt: isSet(object.registeredAt) ? globalThis.Number(object.registeredAt) : 0,
     };
   },
 
@@ -671,6 +684,9 @@ export const Service = {
     if (message.status !== 0) {
       obj.status = serviceStatusToJSON(message.status);
     }
+    if (message.registeredAt !== 0) {
+      obj.registeredAt = Math.round(message.registeredAt);
+    }
     return obj;
   },
 
@@ -686,6 +702,7 @@ export const Service = {
     message.options = object.options?.map((e) => ServiceOption.fromPartial(e)) || [];
     message.dependencies = object.dependencies?.map((e) => ServiceDependency.fromPartial(e)) || [];
     message.status = object.status ?? 0;
+    message.registeredAt = object.registeredAt ?? 0;
     return message;
   },
 };
@@ -1030,6 +1047,18 @@ export type DeepPartial<T> = T extends Builtin ? T
 type KeysOfUnion<T> = T extends T ? keyof T : never;
 export type Exact<P, I extends P> = P extends Builtin ? P
   : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
+
+function longToNumber(long: Long): number {
+  if (long.gt(globalThis.Number.MAX_SAFE_INTEGER)) {
+    throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
+  }
+  return long.toNumber();
+}
+
+if (_m0.util.Long !== Long) {
+  _m0.util.Long = Long as any;
+  _m0.configure();
+}
 
 function isSet(value: any): boolean {
   return value !== null && value !== undefined;

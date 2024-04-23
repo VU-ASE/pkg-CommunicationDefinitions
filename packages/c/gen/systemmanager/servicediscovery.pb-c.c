@@ -743,7 +743,7 @@ const ProtobufCMessageDescriptor protobuf_msgs__service_dependency__descriptor =
   (ProtobufCMessageInit) protobuf_msgs__service_dependency__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor protobuf_msgs__service__field_descriptors[5] =
+static const ProtobufCFieldDescriptor protobuf_msgs__service__field_descriptors[6] =
 {
   {
     "identifier",
@@ -805,18 +805,31 @@ static const ProtobufCFieldDescriptor protobuf_msgs__service__field_descriptors[
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "registeredAt",
+    6,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_INT64,
+    0,   /* quantifier_offset */
+    offsetof(ProtobufMsgs__Service, registeredat),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned protobuf_msgs__service__field_indices_by_name[] = {
   3,   /* field[3] = dependencies */
   1,   /* field[1] = endpoints */
   0,   /* field[0] = identifier */
   2,   /* field[2] = options */
+  5,   /* field[5] = registeredAt */
   4,   /* field[4] = status */
 };
 static const ProtobufCIntRange protobuf_msgs__service__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 0, 5 }
+  { 0, 6 }
 };
 const ProtobufCMessageDescriptor protobuf_msgs__service__descriptor =
 {
@@ -826,7 +839,7 @@ const ProtobufCMessageDescriptor protobuf_msgs__service__descriptor =
   "ProtobufMsgs__Service",
   "protobuf_msgs",
   sizeof(ProtobufMsgs__Service),
-  5,
+  6,
   protobuf_msgs__service__field_descriptors,
   protobuf_msgs__service__field_indices_by_name,
   1,  protobuf_msgs__service__number_ranges,

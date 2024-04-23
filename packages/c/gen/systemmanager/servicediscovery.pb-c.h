@@ -156,10 +156,11 @@ struct  _ProtobufMsgs__Service
   size_t n_dependencies;
   ProtobufMsgs__ServiceDependency **dependencies;
   ProtobufMsgs__ServiceStatus status;
+  int64_t registeredat;
 };
 #define PROTOBUF_MSGS__SERVICE__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&protobuf_msgs__service__descriptor) \
-    , NULL, 0,NULL, 0,NULL, 0,NULL, PROTOBUF_MSGS__SERVICE_STATUS__UNKNOWN }
+    , NULL, 0,NULL, 0,NULL, 0,NULL, PROTOBUF_MSGS__SERVICE_STATUS__UNKNOWN, 0 }
 
 
 /*
