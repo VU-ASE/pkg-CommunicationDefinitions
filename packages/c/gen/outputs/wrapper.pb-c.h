@@ -20,6 +20,7 @@ PROTOBUF_C__BEGIN_DECLS
 #include "outputs/controller.pb-c.h"
 #include "outputs/imu.pb-c.h"
 #include "outputs/battery.pb-c.h"
+#include "outputs/rpm.pb-c.h"
 
 typedef struct _ProtobufMsgs__SensorOutput ProtobufMsgs__SensorOutput;
 
@@ -36,7 +37,8 @@ typedef enum {
   PROTOBUF_MSGS__SENSOR_OUTPUT__SENSOR_OUTPUT_SPEED_OUTPUT = 6,
   PROTOBUF_MSGS__SENSOR_OUTPUT__SENSOR_OUTPUT_CONTROLLER_OUTPUT = 7,
   PROTOBUF_MSGS__SENSOR_OUTPUT__SENSOR_OUTPUT_IMU_OUPUT = 8,
-  PROTOBUF_MSGS__SENSOR_OUTPUT__SENSOR_OUTPUT_BATTERY_OUTPUT = 9
+  PROTOBUF_MSGS__SENSOR_OUTPUT__SENSOR_OUTPUT_BATTERY_OUTPUT = 9,
+  PROTOBUF_MSGS__SENSOR_OUTPUT__SENSOR_OUTPUT_RPM_OUPUT = 10
     PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(PROTOBUF_MSGS__SENSOR_OUTPUT__SENSOR_OUTPUT)
 } ProtobufMsgs__SensorOutput__SensorOutputCase;
 
@@ -64,6 +66,7 @@ struct  _ProtobufMsgs__SensorOutput
     ProtobufMsgs__ControllerOutput *controlleroutput;
     ProtobufMsgs__ImuOutput *imuouput;
     ProtobufMsgs__BatterySensorOutput *batteryoutput;
+    ProtobufMsgs__RpmOutput *rpmouput;
   };
 };
 #define PROTOBUF_MSGS__SENSOR_OUTPUT__INIT \
