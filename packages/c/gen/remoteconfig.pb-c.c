@@ -256,7 +256,7 @@ const ProtobufCEnumDescriptor protobuf_msgs__config_message__control_request_typ
   protobuf_msgs__config_message__control_request_type__value_ranges,
   NULL,NULL,NULL,NULL   /* reserved[1234] */
 };
-static const ProtobufCFieldDescriptor protobuf_msgs__config_message__field_descriptors[4] =
+static const ProtobufCFieldDescriptor protobuf_msgs__config_message__field_descriptors[5] =
 {
   {
     "humanControlRequest",
@@ -268,6 +268,18 @@ static const ProtobufCFieldDescriptor protobuf_msgs__config_message__field_descr
     &protobuf_msgs__config_message__human_control_request__descriptor,
     NULL,
     0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "timestamp",
+    2,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_INT64,
+    0,   /* quantifier_offset */
+    offsetof(ProtobufMsgs__ConfigMessage, timestamp),
+    NULL,
+    NULL,
+    0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
@@ -308,17 +320,17 @@ static const ProtobufCFieldDescriptor protobuf_msgs__config_message__field_descr
   },
 };
 static const unsigned protobuf_msgs__config_message__field_indices_by_name[] = {
-  2,   /* field[2] = carState */
-  3,   /* field[3] = error */
+  3,   /* field[3] = carState */
+  4,   /* field[4] = error */
   0,   /* field[0] = humanControlRequest */
-  1,   /* field[1] = humanControlState */
+  2,   /* field[2] = humanControlState */
+  1,   /* field[1] = timestamp */
 };
-static const ProtobufCIntRange protobuf_msgs__config_message__number_ranges[3 + 1] =
+static const ProtobufCIntRange protobuf_msgs__config_message__number_ranges[2 + 1] =
 {
   { 1, 0 },
-  { 3, 1 },
-  { 6, 2 },
-  { 0, 4 }
+  { 6, 3 },
+  { 0, 5 }
 };
 const ProtobufCMessageDescriptor protobuf_msgs__config_message__descriptor =
 {
@@ -328,10 +340,10 @@ const ProtobufCMessageDescriptor protobuf_msgs__config_message__descriptor =
   "ProtobufMsgs__ConfigMessage",
   "protobuf_msgs",
   sizeof(ProtobufMsgs__ConfigMessage),
-  4,
+  5,
   protobuf_msgs__config_message__field_descriptors,
   protobuf_msgs__config_message__field_indices_by_name,
-  3,  protobuf_msgs__config_message__number_ranges,
+  2,  protobuf_msgs__config_message__number_ranges,
   (ProtobufCMessageInit) protobuf_msgs__config_message__init,
   NULL,NULL,NULL    /* reserved[123] */
 };

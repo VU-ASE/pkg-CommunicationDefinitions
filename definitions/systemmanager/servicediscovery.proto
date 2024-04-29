@@ -63,6 +63,7 @@ message Service {
     repeated ServiceOption options = 3;
     repeated ServiceDependency dependencies = 4;
     ServiceStatus status = 5;
+    int64 registeredAt = 6;
 }
 
 // When a service requests information about other services, it sends an InformationRequest message

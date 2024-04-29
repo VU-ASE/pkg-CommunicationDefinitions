@@ -96,6 +96,7 @@ typedef enum {
 struct  _ProtobufMsgs__ConfigMessage
 {
   ProtobufCMessage base;
+  int64_t timestamp;
   ProtobufMsgs__ConfigMessage__ActionCase action_case;
   union {
     ProtobufMsgs__ConfigMessage__HumanControlRequest *humancontrolrequest;
@@ -106,7 +107,7 @@ struct  _ProtobufMsgs__ConfigMessage
 };
 #define PROTOBUF_MSGS__CONFIG_MESSAGE__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&protobuf_msgs__config_message__descriptor) \
-    , PROTOBUF_MSGS__CONFIG_MESSAGE__ACTION__NOT_SET, {0} }
+    , 0, PROTOBUF_MSGS__CONFIG_MESSAGE__ACTION__NOT_SET, {0} }
 
 
 /* ProtobufMsgs__ConfigMessage__HumanControlRequest methods */

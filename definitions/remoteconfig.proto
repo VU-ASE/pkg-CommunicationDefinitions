@@ -36,4 +36,5 @@ message ConfigMessage {
         CarState carState = 6;
         Error error = 7;
     }
+    int64 timestamp = 2;
 }

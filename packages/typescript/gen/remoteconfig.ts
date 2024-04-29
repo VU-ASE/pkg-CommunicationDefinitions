@@ -1,4 +1,5 @@
 /* eslint-disable */
+import Long from "long";
 import _m0 from "protobufjs/minimal";
 
 export const protobufPackage = "protobuf_msgs";
@@ -9,6 +10,7 @@ export interface ConfigMessage {
   humanControlState?: ConfigMessage_HumanControlState | undefined;
   carState?: ConfigMessage_CarState | undefined;
   error?: ConfigMessage_Error | undefined;
+  timestamp: number;
 }
 
 export enum ConfigMessage_ControlRequestType {
@@ -64,7 +66,13 @@ export interface ConfigMessage_Error {
 }
 
 function createBaseConfigMessage(): ConfigMessage {
-  return { humanControlRequest: undefined, humanControlState: undefined, carState: undefined, error: undefined };
+  return {
+    humanControlRequest: undefined,
+    humanControlState: undefined,
+    carState: undefined,
+    error: undefined,
+    timestamp: 0,
+  };
 }
 
 export const ConfigMessage = {
@@ -80,6 +88,9 @@ export const ConfigMessage = {
     }
     if (message.error !== undefined) {
       ConfigMessage_Error.encode(message.error, writer.uint32(58).fork()).ldelim();
+    }
+    if (message.timestamp !== 0) {
+      writer.uint32(16).int64(message.timestamp);
     }
     return writer;
   },
@@ -119,6 +130,13 @@ export const ConfigMessage = {
 
           message.error = ConfigMessage_Error.decode(reader, reader.uint32());
           continue;
+        case 2:
+          if (tag !== 16) {
+            break;
+          }
+
+          message.timestamp = longToNumber(reader.int64() as Long);
+          continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -138,6 +156,7 @@ export const ConfigMessage = {
         : undefined,
       carState: isSet(object.carState) ? ConfigMessage_CarState.fromJSON(object.carState) : undefined,
       error: isSet(object.error) ? ConfigMessage_Error.fromJSON(object.error) : undefined,
+      timestamp: isSet(object.timestamp) ? globalThis.Number(object.timestamp) : 0,
     };
   },
 
@@ -154,6 +173,9 @@ export const ConfigMessage = {
     }
     if (message.error !== undefined) {
       obj.error = ConfigMessage_Error.toJSON(message.error);
+    }
+    if (message.timestamp !== 0) {
+      obj.timestamp = Math.round(message.timestamp);
     }
     return obj;
   },
@@ -175,6 +197,7 @@ export const ConfigMessage = {
     message.error = (object.error !== undefined && object.error !== null)
       ? ConfigMessage_Error.fromPartial(object.error)
       : undefined;
+    message.timestamp = object.timestamp ?? 0;
     return message;
   },
 };
@@ -424,6 +447,18 @@ export type DeepPartial<T> = T extends Builtin ? T
 type KeysOfUnion<T> = T extends T ? keyof T : never;
 export type Exact<P, I extends P> = P extends Builtin ? P
   : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
+
+function longToNumber(long: Long): number {
+  if (long.gt(globalThis.Number.MAX_SAFE_INTEGER)) {
+    throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
+  }
+  return long.toNumber();
+}
+
+if (_m0.util.Long !== Long) {
+  _m0.util.Long = Long as any;
+  _m0.configure();
+}
 
 function isSet(value: any): boolean {
   return value !== null && value !== undefined;
