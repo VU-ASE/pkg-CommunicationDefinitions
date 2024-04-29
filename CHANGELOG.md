@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.19.0](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v2.18.0...v2.19.0) (2024-04-29)
+
+
+### Features
+
+* Add support for lux meter ([82ae4b6](https://github.com/VU-ASE/pkg-CommunicationDefinitions/commit/82ae4b692f45d65d021e126f87981d03d68ba305))
+
 ## [2.18.0](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v2.17.0...v2.18.0) (2024-04-29)
 
 
