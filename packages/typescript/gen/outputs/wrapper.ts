@@ -6,6 +6,7 @@ import { CameraSensorOutput } from "./camera";
 import { ControllerOutput } from "./controller";
 import { DistanceSensorOutput } from "./distance";
 import { ImuOutput } from "./imu";
+import { LuxOutput } from "./lux";
 import { RpmOutput } from "./rpm";
 import { SpeedSensorOutput } from "./speed";
 
@@ -28,6 +29,7 @@ export interface SensorOutput {
   imuOuput?: ImuOutput | undefined;
   batteryOutput?: BatterySensorOutput | undefined;
   rpmOuput?: RpmOutput | undefined;
+  luxOutput?: LuxOutput | undefined;
 }
 
 function createBaseSensorOutput(): SensorOutput {
@@ -42,6 +44,7 @@ function createBaseSensorOutput(): SensorOutput {
     imuOuput: undefined,
     batteryOutput: undefined,
     rpmOuput: undefined,
+    luxOutput: undefined,
   };
 }
 
@@ -76,6 +79,9 @@ export const SensorOutput = {
     }
     if (message.rpmOuput !== undefined) {
       RpmOutput.encode(message.rpmOuput, writer.uint32(82).fork()).ldelim();
+    }
+    if (message.luxOutput !== undefined) {
+      LuxOutput.encode(message.luxOutput, writer.uint32(90).fork()).ldelim();
     }
     return writer;
   },
@@ -157,6 +163,13 @@ export const SensorOutput = {
 
           message.rpmOuput = RpmOutput.decode(reader, reader.uint32());
           continue;
+        case 11:
+          if (tag !== 90) {
+            break;
+          }
+
+          message.luxOutput = LuxOutput.decode(reader, reader.uint32());
+          continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -178,6 +191,7 @@ export const SensorOutput = {
       imuOuput: isSet(object.imuOuput) ? ImuOutput.fromJSON(object.imuOuput) : undefined,
       batteryOutput: isSet(object.batteryOutput) ? BatterySensorOutput.fromJSON(object.batteryOutput) : undefined,
       rpmOuput: isSet(object.rpmOuput) ? RpmOutput.fromJSON(object.rpmOuput) : undefined,
+      luxOutput: isSet(object.luxOutput) ? LuxOutput.fromJSON(object.luxOutput) : undefined,
     };
   },
 
@@ -213,6 +227,9 @@ export const SensorOutput = {
     if (message.rpmOuput !== undefined) {
       obj.rpmOuput = RpmOutput.toJSON(message.rpmOuput);
     }
+    if (message.luxOutput !== undefined) {
+      obj.luxOutput = LuxOutput.toJSON(message.luxOutput);
+    }
     return obj;
   },
 
@@ -244,6 +261,9 @@ export const SensorOutput = {
       : undefined;
     message.rpmOuput = (object.rpmOuput !== undefined && object.rpmOuput !== null)
       ? RpmOutput.fromPartial(object.rpmOuput)
+      : undefined;
+    message.luxOutput = (object.luxOutput !== undefined && object.luxOutput !== null)
+      ? LuxOutput.fromPartial(object.luxOutput)
       : undefined;
     return message;
   },

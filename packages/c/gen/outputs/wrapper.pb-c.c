@@ -52,7 +52,7 @@ void   protobuf_msgs__sensor_output__free_unpacked
   assert(message->base.descriptor == &protobuf_msgs__sensor_output__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-static const ProtobufCFieldDescriptor protobuf_msgs__sensor_output__field_descriptors[10] =
+static const ProtobufCFieldDescriptor protobuf_msgs__sensor_output__field_descriptors[11] =
 {
   {
     "sensorId",
@@ -174,6 +174,18 @@ static const ProtobufCFieldDescriptor protobuf_msgs__sensor_output__field_descri
     0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "luxOutput",
+    11,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_MESSAGE,
+    offsetof(ProtobufMsgs__SensorOutput, sensor_output_case),
+    offsetof(ProtobufMsgs__SensorOutput, luxoutput),
+    &protobuf_msgs__lux_output__descriptor,
+    NULL,
+    0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned protobuf_msgs__sensor_output__field_indices_by_name[] = {
   8,   /* field[8] = batteryOutput */
@@ -181,6 +193,7 @@ static const unsigned protobuf_msgs__sensor_output__field_indices_by_name[] = {
   6,   /* field[6] = controllerOutput */
   4,   /* field[4] = distanceOutput */
   7,   /* field[7] = imuOuput */
+  10,   /* field[10] = luxOutput */
   9,   /* field[9] = rpmOuput */
   0,   /* field[0] = sensorId */
   5,   /* field[5] = speedOutput */
@@ -190,7 +203,7 @@ static const unsigned protobuf_msgs__sensor_output__field_indices_by_name[] = {
 static const ProtobufCIntRange protobuf_msgs__sensor_output__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 0, 10 }
+  { 0, 11 }
 };
 const ProtobufCMessageDescriptor protobuf_msgs__sensor_output__descriptor =
 {
@@ -200,7 +213,7 @@ const ProtobufCMessageDescriptor protobuf_msgs__sensor_output__descriptor =
   "ProtobufMsgs__SensorOutput",
   "protobuf_msgs",
   sizeof(ProtobufMsgs__SensorOutput),
-  10,
+  11,
   protobuf_msgs__sensor_output__field_descriptors,
   protobuf_msgs__sensor_output__field_indices_by_name,
   1,  protobuf_msgs__sensor_output__number_ranges,

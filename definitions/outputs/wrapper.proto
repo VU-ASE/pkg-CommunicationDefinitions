@@ -11,6 +11,7 @@ import "outputs/controller.proto";
 import "outputs/imu.proto";
 import "outputs/battery.proto";
 import "outputs/rpm.proto";
+import "outputs/lux.proto";
 
 //
 // This file containes the wrapper SensorOutput message, that holds one of the sensor/controller output messages
@@ -37,6 +38,7 @@ message SensorOutput {
         ImuOutput imuOuput = 8;
         BatterySensorOutput batteryOutput = 9;
         RpmOutput rpmOuput = 10;
+        LuxOutput luxOutput = 11;
     }
 }
 
