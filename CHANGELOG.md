@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.19.1](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v2.19.0...v2.19.1) (2024-04-30)
+
+
+### Bug Fixes
+
+* imu and rpm outputs typo fix ([3a4cfeb](https://github.com/VU-ASE/pkg-CommunicationDefinitions/commit/3a4cfeb36c55ab5b984b12502dc3c074e1776e49))
+* typo and merge ([8ec1517](https://github.com/VU-ASE/pkg-CommunicationDefinitions/commit/8ec1517f8daa2ad209d7a7294c0abca0d246e436))
+
 ## [2.19.0](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v2.18.0...v2.19.0) (2024-04-29)
 
 
