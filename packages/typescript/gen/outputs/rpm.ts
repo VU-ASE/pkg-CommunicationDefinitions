@@ -3,19 +3,19 @@ import _m0 from "protobufjs/minimal";
 
 export const protobufPackage = "protobuf_msgs";
 
-export interface RpmOutput {
+export interface RpmSensorOutput {
   leftRpm: number;
   leftAngle: number;
   rightRpm: number;
   rightAngle: number;
 }
 
-function createBaseRpmOutput(): RpmOutput {
+function createBaseRpmSensorOutput(): RpmSensorOutput {
   return { leftRpm: 0, leftAngle: 0, rightRpm: 0, rightAngle: 0 };
 }
 
-export const RpmOutput = {
-  encode(message: RpmOutput, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export const RpmSensorOutput = {
+  encode(message: RpmSensorOutput, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.leftRpm !== 0) {
       writer.uint32(13).float(message.leftRpm);
     }
@@ -31,10 +31,10 @@ export const RpmOutput = {
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): RpmOutput {
+  decode(input: _m0.Reader | Uint8Array, length?: number): RpmSensorOutput {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseRpmOutput();
+    const message = createBaseRpmSensorOutput();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -75,7 +75,7 @@ export const RpmOutput = {
     return message;
   },
 
-  fromJSON(object: any): RpmOutput {
+  fromJSON(object: any): RpmSensorOutput {
     return {
       leftRpm: isSet(object.leftRpm) ? globalThis.Number(object.leftRpm) : 0,
       leftAngle: isSet(object.leftAngle) ? globalThis.Number(object.leftAngle) : 0,
@@ -84,7 +84,7 @@ export const RpmOutput = {
     };
   },
 
-  toJSON(message: RpmOutput): unknown {
+  toJSON(message: RpmSensorOutput): unknown {
     const obj: any = {};
     if (message.leftRpm !== 0) {
       obj.leftRpm = message.leftRpm;
@@ -101,11 +101,11 @@ export const RpmOutput = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<RpmOutput>, I>>(base?: I): RpmOutput {
-    return RpmOutput.fromPartial(base ?? ({} as any));
+  create<I extends Exact<DeepPartial<RpmSensorOutput>, I>>(base?: I): RpmSensorOutput {
+    return RpmSensorOutput.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<RpmOutput>, I>>(object: I): RpmOutput {
-    const message = createBaseRpmOutput();
+  fromPartial<I extends Exact<DeepPartial<RpmSensorOutput>, I>>(object: I): RpmSensorOutput {
+    const message = createBaseRpmSensorOutput();
     message.leftRpm = object.leftRpm ?? 0;
     message.leftAngle = object.leftAngle ?? 0;
     message.rightRpm = object.rightRpm ?? 0;

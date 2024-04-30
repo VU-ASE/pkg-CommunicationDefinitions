@@ -15,7 +15,7 @@ PROTOBUF_C__BEGIN_DECLS
 #endif
 
 
-typedef struct _ProtobufMsgs__RpmOutput ProtobufMsgs__RpmOutput;
+typedef struct _ProtobufMsgs__RpmSensorOutput ProtobufMsgs__RpmSensorOutput;
 
 
 /* --- enums --- */
@@ -23,7 +23,7 @@ typedef struct _ProtobufMsgs__RpmOutput ProtobufMsgs__RpmOutput;
 
 /* --- messages --- */
 
-struct  _ProtobufMsgs__RpmOutput
+struct  _ProtobufMsgs__RpmSensorOutput
 {
   ProtobufCMessage base;
   float leftrpm;
@@ -31,34 +31,34 @@ struct  _ProtobufMsgs__RpmOutput
   float rightrpm;
   float rightangle;
 };
-#define PROTOBUF_MSGS__RPM_OUTPUT__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&protobuf_msgs__rpm_output__descriptor) \
+#define PROTOBUF_MSGS__RPM_SENSOR_OUTPUT__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&protobuf_msgs__rpm_sensor_output__descriptor) \
     , 0, 0, 0, 0 }
 
 
-/* ProtobufMsgs__RpmOutput methods */
-void   protobuf_msgs__rpm_output__init
-                     (ProtobufMsgs__RpmOutput         *message);
-size_t protobuf_msgs__rpm_output__get_packed_size
-                     (const ProtobufMsgs__RpmOutput   *message);
-size_t protobuf_msgs__rpm_output__pack
-                     (const ProtobufMsgs__RpmOutput   *message,
+/* ProtobufMsgs__RpmSensorOutput methods */
+void   protobuf_msgs__rpm_sensor_output__init
+                     (ProtobufMsgs__RpmSensorOutput         *message);
+size_t protobuf_msgs__rpm_sensor_output__get_packed_size
+                     (const ProtobufMsgs__RpmSensorOutput   *message);
+size_t protobuf_msgs__rpm_sensor_output__pack
+                     (const ProtobufMsgs__RpmSensorOutput   *message,
                       uint8_t             *out);
-size_t protobuf_msgs__rpm_output__pack_to_buffer
-                     (const ProtobufMsgs__RpmOutput   *message,
+size_t protobuf_msgs__rpm_sensor_output__pack_to_buffer
+                     (const ProtobufMsgs__RpmSensorOutput   *message,
                       ProtobufCBuffer     *buffer);
-ProtobufMsgs__RpmOutput *
-       protobuf_msgs__rpm_output__unpack
+ProtobufMsgs__RpmSensorOutput *
+       protobuf_msgs__rpm_sensor_output__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data);
-void   protobuf_msgs__rpm_output__free_unpacked
-                     (ProtobufMsgs__RpmOutput *message,
+void   protobuf_msgs__rpm_sensor_output__free_unpacked
+                     (ProtobufMsgs__RpmSensorOutput *message,
                       ProtobufCAllocator *allocator);
 /* --- per-message closures --- */
 
-typedef void (*ProtobufMsgs__RpmOutput_Closure)
-                 (const ProtobufMsgs__RpmOutput *message,
+typedef void (*ProtobufMsgs__RpmSensorOutput_Closure)
+                 (const ProtobufMsgs__RpmSensorOutput *message,
                   void *closure_data);
 
 /* --- services --- */
@@ -66,7 +66,7 @@ typedef void (*ProtobufMsgs__RpmOutput_Closure)
 
 /* --- descriptors --- */
 
-extern const ProtobufCMessageDescriptor protobuf_msgs__rpm_output__descriptor;
+extern const ProtobufCMessageDescriptor protobuf_msgs__rpm_sensor_output__descriptor;
 
 PROTOBUF_C__END_DECLS
 

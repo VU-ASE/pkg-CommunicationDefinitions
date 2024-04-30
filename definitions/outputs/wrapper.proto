@@ -34,9 +34,9 @@ message SensorOutput {
         DistanceSensorOutput distanceOutput = 5;
         SpeedSensorOutput speedOutput = 6;
         ControllerOutput controllerOutput = 7;
-        ImuOutput imuOuput = 8;
+        ImuSensorOutput imuOutput = 8;
         BatterySensorOutput batteryOutput = 9;
-        RpmOutput rpmOuput = 10;
+        RpmSensorOutput rpmOutput = 10;
     }
 }
 

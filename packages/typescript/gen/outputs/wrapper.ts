@@ -5,8 +5,8 @@ import { BatterySensorOutput } from "./battery";
 import { CameraSensorOutput } from "./camera";
 import { ControllerOutput } from "./controller";
 import { DistanceSensorOutput } from "./distance";
-import { ImuOutput } from "./imu";
-import { RpmOutput } from "./rpm";
+import { ImuSensorOutput } from "./imu";
+import { RpmSensorOutput } from "./rpm";
 import { SpeedSensorOutput } from "./speed";
 
 export const protobufPackage = "protobuf_msgs";
@@ -25,9 +25,9 @@ export interface SensorOutput {
   distanceOutput?: DistanceSensorOutput | undefined;
   speedOutput?: SpeedSensorOutput | undefined;
   controllerOutput?: ControllerOutput | undefined;
-  imuOuput?: ImuOutput | undefined;
+  imuOutput?: ImuSensorOutput | undefined;
   batteryOutput?: BatterySensorOutput | undefined;
-  rpmOuput?: RpmOutput | undefined;
+  rpmOutput?: RpmSensorOutput | undefined;
 }
 
 function createBaseSensorOutput(): SensorOutput {
@@ -39,9 +39,9 @@ function createBaseSensorOutput(): SensorOutput {
     distanceOutput: undefined,
     speedOutput: undefined,
     controllerOutput: undefined,
-    imuOuput: undefined,
+    imuOutput: undefined,
     batteryOutput: undefined,
-    rpmOuput: undefined,
+    rpmOutput: undefined,
   };
 }
 
@@ -68,14 +68,14 @@ export const SensorOutput = {
     if (message.controllerOutput !== undefined) {
       ControllerOutput.encode(message.controllerOutput, writer.uint32(58).fork()).ldelim();
     }
-    if (message.imuOuput !== undefined) {
-      ImuOutput.encode(message.imuOuput, writer.uint32(66).fork()).ldelim();
+    if (message.imuOutput !== undefined) {
+      ImuSensorOutput.encode(message.imuOutput, writer.uint32(66).fork()).ldelim();
     }
     if (message.batteryOutput !== undefined) {
       BatterySensorOutput.encode(message.batteryOutput, writer.uint32(74).fork()).ldelim();
     }
-    if (message.rpmOuput !== undefined) {
-      RpmOutput.encode(message.rpmOuput, writer.uint32(82).fork()).ldelim();
+    if (message.rpmOutput !== undefined) {
+      RpmSensorOutput.encode(message.rpmOutput, writer.uint32(82).fork()).ldelim();
     }
     return writer;
   },
@@ -141,7 +141,7 @@ export const SensorOutput = {
             break;
           }
 
-          message.imuOuput = ImuOutput.decode(reader, reader.uint32());
+          message.imuOutput = ImuSensorOutput.decode(reader, reader.uint32());
           continue;
         case 9:
           if (tag !== 74) {
@@ -155,7 +155,7 @@ export const SensorOutput = {
             break;
           }
 
-          message.rpmOuput = RpmOutput.decode(reader, reader.uint32());
+          message.rpmOutput = RpmSensorOutput.decode(reader, reader.uint32());
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -175,9 +175,9 @@ export const SensorOutput = {
       distanceOutput: isSet(object.distanceOutput) ? DistanceSensorOutput.fromJSON(object.distanceOutput) : undefined,
       speedOutput: isSet(object.speedOutput) ? SpeedSensorOutput.fromJSON(object.speedOutput) : undefined,
       controllerOutput: isSet(object.controllerOutput) ? ControllerOutput.fromJSON(object.controllerOutput) : undefined,
-      imuOuput: isSet(object.imuOuput) ? ImuOutput.fromJSON(object.imuOuput) : undefined,
+      imuOutput: isSet(object.imuOutput) ? ImuSensorOutput.fromJSON(object.imuOutput) : undefined,
       batteryOutput: isSet(object.batteryOutput) ? BatterySensorOutput.fromJSON(object.batteryOutput) : undefined,
-      rpmOuput: isSet(object.rpmOuput) ? RpmOutput.fromJSON(object.rpmOuput) : undefined,
+      rpmOutput: isSet(object.rpmOutput) ? RpmSensorOutput.fromJSON(object.rpmOutput) : undefined,
     };
   },
 
@@ -204,14 +204,14 @@ export const SensorOutput = {
     if (message.controllerOutput !== undefined) {
       obj.controllerOutput = ControllerOutput.toJSON(message.controllerOutput);
     }
-    if (message.imuOuput !== undefined) {
-      obj.imuOuput = ImuOutput.toJSON(message.imuOuput);
+    if (message.imuOutput !== undefined) {
+      obj.imuOutput = ImuSensorOutput.toJSON(message.imuOutput);
     }
     if (message.batteryOutput !== undefined) {
       obj.batteryOutput = BatterySensorOutput.toJSON(message.batteryOutput);
     }
-    if (message.rpmOuput !== undefined) {
-      obj.rpmOuput = RpmOutput.toJSON(message.rpmOuput);
+    if (message.rpmOutput !== undefined) {
+      obj.rpmOutput = RpmSensorOutput.toJSON(message.rpmOutput);
     }
     return obj;
   },
@@ -236,14 +236,14 @@ export const SensorOutput = {
     message.controllerOutput = (object.controllerOutput !== undefined && object.controllerOutput !== null)
       ? ControllerOutput.fromPartial(object.controllerOutput)
       : undefined;
-    message.imuOuput = (object.imuOuput !== undefined && object.imuOuput !== null)
-      ? ImuOutput.fromPartial(object.imuOuput)
+    message.imuOutput = (object.imuOutput !== undefined && object.imuOutput !== null)
+      ? ImuSensorOutput.fromPartial(object.imuOutput)
       : undefined;
     message.batteryOutput = (object.batteryOutput !== undefined && object.batteryOutput !== null)
       ? BatterySensorOutput.fromPartial(object.batteryOutput)
       : undefined;
-    message.rpmOuput = (object.rpmOuput !== undefined && object.rpmOuput !== null)
-      ? RpmOutput.fromPartial(object.rpmOuput)
+    message.rpmOutput = (object.rpmOutput !== undefined && object.rpmOutput !== null)
+      ? RpmSensorOutput.fromPartial(object.rpmOutput)
       : undefined;
     return message;
   },

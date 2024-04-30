@@ -7,58 +7,58 @@
 #endif
 
 #include "outputs/imu.pb-c.h"
-void   protobuf_msgs__imu_output__vector__init
-                     (ProtobufMsgs__ImuOutput__Vector         *message)
+void   protobuf_msgs__imu_sensor_output__vector__init
+                     (ProtobufMsgs__ImuSensorOutput__Vector         *message)
 {
-  static const ProtobufMsgs__ImuOutput__Vector init_value = PROTOBUF_MSGS__IMU_OUTPUT__VECTOR__INIT;
+  static const ProtobufMsgs__ImuSensorOutput__Vector init_value = PROTOBUF_MSGS__IMU_SENSOR_OUTPUT__VECTOR__INIT;
   *message = init_value;
 }
-void   protobuf_msgs__imu_output__init
-                     (ProtobufMsgs__ImuOutput         *message)
+void   protobuf_msgs__imu_sensor_output__init
+                     (ProtobufMsgs__ImuSensorOutput         *message)
 {
-  static const ProtobufMsgs__ImuOutput init_value = PROTOBUF_MSGS__IMU_OUTPUT__INIT;
+  static const ProtobufMsgs__ImuSensorOutput init_value = PROTOBUF_MSGS__IMU_SENSOR_OUTPUT__INIT;
   *message = init_value;
 }
-size_t protobuf_msgs__imu_output__get_packed_size
-                     (const ProtobufMsgs__ImuOutput *message)
+size_t protobuf_msgs__imu_sensor_output__get_packed_size
+                     (const ProtobufMsgs__ImuSensorOutput *message)
 {
-  assert(message->base.descriptor == &protobuf_msgs__imu_output__descriptor);
+  assert(message->base.descriptor == &protobuf_msgs__imu_sensor_output__descriptor);
   return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
 }
-size_t protobuf_msgs__imu_output__pack
-                     (const ProtobufMsgs__ImuOutput *message,
+size_t protobuf_msgs__imu_sensor_output__pack
+                     (const ProtobufMsgs__ImuSensorOutput *message,
                       uint8_t       *out)
 {
-  assert(message->base.descriptor == &protobuf_msgs__imu_output__descriptor);
+  assert(message->base.descriptor == &protobuf_msgs__imu_sensor_output__descriptor);
   return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
 }
-size_t protobuf_msgs__imu_output__pack_to_buffer
-                     (const ProtobufMsgs__ImuOutput *message,
+size_t protobuf_msgs__imu_sensor_output__pack_to_buffer
+                     (const ProtobufMsgs__ImuSensorOutput *message,
                       ProtobufCBuffer *buffer)
 {
-  assert(message->base.descriptor == &protobuf_msgs__imu_output__descriptor);
+  assert(message->base.descriptor == &protobuf_msgs__imu_sensor_output__descriptor);
   return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
 }
-ProtobufMsgs__ImuOutput *
-       protobuf_msgs__imu_output__unpack
+ProtobufMsgs__ImuSensorOutput *
+       protobuf_msgs__imu_sensor_output__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data)
 {
-  return (ProtobufMsgs__ImuOutput *)
-     protobuf_c_message_unpack (&protobuf_msgs__imu_output__descriptor,
+  return (ProtobufMsgs__ImuSensorOutput *)
+     protobuf_c_message_unpack (&protobuf_msgs__imu_sensor_output__descriptor,
                                 allocator, len, data);
 }
-void   protobuf_msgs__imu_output__free_unpacked
-                     (ProtobufMsgs__ImuOutput *message,
+void   protobuf_msgs__imu_sensor_output__free_unpacked
+                     (ProtobufMsgs__ImuSensorOutput *message,
                       ProtobufCAllocator *allocator)
 {
   if(!message)
     return;
-  assert(message->base.descriptor == &protobuf_msgs__imu_output__descriptor);
+  assert(message->base.descriptor == &protobuf_msgs__imu_sensor_output__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-static const ProtobufCFieldDescriptor protobuf_msgs__imu_output__vector__field_descriptors[3] =
+static const ProtobufCFieldDescriptor protobuf_msgs__imu_sensor_output__vector__field_descriptors[3] =
 {
   {
     "x",
@@ -66,7 +66,7 @@ static const ProtobufCFieldDescriptor protobuf_msgs__imu_output__vector__field_d
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_FLOAT,
     0,   /* quantifier_offset */
-    offsetof(ProtobufMsgs__ImuOutput__Vector, x),
+    offsetof(ProtobufMsgs__ImuSensorOutput__Vector, x),
     NULL,
     NULL,
     0,             /* flags */
@@ -78,7 +78,7 @@ static const ProtobufCFieldDescriptor protobuf_msgs__imu_output__vector__field_d
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_FLOAT,
     0,   /* quantifier_offset */
-    offsetof(ProtobufMsgs__ImuOutput__Vector, y),
+    offsetof(ProtobufMsgs__ImuSensorOutput__Vector, y),
     NULL,
     NULL,
     0,             /* flags */
@@ -90,39 +90,39 @@ static const ProtobufCFieldDescriptor protobuf_msgs__imu_output__vector__field_d
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_FLOAT,
     0,   /* quantifier_offset */
-    offsetof(ProtobufMsgs__ImuOutput__Vector, z),
+    offsetof(ProtobufMsgs__ImuSensorOutput__Vector, z),
     NULL,
     NULL,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
 };
-static const unsigned protobuf_msgs__imu_output__vector__field_indices_by_name[] = {
+static const unsigned protobuf_msgs__imu_sensor_output__vector__field_indices_by_name[] = {
   0,   /* field[0] = x */
   1,   /* field[1] = y */
   2,   /* field[2] = z */
 };
-static const ProtobufCIntRange protobuf_msgs__imu_output__vector__number_ranges[1 + 1] =
+static const ProtobufCIntRange protobuf_msgs__imu_sensor_output__vector__number_ranges[1 + 1] =
 {
   { 1, 0 },
   { 0, 3 }
 };
-const ProtobufCMessageDescriptor protobuf_msgs__imu_output__vector__descriptor =
+const ProtobufCMessageDescriptor protobuf_msgs__imu_sensor_output__vector__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "protobuf_msgs.ImuOutput.Vector",
+  "protobuf_msgs.ImuSensorOutput.Vector",
   "Vector",
-  "ProtobufMsgs__ImuOutput__Vector",
+  "ProtobufMsgs__ImuSensorOutput__Vector",
   "protobuf_msgs",
-  sizeof(ProtobufMsgs__ImuOutput__Vector),
+  sizeof(ProtobufMsgs__ImuSensorOutput__Vector),
   3,
-  protobuf_msgs__imu_output__vector__field_descriptors,
-  protobuf_msgs__imu_output__vector__field_indices_by_name,
-  1,  protobuf_msgs__imu_output__vector__number_ranges,
-  (ProtobufCMessageInit) protobuf_msgs__imu_output__vector__init,
+  protobuf_msgs__imu_sensor_output__vector__field_descriptors,
+  protobuf_msgs__imu_sensor_output__vector__field_indices_by_name,
+  1,  protobuf_msgs__imu_sensor_output__vector__number_ranges,
+  (ProtobufCMessageInit) protobuf_msgs__imu_sensor_output__vector__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor protobuf_msgs__imu_output__field_descriptors[6] =
+static const ProtobufCFieldDescriptor protobuf_msgs__imu_sensor_output__field_descriptors[6] =
 {
   {
     "temperature",
@@ -130,7 +130,7 @@ static const ProtobufCFieldDescriptor protobuf_msgs__imu_output__field_descripto
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_INT32,
     0,   /* quantifier_offset */
-    offsetof(ProtobufMsgs__ImuOutput, temperature),
+    offsetof(ProtobufMsgs__ImuSensorOutput, temperature),
     NULL,
     NULL,
     0,             /* flags */
@@ -142,8 +142,8 @@ static const ProtobufCFieldDescriptor protobuf_msgs__imu_output__field_descripto
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_MESSAGE,
     0,   /* quantifier_offset */
-    offsetof(ProtobufMsgs__ImuOutput, magnetometer),
-    &protobuf_msgs__imu_output__vector__descriptor,
+    offsetof(ProtobufMsgs__ImuSensorOutput, magnetometer),
+    &protobuf_msgs__imu_sensor_output__vector__descriptor,
     NULL,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
@@ -154,8 +154,8 @@ static const ProtobufCFieldDescriptor protobuf_msgs__imu_output__field_descripto
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_MESSAGE,
     0,   /* quantifier_offset */
-    offsetof(ProtobufMsgs__ImuOutput, gyroscope),
-    &protobuf_msgs__imu_output__vector__descriptor,
+    offsetof(ProtobufMsgs__ImuSensorOutput, gyroscope),
+    &protobuf_msgs__imu_sensor_output__vector__descriptor,
     NULL,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
@@ -166,8 +166,8 @@ static const ProtobufCFieldDescriptor protobuf_msgs__imu_output__field_descripto
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_MESSAGE,
     0,   /* quantifier_offset */
-    offsetof(ProtobufMsgs__ImuOutput, euler),
-    &protobuf_msgs__imu_output__vector__descriptor,
+    offsetof(ProtobufMsgs__ImuSensorOutput, euler),
+    &protobuf_msgs__imu_sensor_output__vector__descriptor,
     NULL,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
@@ -178,8 +178,8 @@ static const ProtobufCFieldDescriptor protobuf_msgs__imu_output__field_descripto
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_MESSAGE,
     0,   /* quantifier_offset */
-    offsetof(ProtobufMsgs__ImuOutput, accelerometer),
-    &protobuf_msgs__imu_output__vector__descriptor,
+    offsetof(ProtobufMsgs__ImuSensorOutput, accelerometer),
+    &protobuf_msgs__imu_sensor_output__vector__descriptor,
     NULL,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
@@ -190,14 +190,14 @@ static const ProtobufCFieldDescriptor protobuf_msgs__imu_output__field_descripto
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_MESSAGE,
     0,   /* quantifier_offset */
-    offsetof(ProtobufMsgs__ImuOutput, linearaccelerometer),
-    &protobuf_msgs__imu_output__vector__descriptor,
+    offsetof(ProtobufMsgs__ImuSensorOutput, linearaccelerometer),
+    &protobuf_msgs__imu_sensor_output__vector__descriptor,
     NULL,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
 };
-static const unsigned protobuf_msgs__imu_output__field_indices_by_name[] = {
+static const unsigned protobuf_msgs__imu_sensor_output__field_indices_by_name[] = {
   4,   /* field[4] = accelerometer */
   3,   /* field[3] = euler */
   2,   /* field[2] = gyroscope */
@@ -205,23 +205,23 @@ static const unsigned protobuf_msgs__imu_output__field_indices_by_name[] = {
   1,   /* field[1] = magnetometer */
   0,   /* field[0] = temperature */
 };
-static const ProtobufCIntRange protobuf_msgs__imu_output__number_ranges[1 + 1] =
+static const ProtobufCIntRange protobuf_msgs__imu_sensor_output__number_ranges[1 + 1] =
 {
   { 1, 0 },
   { 0, 6 }
 };
-const ProtobufCMessageDescriptor protobuf_msgs__imu_output__descriptor =
+const ProtobufCMessageDescriptor protobuf_msgs__imu_sensor_output__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "protobuf_msgs.ImuOutput",
-  "ImuOutput",
-  "ProtobufMsgs__ImuOutput",
+  "protobuf_msgs.ImuSensorOutput",
+  "ImuSensorOutput",
+  "ProtobufMsgs__ImuSensorOutput",
   "protobuf_msgs",
-  sizeof(ProtobufMsgs__ImuOutput),
+  sizeof(ProtobufMsgs__ImuSensorOutput),
   6,
-  protobuf_msgs__imu_output__field_descriptors,
-  protobuf_msgs__imu_output__field_indices_by_name,
-  1,  protobuf_msgs__imu_output__number_ranges,
-  (ProtobufCMessageInit) protobuf_msgs__imu_output__init,
+  protobuf_msgs__imu_sensor_output__field_descriptors,
+  protobuf_msgs__imu_sensor_output__field_indices_by_name,
+  1,  protobuf_msgs__imu_sensor_output__number_ranges,
+  (ProtobufCMessageInit) protobuf_msgs__imu_sensor_output__init,
   NULL,NULL,NULL    /* reserved[123] */
 };

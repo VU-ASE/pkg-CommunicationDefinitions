@@ -9,7 +9,7 @@ option go_package = "ase/pb_module_outputs";
 // is connected to the RPM sensors of the motors.
 //
 
-message RpmOutput {
+message RpmSensorOutput {
     float leftRpm = 1;
     float leftAngle = 2;
     float rightRpm = 3;

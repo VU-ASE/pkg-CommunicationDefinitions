@@ -139,13 +139,13 @@ static const ProtobufCFieldDescriptor protobuf_msgs__sensor_output__field_descri
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "imuOuput",
+    "imuOutput",
     8,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_MESSAGE,
     offsetof(ProtobufMsgs__SensorOutput, sensor_output_case),
-    offsetof(ProtobufMsgs__SensorOutput, imuouput),
-    &protobuf_msgs__imu_output__descriptor,
+    offsetof(ProtobufMsgs__SensorOutput, imuoutput),
+    &protobuf_msgs__imu_sensor_output__descriptor,
     NULL,
     0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
@@ -163,13 +163,13 @@ static const ProtobufCFieldDescriptor protobuf_msgs__sensor_output__field_descri
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "rpmOuput",
+    "rpmOutput",
     10,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_MESSAGE,
     offsetof(ProtobufMsgs__SensorOutput, sensor_output_case),
-    offsetof(ProtobufMsgs__SensorOutput, rpmouput),
-    &protobuf_msgs__rpm_output__descriptor,
+    offsetof(ProtobufMsgs__SensorOutput, rpmoutput),
+    &protobuf_msgs__rpm_sensor_output__descriptor,
     NULL,
     0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
@@ -180,8 +180,8 @@ static const unsigned protobuf_msgs__sensor_output__field_indices_by_name[] = {
   3,   /* field[3] = cameraOutput */
   6,   /* field[6] = controllerOutput */
   4,   /* field[4] = distanceOutput */
-  7,   /* field[7] = imuOuput */
-  9,   /* field[9] = rpmOuput */
+  7,   /* field[7] = imuOutput */
+  9,   /* field[9] = rpmOutput */
   0,   /* field[0] = sensorId */
   5,   /* field[5] = speedOutput */
   2,   /* field[2] = status */

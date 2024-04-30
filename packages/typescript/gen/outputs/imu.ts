@@ -3,22 +3,22 @@ import _m0 from "protobufjs/minimal";
 
 export const protobufPackage = "protobuf_msgs";
 
-export interface ImuOutput {
+export interface ImuSensorOutput {
   temperature: number;
-  magnetometer: ImuOutput_Vector | undefined;
-  gyroscope: ImuOutput_Vector | undefined;
-  euler: ImuOutput_Vector | undefined;
-  accelerometer: ImuOutput_Vector | undefined;
-  linearAccelerometer: ImuOutput_Vector | undefined;
+  magnetometer: ImuSensorOutput_Vector | undefined;
+  gyroscope: ImuSensorOutput_Vector | undefined;
+  euler: ImuSensorOutput_Vector | undefined;
+  accelerometer: ImuSensorOutput_Vector | undefined;
+  linearAccelerometer: ImuSensorOutput_Vector | undefined;
 }
 
-export interface ImuOutput_Vector {
+export interface ImuSensorOutput_Vector {
   x: number;
   y: number;
   z: number;
 }
 
-function createBaseImuOutput(): ImuOutput {
+function createBaseImuSensorOutput(): ImuSensorOutput {
   return {
     temperature: 0,
     magnetometer: undefined,
@@ -29,33 +29,33 @@ function createBaseImuOutput(): ImuOutput {
   };
 }
 
-export const ImuOutput = {
-  encode(message: ImuOutput, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export const ImuSensorOutput = {
+  encode(message: ImuSensorOutput, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.temperature !== 0) {
       writer.uint32(8).int32(message.temperature);
     }
     if (message.magnetometer !== undefined) {
-      ImuOutput_Vector.encode(message.magnetometer, writer.uint32(18).fork()).ldelim();
+      ImuSensorOutput_Vector.encode(message.magnetometer, writer.uint32(18).fork()).ldelim();
     }
     if (message.gyroscope !== undefined) {
-      ImuOutput_Vector.encode(message.gyroscope, writer.uint32(26).fork()).ldelim();
+      ImuSensorOutput_Vector.encode(message.gyroscope, writer.uint32(26).fork()).ldelim();
     }
     if (message.euler !== undefined) {
-      ImuOutput_Vector.encode(message.euler, writer.uint32(34).fork()).ldelim();
+      ImuSensorOutput_Vector.encode(message.euler, writer.uint32(34).fork()).ldelim();
     }
     if (message.accelerometer !== undefined) {
-      ImuOutput_Vector.encode(message.accelerometer, writer.uint32(42).fork()).ldelim();
+      ImuSensorOutput_Vector.encode(message.accelerometer, writer.uint32(42).fork()).ldelim();
     }
     if (message.linearAccelerometer !== undefined) {
-      ImuOutput_Vector.encode(message.linearAccelerometer, writer.uint32(50).fork()).ldelim();
+      ImuSensorOutput_Vector.encode(message.linearAccelerometer, writer.uint32(50).fork()).ldelim();
     }
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): ImuOutput {
+  decode(input: _m0.Reader | Uint8Array, length?: number): ImuSensorOutput {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseImuOutput();
+    const message = createBaseImuSensorOutput();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -71,35 +71,35 @@ export const ImuOutput = {
             break;
           }
 
-          message.magnetometer = ImuOutput_Vector.decode(reader, reader.uint32());
+          message.magnetometer = ImuSensorOutput_Vector.decode(reader, reader.uint32());
           continue;
         case 3:
           if (tag !== 26) {
             break;
           }
 
-          message.gyroscope = ImuOutput_Vector.decode(reader, reader.uint32());
+          message.gyroscope = ImuSensorOutput_Vector.decode(reader, reader.uint32());
           continue;
         case 4:
           if (tag !== 34) {
             break;
           }
 
-          message.euler = ImuOutput_Vector.decode(reader, reader.uint32());
+          message.euler = ImuSensorOutput_Vector.decode(reader, reader.uint32());
           continue;
         case 5:
           if (tag !== 42) {
             break;
           }
 
-          message.accelerometer = ImuOutput_Vector.decode(reader, reader.uint32());
+          message.accelerometer = ImuSensorOutput_Vector.decode(reader, reader.uint32());
           continue;
         case 6:
           if (tag !== 50) {
             break;
           }
 
-          message.linearAccelerometer = ImuOutput_Vector.decode(reader, reader.uint32());
+          message.linearAccelerometer = ImuSensorOutput_Vector.decode(reader, reader.uint32());
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -110,73 +110,73 @@ export const ImuOutput = {
     return message;
   },
 
-  fromJSON(object: any): ImuOutput {
+  fromJSON(object: any): ImuSensorOutput {
     return {
       temperature: isSet(object.temperature) ? globalThis.Number(object.temperature) : 0,
-      magnetometer: isSet(object.magnetometer) ? ImuOutput_Vector.fromJSON(object.magnetometer) : undefined,
-      gyroscope: isSet(object.gyroscope) ? ImuOutput_Vector.fromJSON(object.gyroscope) : undefined,
-      euler: isSet(object.euler) ? ImuOutput_Vector.fromJSON(object.euler) : undefined,
-      accelerometer: isSet(object.accelerometer) ? ImuOutput_Vector.fromJSON(object.accelerometer) : undefined,
+      magnetometer: isSet(object.magnetometer) ? ImuSensorOutput_Vector.fromJSON(object.magnetometer) : undefined,
+      gyroscope: isSet(object.gyroscope) ? ImuSensorOutput_Vector.fromJSON(object.gyroscope) : undefined,
+      euler: isSet(object.euler) ? ImuSensorOutput_Vector.fromJSON(object.euler) : undefined,
+      accelerometer: isSet(object.accelerometer) ? ImuSensorOutput_Vector.fromJSON(object.accelerometer) : undefined,
       linearAccelerometer: isSet(object.linearAccelerometer)
-        ? ImuOutput_Vector.fromJSON(object.linearAccelerometer)
+        ? ImuSensorOutput_Vector.fromJSON(object.linearAccelerometer)
         : undefined,
     };
   },
 
-  toJSON(message: ImuOutput): unknown {
+  toJSON(message: ImuSensorOutput): unknown {
     const obj: any = {};
     if (message.temperature !== 0) {
       obj.temperature = Math.round(message.temperature);
     }
     if (message.magnetometer !== undefined) {
-      obj.magnetometer = ImuOutput_Vector.toJSON(message.magnetometer);
+      obj.magnetometer = ImuSensorOutput_Vector.toJSON(message.magnetometer);
     }
     if (message.gyroscope !== undefined) {
-      obj.gyroscope = ImuOutput_Vector.toJSON(message.gyroscope);
+      obj.gyroscope = ImuSensorOutput_Vector.toJSON(message.gyroscope);
     }
     if (message.euler !== undefined) {
-      obj.euler = ImuOutput_Vector.toJSON(message.euler);
+      obj.euler = ImuSensorOutput_Vector.toJSON(message.euler);
     }
     if (message.accelerometer !== undefined) {
-      obj.accelerometer = ImuOutput_Vector.toJSON(message.accelerometer);
+      obj.accelerometer = ImuSensorOutput_Vector.toJSON(message.accelerometer);
     }
     if (message.linearAccelerometer !== undefined) {
-      obj.linearAccelerometer = ImuOutput_Vector.toJSON(message.linearAccelerometer);
+      obj.linearAccelerometer = ImuSensorOutput_Vector.toJSON(message.linearAccelerometer);
     }
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<ImuOutput>, I>>(base?: I): ImuOutput {
-    return ImuOutput.fromPartial(base ?? ({} as any));
+  create<I extends Exact<DeepPartial<ImuSensorOutput>, I>>(base?: I): ImuSensorOutput {
+    return ImuSensorOutput.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<ImuOutput>, I>>(object: I): ImuOutput {
-    const message = createBaseImuOutput();
+  fromPartial<I extends Exact<DeepPartial<ImuSensorOutput>, I>>(object: I): ImuSensorOutput {
+    const message = createBaseImuSensorOutput();
     message.temperature = object.temperature ?? 0;
     message.magnetometer = (object.magnetometer !== undefined && object.magnetometer !== null)
-      ? ImuOutput_Vector.fromPartial(object.magnetometer)
+      ? ImuSensorOutput_Vector.fromPartial(object.magnetometer)
       : undefined;
     message.gyroscope = (object.gyroscope !== undefined && object.gyroscope !== null)
-      ? ImuOutput_Vector.fromPartial(object.gyroscope)
+      ? ImuSensorOutput_Vector.fromPartial(object.gyroscope)
       : undefined;
     message.euler = (object.euler !== undefined && object.euler !== null)
-      ? ImuOutput_Vector.fromPartial(object.euler)
+      ? ImuSensorOutput_Vector.fromPartial(object.euler)
       : undefined;
     message.accelerometer = (object.accelerometer !== undefined && object.accelerometer !== null)
-      ? ImuOutput_Vector.fromPartial(object.accelerometer)
+      ? ImuSensorOutput_Vector.fromPartial(object.accelerometer)
       : undefined;
     message.linearAccelerometer = (object.linearAccelerometer !== undefined && object.linearAccelerometer !== null)
-      ? ImuOutput_Vector.fromPartial(object.linearAccelerometer)
+      ? ImuSensorOutput_Vector.fromPartial(object.linearAccelerometer)
       : undefined;
     return message;
   },
 };
 
-function createBaseImuOutput_Vector(): ImuOutput_Vector {
+function createBaseImuSensorOutput_Vector(): ImuSensorOutput_Vector {
   return { x: 0, y: 0, z: 0 };
 }
 
-export const ImuOutput_Vector = {
-  encode(message: ImuOutput_Vector, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export const ImuSensorOutput_Vector = {
+  encode(message: ImuSensorOutput_Vector, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.x !== 0) {
       writer.uint32(13).float(message.x);
     }
@@ -189,10 +189,10 @@ export const ImuOutput_Vector = {
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): ImuOutput_Vector {
+  decode(input: _m0.Reader | Uint8Array, length?: number): ImuSensorOutput_Vector {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseImuOutput_Vector();
+    const message = createBaseImuSensorOutput_Vector();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -226,7 +226,7 @@ export const ImuOutput_Vector = {
     return message;
   },
 
-  fromJSON(object: any): ImuOutput_Vector {
+  fromJSON(object: any): ImuSensorOutput_Vector {
     return {
       x: isSet(object.x) ? globalThis.Number(object.x) : 0,
       y: isSet(object.y) ? globalThis.Number(object.y) : 0,
@@ -234,7 +234,7 @@ export const ImuOutput_Vector = {
     };
   },
 
-  toJSON(message: ImuOutput_Vector): unknown {
+  toJSON(message: ImuSensorOutput_Vector): unknown {
     const obj: any = {};
     if (message.x !== 0) {
       obj.x = message.x;
@@ -248,11 +248,11 @@ export const ImuOutput_Vector = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<ImuOutput_Vector>, I>>(base?: I): ImuOutput_Vector {
-    return ImuOutput_Vector.fromPartial(base ?? ({} as any));
+  create<I extends Exact<DeepPartial<ImuSensorOutput_Vector>, I>>(base?: I): ImuSensorOutput_Vector {
+    return ImuSensorOutput_Vector.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<ImuOutput_Vector>, I>>(object: I): ImuOutput_Vector {
-    const message = createBaseImuOutput_Vector();
+  fromPartial<I extends Exact<DeepPartial<ImuSensorOutput_Vector>, I>>(object: I): ImuSensorOutput_Vector {
+    const message = createBaseImuSensorOutput_Vector();
     message.x = object.x ?? 0;
     message.y = object.y ?? 0;
     message.z = object.z ?? 0;

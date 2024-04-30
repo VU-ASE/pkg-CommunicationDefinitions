@@ -7,52 +7,52 @@
 #endif
 
 #include "outputs/rpm.pb-c.h"
-void   protobuf_msgs__rpm_output__init
-                     (ProtobufMsgs__RpmOutput         *message)
+void   protobuf_msgs__rpm_sensor_output__init
+                     (ProtobufMsgs__RpmSensorOutput         *message)
 {
-  static const ProtobufMsgs__RpmOutput init_value = PROTOBUF_MSGS__RPM_OUTPUT__INIT;
+  static const ProtobufMsgs__RpmSensorOutput init_value = PROTOBUF_MSGS__RPM_SENSOR_OUTPUT__INIT;
   *message = init_value;
 }
-size_t protobuf_msgs__rpm_output__get_packed_size
-                     (const ProtobufMsgs__RpmOutput *message)
+size_t protobuf_msgs__rpm_sensor_output__get_packed_size
+                     (const ProtobufMsgs__RpmSensorOutput *message)
 {
-  assert(message->base.descriptor == &protobuf_msgs__rpm_output__descriptor);
+  assert(message->base.descriptor == &protobuf_msgs__rpm_sensor_output__descriptor);
   return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
 }
-size_t protobuf_msgs__rpm_output__pack
-                     (const ProtobufMsgs__RpmOutput *message,
+size_t protobuf_msgs__rpm_sensor_output__pack
+                     (const ProtobufMsgs__RpmSensorOutput *message,
                       uint8_t       *out)
 {
-  assert(message->base.descriptor == &protobuf_msgs__rpm_output__descriptor);
+  assert(message->base.descriptor == &protobuf_msgs__rpm_sensor_output__descriptor);
   return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
 }
-size_t protobuf_msgs__rpm_output__pack_to_buffer
-                     (const ProtobufMsgs__RpmOutput *message,
+size_t protobuf_msgs__rpm_sensor_output__pack_to_buffer
+                     (const ProtobufMsgs__RpmSensorOutput *message,
                       ProtobufCBuffer *buffer)
 {
-  assert(message->base.descriptor == &protobuf_msgs__rpm_output__descriptor);
+  assert(message->base.descriptor == &protobuf_msgs__rpm_sensor_output__descriptor);
   return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
 }
-ProtobufMsgs__RpmOutput *
-       protobuf_msgs__rpm_output__unpack
+ProtobufMsgs__RpmSensorOutput *
+       protobuf_msgs__rpm_sensor_output__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data)
 {
-  return (ProtobufMsgs__RpmOutput *)
-     protobuf_c_message_unpack (&protobuf_msgs__rpm_output__descriptor,
+  return (ProtobufMsgs__RpmSensorOutput *)
+     protobuf_c_message_unpack (&protobuf_msgs__rpm_sensor_output__descriptor,
                                 allocator, len, data);
 }
-void   protobuf_msgs__rpm_output__free_unpacked
-                     (ProtobufMsgs__RpmOutput *message,
+void   protobuf_msgs__rpm_sensor_output__free_unpacked
+                     (ProtobufMsgs__RpmSensorOutput *message,
                       ProtobufCAllocator *allocator)
 {
   if(!message)
     return;
-  assert(message->base.descriptor == &protobuf_msgs__rpm_output__descriptor);
+  assert(message->base.descriptor == &protobuf_msgs__rpm_sensor_output__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-static const ProtobufCFieldDescriptor protobuf_msgs__rpm_output__field_descriptors[4] =
+static const ProtobufCFieldDescriptor protobuf_msgs__rpm_sensor_output__field_descriptors[4] =
 {
   {
     "leftRpm",
@@ -60,7 +60,7 @@ static const ProtobufCFieldDescriptor protobuf_msgs__rpm_output__field_descripto
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_FLOAT,
     0,   /* quantifier_offset */
-    offsetof(ProtobufMsgs__RpmOutput, leftrpm),
+    offsetof(ProtobufMsgs__RpmSensorOutput, leftrpm),
     NULL,
     NULL,
     0,             /* flags */
@@ -72,7 +72,7 @@ static const ProtobufCFieldDescriptor protobuf_msgs__rpm_output__field_descripto
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_FLOAT,
     0,   /* quantifier_offset */
-    offsetof(ProtobufMsgs__RpmOutput, leftangle),
+    offsetof(ProtobufMsgs__RpmSensorOutput, leftangle),
     NULL,
     NULL,
     0,             /* flags */
@@ -84,7 +84,7 @@ static const ProtobufCFieldDescriptor protobuf_msgs__rpm_output__field_descripto
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_FLOAT,
     0,   /* quantifier_offset */
-    offsetof(ProtobufMsgs__RpmOutput, rightrpm),
+    offsetof(ProtobufMsgs__RpmSensorOutput, rightrpm),
     NULL,
     NULL,
     0,             /* flags */
@@ -96,36 +96,36 @@ static const ProtobufCFieldDescriptor protobuf_msgs__rpm_output__field_descripto
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_FLOAT,
     0,   /* quantifier_offset */
-    offsetof(ProtobufMsgs__RpmOutput, rightangle),
+    offsetof(ProtobufMsgs__RpmSensorOutput, rightangle),
     NULL,
     NULL,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
 };
-static const unsigned protobuf_msgs__rpm_output__field_indices_by_name[] = {
+static const unsigned protobuf_msgs__rpm_sensor_output__field_indices_by_name[] = {
   1,   /* field[1] = leftAngle */
   0,   /* field[0] = leftRpm */
   3,   /* field[3] = rightAngle */
   2,   /* field[2] = rightRpm */
 };
-static const ProtobufCIntRange protobuf_msgs__rpm_output__number_ranges[1 + 1] =
+static const ProtobufCIntRange protobuf_msgs__rpm_sensor_output__number_ranges[1 + 1] =
 {
   { 1, 0 },
   { 0, 4 }
 };
-const ProtobufCMessageDescriptor protobuf_msgs__rpm_output__descriptor =
+const ProtobufCMessageDescriptor protobuf_msgs__rpm_sensor_output__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "protobuf_msgs.RpmOutput",
-  "RpmOutput",
-  "ProtobufMsgs__RpmOutput",
+  "protobuf_msgs.RpmSensorOutput",
+  "RpmSensorOutput",
+  "ProtobufMsgs__RpmSensorOutput",
   "protobuf_msgs",
-  sizeof(ProtobufMsgs__RpmOutput),
+  sizeof(ProtobufMsgs__RpmSensorOutput),
   4,
-  protobuf_msgs__rpm_output__field_descriptors,
-  protobuf_msgs__rpm_output__field_indices_by_name,
-  1,  protobuf_msgs__rpm_output__number_ranges,
-  (ProtobufCMessageInit) protobuf_msgs__rpm_output__init,
+  protobuf_msgs__rpm_sensor_output__field_descriptors,
+  protobuf_msgs__rpm_sensor_output__field_indices_by_name,
+  1,  protobuf_msgs__rpm_sensor_output__number_ranges,
+  (ProtobufCMessageInit) protobuf_msgs__rpm_sensor_output__init,
   NULL,NULL,NULL    /* reserved[123] */
 };

@@ -15,8 +15,8 @@ PROTOBUF_C__BEGIN_DECLS
 #endif
 
 
-typedef struct _ProtobufMsgs__ImuOutput ProtobufMsgs__ImuOutput;
-typedef struct _ProtobufMsgs__ImuOutput__Vector ProtobufMsgs__ImuOutput__Vector;
+typedef struct _ProtobufMsgs__ImuSensorOutput ProtobufMsgs__ImuSensorOutput;
+typedef struct _ProtobufMsgs__ImuSensorOutput__Vector ProtobufMsgs__ImuSensorOutput__Vector;
 
 
 /* --- enums --- */
@@ -24,62 +24,62 @@ typedef struct _ProtobufMsgs__ImuOutput__Vector ProtobufMsgs__ImuOutput__Vector;
 
 /* --- messages --- */
 
-struct  _ProtobufMsgs__ImuOutput__Vector
+struct  _ProtobufMsgs__ImuSensorOutput__Vector
 {
   ProtobufCMessage base;
   float x;
   float y;
   float z;
 };
-#define PROTOBUF_MSGS__IMU_OUTPUT__VECTOR__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&protobuf_msgs__imu_output__vector__descriptor) \
+#define PROTOBUF_MSGS__IMU_SENSOR_OUTPUT__VECTOR__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&protobuf_msgs__imu_sensor_output__vector__descriptor) \
     , 0, 0, 0 }
 
 
-struct  _ProtobufMsgs__ImuOutput
+struct  _ProtobufMsgs__ImuSensorOutput
 {
   ProtobufCMessage base;
   int32_t temperature;
-  ProtobufMsgs__ImuOutput__Vector *magnetometer;
-  ProtobufMsgs__ImuOutput__Vector *gyroscope;
-  ProtobufMsgs__ImuOutput__Vector *euler;
-  ProtobufMsgs__ImuOutput__Vector *accelerometer;
-  ProtobufMsgs__ImuOutput__Vector *linearaccelerometer;
+  ProtobufMsgs__ImuSensorOutput__Vector *magnetometer;
+  ProtobufMsgs__ImuSensorOutput__Vector *gyroscope;
+  ProtobufMsgs__ImuSensorOutput__Vector *euler;
+  ProtobufMsgs__ImuSensorOutput__Vector *accelerometer;
+  ProtobufMsgs__ImuSensorOutput__Vector *linearaccelerometer;
 };
-#define PROTOBUF_MSGS__IMU_OUTPUT__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&protobuf_msgs__imu_output__descriptor) \
+#define PROTOBUF_MSGS__IMU_SENSOR_OUTPUT__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&protobuf_msgs__imu_sensor_output__descriptor) \
     , 0, NULL, NULL, NULL, NULL, NULL }
 
 
-/* ProtobufMsgs__ImuOutput__Vector methods */
-void   protobuf_msgs__imu_output__vector__init
-                     (ProtobufMsgs__ImuOutput__Vector         *message);
-/* ProtobufMsgs__ImuOutput methods */
-void   protobuf_msgs__imu_output__init
-                     (ProtobufMsgs__ImuOutput         *message);
-size_t protobuf_msgs__imu_output__get_packed_size
-                     (const ProtobufMsgs__ImuOutput   *message);
-size_t protobuf_msgs__imu_output__pack
-                     (const ProtobufMsgs__ImuOutput   *message,
+/* ProtobufMsgs__ImuSensorOutput__Vector methods */
+void   protobuf_msgs__imu_sensor_output__vector__init
+                     (ProtobufMsgs__ImuSensorOutput__Vector         *message);
+/* ProtobufMsgs__ImuSensorOutput methods */
+void   protobuf_msgs__imu_sensor_output__init
+                     (ProtobufMsgs__ImuSensorOutput         *message);
+size_t protobuf_msgs__imu_sensor_output__get_packed_size
+                     (const ProtobufMsgs__ImuSensorOutput   *message);
+size_t protobuf_msgs__imu_sensor_output__pack
+                     (const ProtobufMsgs__ImuSensorOutput   *message,
                       uint8_t             *out);
-size_t protobuf_msgs__imu_output__pack_to_buffer
-                     (const ProtobufMsgs__ImuOutput   *message,
+size_t protobuf_msgs__imu_sensor_output__pack_to_buffer
+                     (const ProtobufMsgs__ImuSensorOutput   *message,
                       ProtobufCBuffer     *buffer);
-ProtobufMsgs__ImuOutput *
-       protobuf_msgs__imu_output__unpack
+ProtobufMsgs__ImuSensorOutput *
+       protobuf_msgs__imu_sensor_output__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data);
-void   protobuf_msgs__imu_output__free_unpacked
-                     (ProtobufMsgs__ImuOutput *message,
+void   protobuf_msgs__imu_sensor_output__free_unpacked
+                     (ProtobufMsgs__ImuSensorOutput *message,
                       ProtobufCAllocator *allocator);
 /* --- per-message closures --- */
 
-typedef void (*ProtobufMsgs__ImuOutput__Vector_Closure)
-                 (const ProtobufMsgs__ImuOutput__Vector *message,
+typedef void (*ProtobufMsgs__ImuSensorOutput__Vector_Closure)
+                 (const ProtobufMsgs__ImuSensorOutput__Vector *message,
                   void *closure_data);
-typedef void (*ProtobufMsgs__ImuOutput_Closure)
-                 (const ProtobufMsgs__ImuOutput *message,
+typedef void (*ProtobufMsgs__ImuSensorOutput_Closure)
+                 (const ProtobufMsgs__ImuSensorOutput *message,
                   void *closure_data);
 
 /* --- services --- */
@@ -87,8 +87,8 @@ typedef void (*ProtobufMsgs__ImuOutput_Closure)
 
 /* --- descriptors --- */
 
-extern const ProtobufCMessageDescriptor protobuf_msgs__imu_output__descriptor;
-extern const ProtobufCMessageDescriptor protobuf_msgs__imu_output__vector__descriptor;
+extern const ProtobufCMessageDescriptor protobuf_msgs__imu_sensor_output__descriptor;
+extern const ProtobufCMessageDescriptor protobuf_msgs__imu_sensor_output__vector__descriptor;
 
 PROTOBUF_C__END_DECLS
 
