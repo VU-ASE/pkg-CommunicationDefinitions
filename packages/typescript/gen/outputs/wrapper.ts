@@ -6,6 +6,7 @@ import { CameraSensorOutput } from "./camera";
 import { ControllerOutput } from "./controller";
 import { DistanceSensorOutput } from "./distance";
 import { ImuSensorOutput } from "./imu";
+import { LuxSensorOutput } from "./lux";
 import { RpmSensorOutput } from "./rpm";
 import { SpeedSensorOutput } from "./speed";
 
@@ -27,7 +28,8 @@ export interface SensorOutput {
   controllerOutput?: ControllerOutput | undefined;
   imuOutput?: ImuSensorOutput | undefined;
   batteryOutput?: BatterySensorOutput | undefined;
-  rpmOutput?: RpmSensorOutput | undefined;
+  rpmOuput?: RpmSensorOutput | undefined;
+  luxOutput?: LuxSensorOutput | undefined;
 }
 
 function createBaseSensorOutput(): SensorOutput {
@@ -41,7 +43,8 @@ function createBaseSensorOutput(): SensorOutput {
     controllerOutput: undefined,
     imuOutput: undefined,
     batteryOutput: undefined,
-    rpmOutput: undefined,
+    rpmOuput: undefined,
+    luxOutput: undefined,
   };
 }
 
@@ -74,8 +77,11 @@ export const SensorOutput = {
     if (message.batteryOutput !== undefined) {
       BatterySensorOutput.encode(message.batteryOutput, writer.uint32(74).fork()).ldelim();
     }
-    if (message.rpmOutput !== undefined) {
-      RpmSensorOutput.encode(message.rpmOutput, writer.uint32(82).fork()).ldelim();
+    if (message.rpmOuput !== undefined) {
+      RpmSensorOutput.encode(message.rpmOuput, writer.uint32(82).fork()).ldelim();
+    }
+    if (message.luxOutput !== undefined) {
+      LuxSensorOutput.encode(message.luxOutput, writer.uint32(90).fork()).ldelim();
     }
     return writer;
   },
@@ -155,7 +161,14 @@ export const SensorOutput = {
             break;
           }
 
-          message.rpmOutput = RpmSensorOutput.decode(reader, reader.uint32());
+          message.rpmOuput = RpmSensorOutput.decode(reader, reader.uint32());
+          continue;
+        case 11:
+          if (tag !== 90) {
+            break;
+          }
+
+          message.luxOutput = LuxSensorOutput.decode(reader, reader.uint32());
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -177,7 +190,8 @@ export const SensorOutput = {
       controllerOutput: isSet(object.controllerOutput) ? ControllerOutput.fromJSON(object.controllerOutput) : undefined,
       imuOutput: isSet(object.imuOutput) ? ImuSensorOutput.fromJSON(object.imuOutput) : undefined,
       batteryOutput: isSet(object.batteryOutput) ? BatterySensorOutput.fromJSON(object.batteryOutput) : undefined,
-      rpmOutput: isSet(object.rpmOutput) ? RpmSensorOutput.fromJSON(object.rpmOutput) : undefined,
+      rpmOuput: isSet(object.rpmOuput) ? RpmSensorOutput.fromJSON(object.rpmOuput) : undefined,
+      luxOutput: isSet(object.luxOutput) ? LuxSensorOutput.fromJSON(object.luxOutput) : undefined,
     };
   },
 
@@ -210,8 +224,11 @@ export const SensorOutput = {
     if (message.batteryOutput !== undefined) {
       obj.batteryOutput = BatterySensorOutput.toJSON(message.batteryOutput);
     }
-    if (message.rpmOutput !== undefined) {
-      obj.rpmOutput = RpmSensorOutput.toJSON(message.rpmOutput);
+    if (message.rpmOuput !== undefined) {
+      obj.rpmOuput = RpmSensorOutput.toJSON(message.rpmOuput);
+    }
+    if (message.luxOutput !== undefined) {
+      obj.luxOutput = LuxSensorOutput.toJSON(message.luxOutput);
     }
     return obj;
   },
@@ -242,8 +259,11 @@ export const SensorOutput = {
     message.batteryOutput = (object.batteryOutput !== undefined && object.batteryOutput !== null)
       ? BatterySensorOutput.fromPartial(object.batteryOutput)
       : undefined;
-    message.rpmOutput = (object.rpmOutput !== undefined && object.rpmOutput !== null)
-      ? RpmSensorOutput.fromPartial(object.rpmOutput)
+    message.rpmOuput = (object.rpmOuput !== undefined && object.rpmOuput !== null)
+      ? RpmSensorOutput.fromPartial(object.rpmOuput)
+      : undefined;
+    message.luxOutput = (object.luxOutput !== undefined && object.luxOutput !== null)
+      ? LuxSensorOutput.fromPartial(object.luxOutput)
       : undefined;
     return message;
   },
