@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.20.0](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v2.19.1...v2.20.0) (2024-05-15)
+
+
+### Features
+
+* added definitions for out of sync clocks between car and server ([b1f0133](https://github.com/VU-ASE/pkg-CommunicationDefinitions/commit/b1f0133ef5d784c0b716eef9a8eb2700660da558))
+
+
+### Bug Fixes
+
+* timestamp offset information for car registration ([a7f723e](https://github.com/VU-ASE/pkg-CommunicationDefinitions/commit/a7f723ee6bfc2ed02f403924c8b3056b2166e4ce))
+
 ## [2.19.1](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v2.19.0...v2.19.1) (2024-04-30)
 
 
