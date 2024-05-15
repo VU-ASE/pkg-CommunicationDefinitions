@@ -152,7 +152,7 @@ const ProtobufCMessageDescriptor protobuf_msgs__config_message__human_control_st
   (ProtobufCMessageInit) protobuf_msgs__config_message__human_control_state__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor protobuf_msgs__config_message__car_state__field_descriptors[3] =
+static const ProtobufCFieldDescriptor protobuf_msgs__config_message__car_state__field_descriptors[2] =
 {
   {
     "connected",
@@ -167,24 +167,12 @@ static const ProtobufCFieldDescriptor protobuf_msgs__config_message__car_state__
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "registeredCarTimestamp",
+    "timestampOffset",
     2,
     PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_UINT64,
+    PROTOBUF_C_TYPE_INT64,
     0,   /* quantifier_offset */
-    offsetof(ProtobufMsgs__ConfigMessage__CarState, registeredcartimestamp),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "registeredServerTimestamp",
-    3,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_UINT64,
-    0,   /* quantifier_offset */
-    offsetof(ProtobufMsgs__ConfigMessage__CarState, registeredservertimestamp),
+    offsetof(ProtobufMsgs__ConfigMessage__CarState, timestampoffset),
     NULL,
     NULL,
     0,             /* flags */
@@ -193,13 +181,12 @@ static const ProtobufCFieldDescriptor protobuf_msgs__config_message__car_state__
 };
 static const unsigned protobuf_msgs__config_message__car_state__field_indices_by_name[] = {
   0,   /* field[0] = connected */
-  1,   /* field[1] = registeredCarTimestamp */
-  2,   /* field[2] = registeredServerTimestamp */
+  1,   /* field[1] = timestampOffset */
 };
 static const ProtobufCIntRange protobuf_msgs__config_message__car_state__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 0, 3 }
+  { 0, 2 }
 };
 const ProtobufCMessageDescriptor protobuf_msgs__config_message__car_state__descriptor =
 {
@@ -209,7 +196,7 @@ const ProtobufCMessageDescriptor protobuf_msgs__config_message__car_state__descr
   "ProtobufMsgs__ConfigMessage__CarState",
   "protobuf_msgs",
   sizeof(ProtobufMsgs__ConfigMessage__CarState),
-  3,
+  2,
   protobuf_msgs__config_message__car_state__field_descriptors,
   protobuf_msgs__config_message__car_state__field_indices_by_name,
   1,  protobuf_msgs__config_message__car_state__number_ranges,

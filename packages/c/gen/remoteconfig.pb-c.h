@@ -67,12 +67,14 @@ struct  _ProtobufMsgs__ConfigMessage__CarState
    * this is used to correctly chart the car's data, even if the car and the server have different clocks
    * note: this does assume that the webcontroller and the forwarding server have synced clocks
    */
-  uint64_t registeredcartimestamp;
-  uint64_t registeredservertimestamp;
+  /*
+   * < 0 means that the car's time is behind the server's time, > 0 means that the car's time is ahead of the server's time
+   */
+  int64_t timestampoffset;
 };
 #define PROTOBUF_MSGS__CONFIG_MESSAGE__CAR_STATE__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&protobuf_msgs__config_message__car_state__descriptor) \
-    , 0, 0, 0 }
+    , 0, 0 }
 
 
 /*

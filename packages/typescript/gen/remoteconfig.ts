@@ -69,8 +69,7 @@ export interface ConfigMessage_CarState {
    * this is used to correctly chart the car's data, even if the car and the server have different clocks
    * note: this does assume that the webcontroller and the forwarding server have synced clocks
    */
-  registeredCarTimestamp: number;
-  registeredServerTimestamp: number;
+  timestampOffset: number;
 }
 
 /** To report unknown or general errors */
@@ -336,7 +335,7 @@ export const ConfigMessage_HumanControlState = {
 };
 
 function createBaseConfigMessage_CarState(): ConfigMessage_CarState {
-  return { connected: false, registeredCarTimestamp: 0, registeredServerTimestamp: 0 };
+  return { connected: false, timestampOffset: 0 };
 }
 
 export const ConfigMessage_CarState = {
@@ -344,11 +343,8 @@ export const ConfigMessage_CarState = {
     if (message.connected !== false) {
       writer.uint32(8).bool(message.connected);
     }
-    if (message.registeredCarTimestamp !== 0) {
-      writer.uint32(16).uint64(message.registeredCarTimestamp);
-    }
-    if (message.registeredServerTimestamp !== 0) {
-      writer.uint32(24).uint64(message.registeredServerTimestamp);
+    if (message.timestampOffset !== 0) {
+      writer.uint32(16).int64(message.timestampOffset);
     }
     return writer;
   },
@@ -372,14 +368,7 @@ export const ConfigMessage_CarState = {
             break;
           }
 
-          message.registeredCarTimestamp = longToNumber(reader.uint64() as Long);
-          continue;
-        case 3:
-          if (tag !== 24) {
-            break;
-          }
-
-          message.registeredServerTimestamp = longToNumber(reader.uint64() as Long);
+          message.timestampOffset = longToNumber(reader.int64() as Long);
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -393,12 +382,7 @@ export const ConfigMessage_CarState = {
   fromJSON(object: any): ConfigMessage_CarState {
     return {
       connected: isSet(object.connected) ? globalThis.Boolean(object.connected) : false,
-      registeredCarTimestamp: isSet(object.registeredCarTimestamp)
-        ? globalThis.Number(object.registeredCarTimestamp)
-        : 0,
-      registeredServerTimestamp: isSet(object.registeredServerTimestamp)
-        ? globalThis.Number(object.registeredServerTimestamp)
-        : 0,
+      timestampOffset: isSet(object.timestampOffset) ? globalThis.Number(object.timestampOffset) : 0,
     };
   },
 
@@ -407,11 +391,8 @@ export const ConfigMessage_CarState = {
     if (message.connected !== false) {
       obj.connected = message.connected;
     }
-    if (message.registeredCarTimestamp !== 0) {
-      obj.registeredCarTimestamp = Math.round(message.registeredCarTimestamp);
-    }
-    if (message.registeredServerTimestamp !== 0) {
-      obj.registeredServerTimestamp = Math.round(message.registeredServerTimestamp);
+    if (message.timestampOffset !== 0) {
+      obj.timestampOffset = Math.round(message.timestampOffset);
     }
     return obj;
   },
@@ -422,8 +403,7 @@ export const ConfigMessage_CarState = {
   fromPartial<I extends Exact<DeepPartial<ConfigMessage_CarState>, I>>(object: I): ConfigMessage_CarState {
     const message = createBaseConfigMessage_CarState();
     message.connected = object.connected ?? false;
-    message.registeredCarTimestamp = object.registeredCarTimestamp ?? 0;
-    message.registeredServerTimestamp = object.registeredServerTimestamp ?? 0;
+    message.timestampOffset = object.timestampOffset ?? 0;
     return message;
   },
 };
