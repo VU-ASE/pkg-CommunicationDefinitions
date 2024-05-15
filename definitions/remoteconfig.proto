@@ -26,8 +26,7 @@ message ConfigMessage {
         // We use these fields to calculate the offset between the car and the server time
         // this is used to correctly chart the car's data, even if the car and the server have different clocks
         // note: this does assume that the webcontroller and the forwarding server have synced clocks
-        uint64 registeredCarTimestamp = 2;
-        uint64 registeredServerTimestamp = 3;
+        int64 timestampOffset = 2; // < 0 means that the car's time is behind the server's time, > 0 means that the car's time is ahead of the server's time
     }
 
     // To report unknown or general errors
