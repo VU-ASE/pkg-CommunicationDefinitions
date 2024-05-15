@@ -23,6 +23,11 @@ message ConfigMessage {
     // Broadcast car connects and disconnects
     message CarState {
         bool connected = 1;
+        // We use these fields to calculate the offset between the car and the server time
+        // this is used to correctly chart the car's data, even if the car and the server have different clocks
+        // note: this does assume that the webcontroller and the forwarding server have synced clocks
+        uint64 registeredCarTimestamp = 2;
+        uint64 registeredServerTimestamp = 3;
     }
 
     // To report unknown or general errors
