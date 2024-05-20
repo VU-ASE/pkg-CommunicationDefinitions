@@ -13,6 +13,6 @@
     "author": "Vrije Universiteit Amsterdam ASE",
     "license": "MIT",
     "dependencies": {
-        "ts-proto": "^1.175.1"
+        "ts-proto": "^1.176.0"
     }
 }

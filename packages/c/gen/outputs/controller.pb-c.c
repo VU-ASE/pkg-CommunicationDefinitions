@@ -52,20 +52,8 @@ void   protobuf_msgs__controller_output__free_unpacked
   assert(message->base.descriptor == &protobuf_msgs__controller_output__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-static const ProtobufCFieldDescriptor protobuf_msgs__controller_output__field_descriptors[5] =
+static const ProtobufCFieldDescriptor protobuf_msgs__controller_output__field_descriptors[6] =
 {
-  {
-    "timestamp",
-    1,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_UINT64,
-    0,   /* quantifier_offset */
-    offsetof(ProtobufMsgs__ControllerOutput, timestamp),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
   {
     "steeringAngle",
     2,
@@ -114,18 +102,43 @@ static const ProtobufCFieldDescriptor protobuf_msgs__controller_output__field_de
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "fanSpeed",
+    6,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_FLOAT,
+    0,   /* quantifier_offset */
+    offsetof(ProtobufMsgs__ControllerOutput, fanspeed),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "error",
+    7,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_FLOAT,
+    0,   /* quantifier_offset */
+    offsetof(ProtobufMsgs__ControllerOutput, error),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned protobuf_msgs__controller_output__field_indices_by_name[] = {
-  4,   /* field[4] = frontLights */
-  2,   /* field[2] = leftThrottle */
-  3,   /* field[3] = rightThrottle */
-  1,   /* field[1] = steeringAngle */
-  0,   /* field[0] = timestamp */
+  5,   /* field[5] = error */
+  4,   /* field[4] = fanSpeed */
+  3,   /* field[3] = frontLights */
+  1,   /* field[1] = leftThrottle */
+  2,   /* field[2] = rightThrottle */
+  0,   /* field[0] = steeringAngle */
 };
 static const ProtobufCIntRange protobuf_msgs__controller_output__number_ranges[1 + 1] =
 {
-  { 1, 0 },
-  { 0, 5 }
+  { 2, 0 },
+  { 0, 6 }
 };
 const ProtobufCMessageDescriptor protobuf_msgs__controller_output__descriptor =
 {
@@ -135,7 +148,7 @@ const ProtobufCMessageDescriptor protobuf_msgs__controller_output__descriptor =
   "ProtobufMsgs__ControllerOutput",
   "protobuf_msgs",
   sizeof(ProtobufMsgs__ControllerOutput),
-  5,
+  6,
   protobuf_msgs__controller_output__field_descriptors,
   protobuf_msgs__controller_output__field_indices_by_name,
   1,  protobuf_msgs__controller_output__number_ranges,

@@ -27,10 +27,6 @@ struct  _ProtobufMsgs__ControllerOutput
 {
   ProtobufCMessage base;
   /*
-   * timestamp of the message
-   */
-  uint64_t timestamp;
-  /*
    * Steering angle (-1.0 to 1.0 <-> left - right)
    */
   float steeringangle;
@@ -43,10 +39,21 @@ struct  _ProtobufMsgs__ControllerOutput
    * Onboard lights (0.0 to 1.0 <-> off - on)
    */
   protobuf_c_boolean frontlights;
+  /*
+   * Fan speed (0.0 to 1.0 <-> off - full speed)
+   */
+  float fanspeed;
+  /*
+   * Useful for debugging
+   */
+  /*
+   * the error value before PID
+   */
+  float error;
 };
 #define PROTOBUF_MSGS__CONTROLLER_OUTPUT__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&protobuf_msgs__controller_output__descriptor) \
-    , 0, 0, 0, 0, 0 }
+    , 0, 0, 0, 0, 0, 0 }
 
 
 /* ProtobufMsgs__ControllerOutput methods */
