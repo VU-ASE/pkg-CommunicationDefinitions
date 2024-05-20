@@ -10,9 +10,6 @@ option go_package = "ase/pb_module_outputs";
 //
 
 message ControllerOutput {
-    // timestamp of the message
-    uint64 timestamp = 1;
-
     // Steering angle (-1.0 to 1.0 <-> left - right)
     float steeringAngle = 2;
     // Throttle (-1.0 to 1.0 <-> full reverse - full forward)
@@ -20,4 +17,9 @@ message ControllerOutput {
     float rightThrottle = 4;
     // Onboard lights (0.0 to 1.0 <-> off - on)
     bool frontLights = 5;
+    // Fan speed (0.0 to 1.0 <-> off - full speed)
+    float fanSpeed = 6;
+
+    // Useful for debugging
+    float error = 7; // the error value before PID
 }
