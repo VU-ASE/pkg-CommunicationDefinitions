@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.21.0](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v2.20.0...v2.21.0) (2024-05-20)
+
+
+### Features
+
+* added raw error to controller output, removed unused timestamp ([05102c2](https://github.com/VU-ASE/pkg-CommunicationDefinitions/commit/05102c2334f0aa43038b3d60c109a282a9e1e6a2))
+
 ## [2.20.0](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v2.19.1...v2.20.0) (2024-05-15)
 
 
