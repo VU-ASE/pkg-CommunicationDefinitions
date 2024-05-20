@@ -21,5 +21,6 @@ message ControllerOutput {
     float fanSpeed = 6;
 
     // Useful for debugging
-    float error = 7; // the error value before PID
+    float rawError = 7; // the error value before quadratic scaling
+    float scaledError = 8; // the error value after quadratic scaling, but before PID
 }
