@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.22.0](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v2.21.0...v2.22.0) (2024-05-20)
+
+
+### Features
+
+* added error before quadratic scaling ([5affeb2](https://github.com/VU-ASE/pkg-CommunicationDefinitions/commit/5affeb2b676a2fff3a62d86eace7ca8648cdda1f))
+
 ## [2.21.0](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v2.20.0...v2.21.0) (2024-05-20)
 
 
