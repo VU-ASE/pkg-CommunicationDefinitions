@@ -52,7 +52,7 @@ void   protobuf_msgs__controller_output__free_unpacked
   assert(message->base.descriptor == &protobuf_msgs__controller_output__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-static const ProtobufCFieldDescriptor protobuf_msgs__controller_output__field_descriptors[6] =
+static const ProtobufCFieldDescriptor protobuf_msgs__controller_output__field_descriptors[7] =
 {
   {
     "steeringAngle",
@@ -115,12 +115,24 @@ static const ProtobufCFieldDescriptor protobuf_msgs__controller_output__field_de
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "error",
+    "rawError",
     7,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_FLOAT,
     0,   /* quantifier_offset */
-    offsetof(ProtobufMsgs__ControllerOutput, error),
+    offsetof(ProtobufMsgs__ControllerOutput, rawerror),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "scaledError",
+    8,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_FLOAT,
+    0,   /* quantifier_offset */
+    offsetof(ProtobufMsgs__ControllerOutput, scalederror),
     NULL,
     NULL,
     0,             /* flags */
@@ -128,17 +140,18 @@ static const ProtobufCFieldDescriptor protobuf_msgs__controller_output__field_de
   },
 };
 static const unsigned protobuf_msgs__controller_output__field_indices_by_name[] = {
-  5,   /* field[5] = error */
   4,   /* field[4] = fanSpeed */
   3,   /* field[3] = frontLights */
   1,   /* field[1] = leftThrottle */
+  5,   /* field[5] = rawError */
   2,   /* field[2] = rightThrottle */
+  6,   /* field[6] = scaledError */
   0,   /* field[0] = steeringAngle */
 };
 static const ProtobufCIntRange protobuf_msgs__controller_output__number_ranges[1 + 1] =
 {
   { 2, 0 },
-  { 0, 6 }
+  { 0, 7 }
 };
 const ProtobufCMessageDescriptor protobuf_msgs__controller_output__descriptor =
 {
@@ -148,7 +161,7 @@ const ProtobufCMessageDescriptor protobuf_msgs__controller_output__descriptor =
   "ProtobufMsgs__ControllerOutput",
   "protobuf_msgs",
   sizeof(ProtobufMsgs__ControllerOutput),
-  6,
+  7,
   protobuf_msgs__controller_output__field_descriptors,
   protobuf_msgs__controller_output__field_indices_by_name,
   1,  protobuf_msgs__controller_output__number_ranges,

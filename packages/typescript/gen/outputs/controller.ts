@@ -20,11 +20,21 @@ export interface ControllerOutput {
   /** Fan speed (0.0 to 1.0 <-> off - full speed) */
   fanSpeed: number;
   /** Useful for debugging */
-  error: number;
+  rawError: number;
+  /** the error value after quadratic scaling, but before PID */
+  scaledError: number;
 }
 
 function createBaseControllerOutput(): ControllerOutput {
-  return { steeringAngle: 0, leftThrottle: 0, rightThrottle: 0, frontLights: false, fanSpeed: 0, error: 0 };
+  return {
+    steeringAngle: 0,
+    leftThrottle: 0,
+    rightThrottle: 0,
+    frontLights: false,
+    fanSpeed: 0,
+    rawError: 0,
+    scaledError: 0,
+  };
 }
 
 export const ControllerOutput = {
@@ -44,8 +54,11 @@ export const ControllerOutput = {
     if (message.fanSpeed !== 0) {
       writer.uint32(53).float(message.fanSpeed);
     }
-    if (message.error !== 0) {
-      writer.uint32(61).float(message.error);
+    if (message.rawError !== 0) {
+      writer.uint32(61).float(message.rawError);
+    }
+    if (message.scaledError !== 0) {
+      writer.uint32(69).float(message.scaledError);
     }
     return writer;
   },
@@ -97,7 +110,14 @@ export const ControllerOutput = {
             break;
           }
 
-          message.error = reader.float();
+          message.rawError = reader.float();
+          continue;
+        case 8:
+          if (tag !== 69) {
+            break;
+          }
+
+          message.scaledError = reader.float();
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -115,7 +135,8 @@ export const ControllerOutput = {
       rightThrottle: isSet(object.rightThrottle) ? globalThis.Number(object.rightThrottle) : 0,
       frontLights: isSet(object.frontLights) ? globalThis.Boolean(object.frontLights) : false,
       fanSpeed: isSet(object.fanSpeed) ? globalThis.Number(object.fanSpeed) : 0,
-      error: isSet(object.error) ? globalThis.Number(object.error) : 0,
+      rawError: isSet(object.rawError) ? globalThis.Number(object.rawError) : 0,
+      scaledError: isSet(object.scaledError) ? globalThis.Number(object.scaledError) : 0,
     };
   },
 
@@ -136,8 +157,11 @@ export const ControllerOutput = {
     if (message.fanSpeed !== 0) {
       obj.fanSpeed = message.fanSpeed;
     }
-    if (message.error !== 0) {
-      obj.error = message.error;
+    if (message.rawError !== 0) {
+      obj.rawError = message.rawError;
+    }
+    if (message.scaledError !== 0) {
+      obj.scaledError = message.scaledError;
     }
     return obj;
   },
@@ -152,7 +176,8 @@ export const ControllerOutput = {
     message.rightThrottle = object.rightThrottle ?? 0;
     message.frontLights = object.frontLights ?? false;
     message.fanSpeed = object.fanSpeed ?? 0;
-    message.error = object.error ?? 0;
+    message.rawError = object.rawError ?? 0;
+    message.scaledError = object.scaledError ?? 0;
     return message;
   },
 };

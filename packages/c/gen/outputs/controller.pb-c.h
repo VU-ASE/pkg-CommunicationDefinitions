@@ -47,13 +47,17 @@ struct  _ProtobufMsgs__ControllerOutput
    * Useful for debugging
    */
   /*
-   * the error value before PID
+   * the error value before quadratic scaling
    */
-  float error;
+  float rawerror;
+  /*
+   * the error value after quadratic scaling, but before PID
+   */
+  float scalederror;
 };
 #define PROTOBUF_MSGS__CONTROLLER_OUTPUT__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&protobuf_msgs__controller_output__descriptor) \
-    , 0, 0, 0, 0, 0, 0 }
+    , 0, 0, 0, 0, 0, 0, 0 }
 
 
 /* ProtobufMsgs__ControllerOutput methods */
