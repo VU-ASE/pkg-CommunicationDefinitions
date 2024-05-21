@@ -1,3 +1,5 @@
 # pkg-CommunicationDefinitions
 
-To use this package, check out its docs [here](https://docs.ase.vu.nl/software/packages/pkg-CommunicationDefinitions/index.html).
+To use this package, check out its docs [here](
+https://docs.ase.vu.nl/docs/framework/packages/pkg-CommunicationDefinitions/
+).
