@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.23.0](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v2.22.0...v2.23.0) (2024-05-23)
+
+
+### Features
+
+* Add extra definitions for velocity and speed for the IMU ([b97ac97](https://github.com/VU-ASE/pkg-CommunicationDefinitions/commit/b97ac97edfc128b83f6f4cf876fa3cddec8dfac5))
+
 ## [2.22.0](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v2.21.0...v2.22.0) (2024-05-20)
 
 
