@@ -22,4 +22,6 @@ message ImuSensorOutput {
     Vector euler = 4;
     Vector accelerometer = 5;
     Vector linearAccelerometer = 6;
+    Vector velocity = 7;
+    float speed = 8;
 }
