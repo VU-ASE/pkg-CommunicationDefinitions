@@ -16,6 +16,8 @@ export interface ImuSensorOutput {
   euler: ImuSensorOutput_Vector | undefined;
   accelerometer: ImuSensorOutput_Vector | undefined;
   linearAccelerometer: ImuSensorOutput_Vector | undefined;
+  velocity: ImuSensorOutput_Vector | undefined;
+  speed: number;
 }
 
 export interface ImuSensorOutput_Vector {
@@ -32,6 +34,8 @@ function createBaseImuSensorOutput(): ImuSensorOutput {
     euler: undefined,
     accelerometer: undefined,
     linearAccelerometer: undefined,
+    velocity: undefined,
+    speed: 0,
   };
 }
 
@@ -54,6 +58,12 @@ export const ImuSensorOutput = {
     }
     if (message.linearAccelerometer !== undefined) {
       ImuSensorOutput_Vector.encode(message.linearAccelerometer, writer.uint32(50).fork()).ldelim();
+    }
+    if (message.velocity !== undefined) {
+      ImuSensorOutput_Vector.encode(message.velocity, writer.uint32(58).fork()).ldelim();
+    }
+    if (message.speed !== 0) {
+      writer.uint32(69).float(message.speed);
     }
     return writer;
   },
@@ -107,6 +117,20 @@ export const ImuSensorOutput = {
 
           message.linearAccelerometer = ImuSensorOutput_Vector.decode(reader, reader.uint32());
           continue;
+        case 7:
+          if (tag !== 58) {
+            break;
+          }
+
+          message.velocity = ImuSensorOutput_Vector.decode(reader, reader.uint32());
+          continue;
+        case 8:
+          if (tag !== 69) {
+            break;
+          }
+
+          message.speed = reader.float();
+          continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -126,6 +150,8 @@ export const ImuSensorOutput = {
       linearAccelerometer: isSet(object.linearAccelerometer)
         ? ImuSensorOutput_Vector.fromJSON(object.linearAccelerometer)
         : undefined,
+      velocity: isSet(object.velocity) ? ImuSensorOutput_Vector.fromJSON(object.velocity) : undefined,
+      speed: isSet(object.speed) ? globalThis.Number(object.speed) : 0,
     };
   },
 
@@ -148,6 +174,12 @@ export const ImuSensorOutput = {
     }
     if (message.linearAccelerometer !== undefined) {
       obj.linearAccelerometer = ImuSensorOutput_Vector.toJSON(message.linearAccelerometer);
+    }
+    if (message.velocity !== undefined) {
+      obj.velocity = ImuSensorOutput_Vector.toJSON(message.velocity);
+    }
+    if (message.speed !== 0) {
+      obj.speed = message.speed;
     }
     return obj;
   },
@@ -173,6 +205,10 @@ export const ImuSensorOutput = {
     message.linearAccelerometer = (object.linearAccelerometer !== undefined && object.linearAccelerometer !== null)
       ? ImuSensorOutput_Vector.fromPartial(object.linearAccelerometer)
       : undefined;
+    message.velocity = (object.velocity !== undefined && object.velocity !== null)
+      ? ImuSensorOutput_Vector.fromPartial(object.velocity)
+      : undefined;
+    message.speed = object.speed ?? 0;
     return message;
   },
 };

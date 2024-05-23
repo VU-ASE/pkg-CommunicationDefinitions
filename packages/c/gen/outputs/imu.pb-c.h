@@ -45,10 +45,12 @@ struct  _ProtobufMsgs__ImuSensorOutput
   ProtobufMsgs__ImuSensorOutput__Vector *euler;
   ProtobufMsgs__ImuSensorOutput__Vector *accelerometer;
   ProtobufMsgs__ImuSensorOutput__Vector *linearaccelerometer;
+  ProtobufMsgs__ImuSensorOutput__Vector *velocity;
+  float speed;
 };
 #define PROTOBUF_MSGS__IMU_SENSOR_OUTPUT__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&protobuf_msgs__imu_sensor_output__descriptor) \
-    , 0, NULL, NULL, NULL, NULL, NULL }
+    , 0, NULL, NULL, NULL, NULL, NULL, NULL, 0 }
 
 
 /* ProtobufMsgs__ImuSensorOutput__Vector methods */

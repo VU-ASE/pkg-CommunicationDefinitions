@@ -122,7 +122,7 @@ const ProtobufCMessageDescriptor protobuf_msgs__imu_sensor_output__vector__descr
   (ProtobufCMessageInit) protobuf_msgs__imu_sensor_output__vector__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor protobuf_msgs__imu_sensor_output__field_descriptors[6] =
+static const ProtobufCFieldDescriptor protobuf_msgs__imu_sensor_output__field_descriptors[8] =
 {
   {
     "temperature",
@@ -196,6 +196,30 @@ static const ProtobufCFieldDescriptor protobuf_msgs__imu_sensor_output__field_de
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "velocity",
+    7,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_MESSAGE,
+    0,   /* quantifier_offset */
+    offsetof(ProtobufMsgs__ImuSensorOutput, velocity),
+    &protobuf_msgs__imu_sensor_output__vector__descriptor,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "speed",
+    8,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_FLOAT,
+    0,   /* quantifier_offset */
+    offsetof(ProtobufMsgs__ImuSensorOutput, speed),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned protobuf_msgs__imu_sensor_output__field_indices_by_name[] = {
   4,   /* field[4] = accelerometer */
@@ -203,12 +227,14 @@ static const unsigned protobuf_msgs__imu_sensor_output__field_indices_by_name[] 
   2,   /* field[2] = gyroscope */
   5,   /* field[5] = linearAccelerometer */
   1,   /* field[1] = magnetometer */
+  7,   /* field[7] = speed */
   0,   /* field[0] = temperature */
+  6,   /* field[6] = velocity */
 };
 static const ProtobufCIntRange protobuf_msgs__imu_sensor_output__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 0, 6 }
+  { 0, 8 }
 };
 const ProtobufCMessageDescriptor protobuf_msgs__imu_sensor_output__descriptor =
 {
@@ -218,7 +244,7 @@ const ProtobufCMessageDescriptor protobuf_msgs__imu_sensor_output__descriptor =
   "ProtobufMsgs__ImuSensorOutput",
   "protobuf_msgs",
   sizeof(ProtobufMsgs__ImuSensorOutput),
-  6,
+  8,
   protobuf_msgs__imu_sensor_output__field_descriptors,
   protobuf_msgs__imu_sensor_output__field_indices_by_name,
   1,  protobuf_msgs__imu_sensor_output__number_ranges,
