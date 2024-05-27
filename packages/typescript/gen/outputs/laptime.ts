@@ -13,16 +13,21 @@ export const protobufPackage = "protobuf_msgs";
 export interface LapTimeOutput {
   /** Time of complete lap in ms */
   lapTime: number;
+  /** Start of the lap */
+  lapStartTime: number;
 }
 
 function createBaseLapTimeOutput(): LapTimeOutput {
-  return { lapTime: 0 };
+  return { lapTime: 0, lapStartTime: 0 };
 }
 
 export const LapTimeOutput = {
   encode(message: LapTimeOutput, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.lapTime !== 0) {
       writer.uint32(8).uint64(message.lapTime);
+    }
+    if (message.lapStartTime !== 0) {
+      writer.uint32(16).uint64(message.lapStartTime);
     }
     return writer;
   },
@@ -41,6 +46,13 @@ export const LapTimeOutput = {
 
           message.lapTime = longToNumber(reader.uint64() as Long);
           continue;
+        case 2:
+          if (tag !== 16) {
+            break;
+          }
+
+          message.lapStartTime = longToNumber(reader.uint64() as Long);
+          continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -51,13 +63,19 @@ export const LapTimeOutput = {
   },
 
   fromJSON(object: any): LapTimeOutput {
-    return { lapTime: isSet(object.lapTime) ? globalThis.Number(object.lapTime) : 0 };
+    return {
+      lapTime: isSet(object.lapTime) ? globalThis.Number(object.lapTime) : 0,
+      lapStartTime: isSet(object.lapStartTime) ? globalThis.Number(object.lapStartTime) : 0,
+    };
   },
 
   toJSON(message: LapTimeOutput): unknown {
     const obj: any = {};
     if (message.lapTime !== 0) {
       obj.lapTime = Math.round(message.lapTime);
+    }
+    if (message.lapStartTime !== 0) {
+      obj.lapStartTime = Math.round(message.lapStartTime);
     }
     return obj;
   },
@@ -68,6 +86,7 @@ export const LapTimeOutput = {
   fromPartial<I extends Exact<DeepPartial<LapTimeOutput>, I>>(object: I): LapTimeOutput {
     const message = createBaseLapTimeOutput();
     message.lapTime = object.lapTime ?? 0;
+    message.lapStartTime = object.lapStartTime ?? 0;
     return message;
   },
 };

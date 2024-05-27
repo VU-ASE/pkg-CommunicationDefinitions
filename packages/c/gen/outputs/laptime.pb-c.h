@@ -30,10 +30,14 @@ struct  _ProtobufMsgs__LapTimeOutput
    * Time of complete lap in ms
    */
   uint64_t laptime;
+  /*
+   * Start of the lap
+   */
+  uint64_t lapstarttime;
 };
 #define PROTOBUF_MSGS__LAP_TIME_OUTPUT__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&protobuf_msgs__lap_time_output__descriptor) \
-    , 0 }
+    , 0, 0 }
 
 
 /* ProtobufMsgs__LapTimeOutput methods */

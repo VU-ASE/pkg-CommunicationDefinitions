@@ -52,7 +52,7 @@ void   protobuf_msgs__lap_time_output__free_unpacked
   assert(message->base.descriptor == &protobuf_msgs__lap_time_output__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-static const ProtobufCFieldDescriptor protobuf_msgs__lap_time_output__field_descriptors[1] =
+static const ProtobufCFieldDescriptor protobuf_msgs__lap_time_output__field_descriptors[2] =
 {
   {
     "lapTime",
@@ -66,14 +66,27 @@ static const ProtobufCFieldDescriptor protobuf_msgs__lap_time_output__field_desc
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "lapStartTime",
+    2,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_UINT64,
+    0,   /* quantifier_offset */
+    offsetof(ProtobufMsgs__LapTimeOutput, lapstarttime),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned protobuf_msgs__lap_time_output__field_indices_by_name[] = {
+  1,   /* field[1] = lapStartTime */
   0,   /* field[0] = lapTime */
 };
 static const ProtobufCIntRange protobuf_msgs__lap_time_output__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 0, 1 }
+  { 0, 2 }
 };
 const ProtobufCMessageDescriptor protobuf_msgs__lap_time_output__descriptor =
 {
@@ -83,7 +96,7 @@ const ProtobufCMessageDescriptor protobuf_msgs__lap_time_output__descriptor =
   "ProtobufMsgs__LapTimeOutput",
   "protobuf_msgs",
   sizeof(ProtobufMsgs__LapTimeOutput),
-  1,
+  2,
   protobuf_msgs__lap_time_output__field_descriptors,
   protobuf_msgs__lap_time_output__field_indices_by_name,
   1,  protobuf_msgs__lap_time_output__number_ranges,
