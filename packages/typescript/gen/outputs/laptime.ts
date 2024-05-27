@@ -2,33 +2,35 @@
 // versions:
 //   protoc-gen-ts_proto  v1.176.1
 //   protoc               v3.6.1
-// source: outputs/lux.proto
+// source: outputs/laptime.proto
 
 /* eslint-disable */
+import Long from "long";
 import _m0 from "protobufjs/minimal";
 
 export const protobufPackage = "protobuf_msgs";
 
-export interface LuxSensorOutput {
-  lux: number;
+export interface LapTimeOutput {
+  /** Time of complete lap in ms */
+  lapTime: number;
 }
 
-function createBaseLuxSensorOutput(): LuxSensorOutput {
-  return { lux: 0 };
+function createBaseLapTimeOutput(): LapTimeOutput {
+  return { lapTime: 0 };
 }
 
-export const LuxSensorOutput = {
-  encode(message: LuxSensorOutput, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.lux !== 0) {
-      writer.uint32(8).int32(message.lux);
+export const LapTimeOutput = {
+  encode(message: LapTimeOutput, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.lapTime !== 0) {
+      writer.uint32(8).uint64(message.lapTime);
     }
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): LuxSensorOutput {
+  decode(input: _m0.Reader | Uint8Array, length?: number): LapTimeOutput {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseLuxSensorOutput();
+    const message = createBaseLapTimeOutput();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -37,7 +39,7 @@ export const LuxSensorOutput = {
             break;
           }
 
-          message.lux = reader.int32();
+          message.lapTime = longToNumber(reader.uint64() as Long);
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -48,24 +50,24 @@ export const LuxSensorOutput = {
     return message;
   },
 
-  fromJSON(object: any): LuxSensorOutput {
-    return { lux: isSet(object.lux) ? globalThis.Number(object.lux) : 0 };
+  fromJSON(object: any): LapTimeOutput {
+    return { lapTime: isSet(object.lapTime) ? globalThis.Number(object.lapTime) : 0 };
   },
 
-  toJSON(message: LuxSensorOutput): unknown {
+  toJSON(message: LapTimeOutput): unknown {
     const obj: any = {};
-    if (message.lux !== 0) {
-      obj.lux = Math.round(message.lux);
+    if (message.lapTime !== 0) {
+      obj.lapTime = Math.round(message.lapTime);
     }
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<LuxSensorOutput>, I>>(base?: I): LuxSensorOutput {
-    return LuxSensorOutput.fromPartial(base ?? ({} as any));
+  create<I extends Exact<DeepPartial<LapTimeOutput>, I>>(base?: I): LapTimeOutput {
+    return LapTimeOutput.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<LuxSensorOutput>, I>>(object: I): LuxSensorOutput {
-    const message = createBaseLuxSensorOutput();
-    message.lux = object.lux ?? 0;
+  fromPartial<I extends Exact<DeepPartial<LapTimeOutput>, I>>(object: I): LapTimeOutput {
+    const message = createBaseLapTimeOutput();
+    message.lapTime = object.lapTime ?? 0;
     return message;
   },
 };
@@ -81,6 +83,18 @@ export type DeepPartial<T> = T extends Builtin ? T
 type KeysOfUnion<T> = T extends T ? keyof T : never;
 export type Exact<P, I extends P> = P extends Builtin ? P
   : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
+
+function longToNumber(long: Long): number {
+  if (long.gt(globalThis.Number.MAX_SAFE_INTEGER)) {
+    throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
+  }
+  return long.toNumber();
+}
+
+if (_m0.util.Long !== Long) {
+  _m0.util.Long = Long as any;
+  _m0.configure();
+}
 
 function isSet(value: any): boolean {
   return value !== null && value !== undefined;
