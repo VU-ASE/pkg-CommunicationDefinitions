@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.25.0](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v2.24.1...v2.25.0) (2024-05-27)
+
+
+### Features
+
+* Add lap time start to lapTimer ([0d86eda](https://github.com/VU-ASE/pkg-CommunicationDefinitions/commit/0d86eda6e4e65706ca9216fce387539a1a54cc19))
+
 ## [2.24.1](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v2.24.0...v2.24.1) (2024-05-27)
 
 
