@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.24.1](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v2.24.0...v2.24.1) (2024-05-27)
+
+
+### Bug Fixes
+
+* added laptimeOutput to output wrapper ([63e8d49](https://github.com/VU-ASE/pkg-CommunicationDefinitions/commit/63e8d49b9800f947185fb01b5510e0bfc99d3511))
+
 ## [2.24.0](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v2.23.0...v2.24.0) (2024-05-27)
 
 
