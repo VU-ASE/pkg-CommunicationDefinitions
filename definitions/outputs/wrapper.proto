@@ -12,6 +12,7 @@ import "outputs/imu.proto";
 import "outputs/battery.proto";
 import "outputs/rpm.proto";
 import "outputs/lux.proto";
+import "outputs/laptime.proto";
 
 //
 // This file containes the wrapper SensorOutput message, that holds one of the sensor/controller output messages
@@ -39,6 +40,7 @@ message SensorOutput {
         BatterySensorOutput batteryOutput = 9;
         RpmSensorOutput rpmOuput = 10;
         LuxSensorOutput luxOutput = 11;
+        LapTimeOutput laptimeOutput = 12;
     }
 }
 
