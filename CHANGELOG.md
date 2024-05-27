@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.24.0](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v2.23.0...v2.24.0) (2024-05-27)
+
+
+### Features
+
+* Add lap time infastructure logic ([de87c2e](https://github.com/VU-ASE/pkg-CommunicationDefinitions/commit/de87c2e7f858514ba1c17aca42372e7aa5b67abc))
+
 ## [2.23.0](https://github.com/VU-ASE/pkg-CommunicationDefinitions/compare/v2.22.0...v2.23.0) (2024-05-23)
 
 
