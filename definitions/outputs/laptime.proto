@@ -10,4 +10,5 @@ option go_package = "ase/pb_module_outputs";
 
 message LapTimeOutput {
     uint64 lapTime = 1;   // Time of complete lap in ms
+    uint64 lapStartTime = 2; // Start of the lap
 }
